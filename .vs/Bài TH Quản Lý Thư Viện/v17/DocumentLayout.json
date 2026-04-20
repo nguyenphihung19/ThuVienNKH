@@ -1,0 +1,274 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmmainreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:frmmainreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmmainadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:frmmainadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucmuontra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:ucmuontra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|d:\\l\u1EADp tr\u00ECnh wed\\b\u00E0i th qu\u1EA3n l\u00FD th\u01B0 vi\u1EC7n\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmmainreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:frmmainreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmmainadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:frmmainadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\dbconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:dbconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucquanlynhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:ucquanlynhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucquanlysinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:ucquanlysinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\uctracuusach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:uctracuusach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucthongkebaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:ucthongkebaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\uctheodoicanhan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:uctheodoicanhan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucthanhlysach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:ucthanhlysach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucquanlytaikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:ucquanlytaikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\uccaidatquydinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{856CC0C8-D732-41BD-ADC8-CCCAEF062975}|B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n.csproj|solutionrelative:uccaidatquydinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmlogin.cs",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmlogin.cs",
+              "RelativeDocumentMoniker": "frmlogin.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmlogin.cs",
+              "RelativeToolTip": "frmlogin.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T17:22:04.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmMainAdmin.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\FrmMainAdmin.cs",
+              "RelativeDocumentMoniker": "FrmMainAdmin.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\FrmMainAdmin.cs [Design]",
+              "RelativeToolTip": "FrmMainAdmin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:03:23.229Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DBConnect.cs",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\DBConnect.cs",
+              "RelativeDocumentMoniker": "DBConnect.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\DBConnect.cs",
+              "RelativeToolTip": "DBConnect.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T17:02:25.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmMainReader.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmMainReader.cs",
+              "RelativeDocumentMoniker": "frmMainReader.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmMainReader.cs [Design]",
+              "RelativeToolTip": "frmMainReader.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:04:56.043Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ucMuonTra.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucMuonTra.cs",
+              "RelativeDocumentMoniker": "ucMuonTra.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucMuonTra.cs [Design]",
+              "RelativeToolTip": "ucMuonTra.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:31:13.745Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FrmMainAdmin.cs",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\FrmMainAdmin.cs",
+              "RelativeDocumentMoniker": "FrmMainAdmin.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\FrmMainAdmin.cs",
+              "RelativeToolTip": "FrmMainAdmin.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABwAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T18:46:09.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmMainReader.cs",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmMainReader.cs",
+              "RelativeDocumentMoniker": "frmMainReader.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmMainReader.cs",
+              "RelativeToolTip": "frmMainReader.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T20:06:58.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frmlogin.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmlogin.cs",
+              "RelativeDocumentMoniker": "frmlogin.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\frmlogin.cs [Design]",
+              "RelativeToolTip": "frmlogin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T06:57:22.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ucQuanLyNhanVien.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucQuanLyNhanVien.cs",
+              "RelativeDocumentMoniker": "ucQuanLyNhanVien.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucQuanLyNhanVien.cs [Design]",
+              "RelativeToolTip": "ucQuanLyNhanVien.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:30:53.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ucQuanLySinhVien.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucQuanLySinhVien.cs",
+              "RelativeDocumentMoniker": "ucQuanLySinhVien.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucQuanLySinhVien.cs [Design]",
+              "RelativeToolTip": "ucQuanLySinhVien.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:51:00.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ucTraCuuSach.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucTraCuuSach.cs",
+              "RelativeDocumentMoniker": "ucTraCuuSach.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucTraCuuSach.cs [Design]",
+              "RelativeToolTip": "ucTraCuuSach.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T08:47:14.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ucThongKeBaoCao.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucThongKeBaoCao.cs",
+              "RelativeDocumentMoniker": "ucThongKeBaoCao.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucThongKeBaoCao.cs [Design]",
+              "RelativeToolTip": "ucThongKeBaoCao.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:53:54.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ucTheoDoiCaNhan.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucTheoDoiCaNhan.cs",
+              "RelativeDocumentMoniker": "ucTheoDoiCaNhan.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucTheoDoiCaNhan.cs [Design]",
+              "RelativeToolTip": "ucTheoDoiCaNhan.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T08:47:33.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ucThanhLySach.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucThanhLySach.cs",
+              "RelativeDocumentMoniker": "ucThanhLySach.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucThanhLySach.cs [Design]",
+              "RelativeToolTip": "ucThanhLySach.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:52:52.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ucQuanLyTaiKhoan.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucQuanLyTaiKhoan.cs",
+              "RelativeDocumentMoniker": "ucQuanLyTaiKhoan.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucQuanLyTaiKhoan.cs [Design]",
+              "RelativeToolTip": "ucQuanLyTaiKhoan.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:49:09.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ucCaiDatQuyDinh.cs [Design]",
+              "DocumentMoniker": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucCaiDatQuyDinh.cs",
+              "RelativeDocumentMoniker": "ucCaiDatQuyDinh.cs",
+              "ToolTip": "D:\\l\u1EADp tr\u00ECnh wed\\B\u00E0i TH Qu\u1EA3n L\u00FD Th\u01B0 Vi\u1EC7n\\ucCaiDatQuyDinh.cs [Design]",
+              "RelativeToolTip": "ucCaiDatQuyDinh.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:50:08.521Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

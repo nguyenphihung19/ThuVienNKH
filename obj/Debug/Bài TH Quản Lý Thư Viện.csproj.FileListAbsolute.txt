@@ -1,0 +1,22 @@
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\bin\Debug\Bài TH Quản Lý Thư Viện.exe.config
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\bin\Debug\Bài TH Quản Lý Thư Viện.exe
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\bin\Debug\Bài TH Quản Lý Thư Viện.pdb
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài TH Quản Lý Thư Viện.csproj.AssemblyReference.cache
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.frmLogin.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.FrmMainAdmin.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.frmMainReader.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucCaiDatQuyDinh.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucMuonTra.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucQuanLyNhanVien.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucQuanLySach.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucQuanLySinhVien.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucQuanLyTaiKhoan.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucThanhLySach.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucTheoDoiCaNhan.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucThongKeBaoCao.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài_TH_Quản_Lý_Thư_Viện.ucTraCuuSach.resources
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài TH Quản Lý Thư Viện.csproj.GenerateResource.cache
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài TH Quản Lý Thư Viện.csproj.CoreCompileInputs.cache
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài TH Quản Lý Thư Viện.exe
+D:\lập trình wed\Bài TH Quản Lý Thư Viện\obj\Debug\Bài TH Quản Lý Thư Viện.pdb
