@@ -75,5 +75,15 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
+
+        private void cboRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
