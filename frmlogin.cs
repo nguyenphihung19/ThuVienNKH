@@ -20,59 +20,62 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtPass.Text) || cboRole.SelectedIndex == -1)
-            {
-                MessageBox.Show("Vui lòng nhập đủ thông tin!");
-                return;
-            }
-
             try
             {
+                DBConnect db = new DBConnect();
                 string user = txtUser.Text.Trim();
                 string pass = txtPass.Text.Trim();
-                string role = cboRole.SelectedItem.ToString();
-                DataTable dt;
 
-                if (role == "Giảng viên")
+                if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
                 {
-                    string sql = $"SELECT HoTen, QuyenTruyCap FROM NHANVIEN WHERE TenDangNhap='{user}' AND MatKhau='{pass}'";
-                    dt = db.getTable(sql);
-
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        string ten = dt.Rows[0]["HoTen"].ToString();
-                        string quyen = dt.Rows[0]["QuyenTruyCap"].ToString();
-
-                        MessageBox.Show($"Chào mừng cán bộ: {ten}");
-                        this.Hide();
-                        // Mở Form Admin
-                        FrmMainAdmin adminForm = new FrmMainAdmin(ten, quyen);
-                        adminForm.Show();
-                    }
-                    else { MessageBox.Show("Sai tài khoản hoặc mật khẩu Giảng viên!"); }
+                    MessageBox.Show("Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+                    return;
                 }
-                else // Vai trò Sinh viên
+
+                // Dùng ISNULL để ưu tiên lấy HoTen từ NHANVIEN, nếu không có thì lấy từ DOCGIA
+                // Kết nối 3 bảng thông qua MaTaiKhoan
+                string sql = $@"SELECT T.QuyenTruyCap, 
+                               ISNULL(N.HoTen, D.HoTen) AS HoTenResult
+                        FROM TAIKHOAN T 
+                        LEFT JOIN NHANVIEN N ON T.MaTaiKhoan = N.MaTaiKhoan 
+                        LEFT JOIN DOCGIA D ON T.MaTaiKhoan = D.MaTaiKhoan
+                        WHERE T.TenDangNhap = '{user}' AND T.MatKhau = '{pass}'";
+
+                DataTable dt = db.getTable(sql);
+
+                if (dt.Rows.Count > 0)
                 {
-                    string sql = $"SELECT HoTen FROM DOCGIA WHERE TenDangNhap='{user}' AND MatKhau='{pass}'";
-                    dt = db.getTable(sql);
+                    string hoTen = dt.Rows[0]["HoTenResult"].ToString();
+                    string quyen = dt.Rows[0]["QuyenTruyCap"].ToString();
 
-                    if (dt != null && dt.Rows.Count > 0)
+                    // Trường hợp cả 2 bảng đều chưa điền tên thật
+                    if (string.IsNullOrEmpty(hoTen)) hoTen = user;
+
+                    MessageBox.Show($"Đăng nhập thành công! Chào {hoTen}");
+
+                    if (quyen == "Quản Trị" || quyen == "Thủ Thư")
                     {
-                        string ten = dt.Rows[0]["HoTen"].ToString();
-
-                        MessageBox.Show($"Chào bạn sinh viên: {ten}");
+                        FrmMainAdmin fAdmin = new FrmMainAdmin(hoTen, quyen);
                         this.Hide();
-                        // Mở Form Sinh viên (frmMainReader)
-                        // Lưu ý: Nếu frmMainReader chưa có hàm nhận (ten), hãy tạo thêm cho nó giống FrmMainAdmin
-                        frmMainReader readerForm = new frmMainReader(ten);
-                        readerForm.Show();
+                        fAdmin.ShowDialog();
+                        this.Show();
                     }
-                    else { MessageBox.Show("Sai tài khoản hoặc mật khẩu Sinh viên!"); }
+                    else // Sinh Viên, Giảng Viên, Khách...
+                    {
+                        frmMainReader fReader = new frmMainReader(hoTen, quyen);
+                        this.Hide();
+                        fReader.ShowDialog();
+                        this.Show();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi hệ thống: " + ex.Message);
             }
         }
 
@@ -84,6 +87,37 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtUser_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BtnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn có muốn thoát chương trình không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close(); // Hoặc Application.Exit();
+            }
+        }
+
+        private void BtnQuenMatKhau_Click(object sender, EventArgs e)
+        {
+            frmQuenMatKhau f = new frmQuenMatKhau();
+            f.ShowDialog();
+        }
+
+        private void BtnDangKy_Click(object sender, EventArgs e)
+        {
+            frmDangKy f = new frmDangKy();
+            f.ShowDialog();
         }
     }
 }

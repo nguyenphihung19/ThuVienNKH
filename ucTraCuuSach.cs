@@ -16,5 +16,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
