@@ -13,12 +13,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     {
         // Tên Server và Database chuẩn theo ảnh ông gửi
         // Tui bỏ đoạn 'TrustServerCertificate' vì dùng Integrated Security trên máy cá nhân thường không cần nó
-<<<<<<< HEAD
+
         private string strCon = @"Data Source=DESKTOP-SLHSE1S;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
 
-=======
-        private string strCon = @"Data Source=DESKTOP-QREEVLD;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
->>>>>>> 151e9dcadc8d68f278f2868162f0029b53021a78
+
+       
 
         public SqlConnection conn { get; set; }
 
