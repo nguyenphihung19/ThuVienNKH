@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DgvMuonTra = new System.Windows.Forms.DataGridView();
             this.cboTinhTrang = new System.Windows.Forms.GroupBox();
             this.btnLocQuaHan = new System.Windows.Forms.Button();
             this.btnInPhieu = new System.Windows.Forms.Button();
@@ -45,44 +44,27 @@
             this.txtMaDG = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenDauSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayMuon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayPhaiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TienPhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvMuonTra)).BeginInit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtMaNV = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtMaPhieuMuon = new System.Windows.Forms.TextBox();
+            this.btnXemDs = new System.Windows.Forms.Button();
+            this.DgvMuonTra = new System.Windows.Forms.DataGridView();
             this.cboTinhTrang.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvMuonTra)).BeginInit();
             this.SuspendLayout();
-            // 
-            // DgvMuonTra
-            // 
-            this.DgvMuonTra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvMuonTra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT,
-            this.MaSach,
-            this.TenDauSach,
-            this.NgayMuon,
-            this.NgayPhaiTra,
-            this.TienPhat});
-            this.DgvMuonTra.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgvMuonTra.Location = new System.Drawing.Point(0, 0);
-            this.DgvMuonTra.Name = "DgvMuonTra";
-            this.DgvMuonTra.RowHeadersWidth = 51;
-            this.DgvMuonTra.RowTemplate.Height = 24;
-            this.DgvMuonTra.Size = new System.Drawing.Size(1014, 568);
-            this.DgvMuonTra.TabIndex = 0;
             // 
             // cboTinhTrang
             // 
+            this.cboTinhTrang.Controls.Add(this.btnXemDs);
             this.cboTinhTrang.Controls.Add(this.btnLocQuaHan);
             this.cboTinhTrang.Controls.Add(this.btnInPhieu);
             this.cboTinhTrang.Location = new System.Drawing.Point(15, 26);
             this.cboTinhTrang.Name = "cboTinhTrang";
-            this.cboTinhTrang.Size = new System.Drawing.Size(144, 94);
+            this.cboTinhTrang.Size = new System.Drawing.Size(144, 120);
             this.cboTinhTrang.TabIndex = 1;
             this.cboTinhTrang.TabStop = false;
             this.cboTinhTrang.Text = "Công Cụ";
@@ -95,6 +77,7 @@
             this.btnLocQuaHan.TabIndex = 1;
             this.btnLocQuaHan.Text = "Lọc Quá Hạn";
             this.btnLocQuaHan.UseVisualStyleBackColor = true;
+            this.btnLocQuaHan.Visible = false;
             // 
             // btnInPhieu
             // 
@@ -104,9 +87,14 @@
             this.btnInPhieu.TabIndex = 0;
             this.btnInPhieu.Text = "In Phiếu Mượn";
             this.btnInPhieu.UseVisualStyleBackColor = true;
+            this.btnInPhieu.Click += new System.EventHandler(this.btnInPhieu_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtMaPhieuMuon);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtMaNV);
             this.groupBox1.Controls.Add(this.btnChoMuon);
             this.groupBox1.Controls.Add(this.btnXacNhanTra);
             this.groupBox1.Controls.Add(this.dtpNgayTra);
@@ -119,7 +107,7 @@
             this.groupBox1.Controls.Add(this.txtMaDG);
             this.groupBox1.Location = new System.Drawing.Point(165, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(808, 94);
+            this.groupBox1.Size = new System.Drawing.Size(808, 120);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Khu Vực Mượn";
@@ -132,6 +120,7 @@
             this.btnChoMuon.TabIndex = 19;
             this.btnChoMuon.Text = "Mượn Sách";
             this.btnChoMuon.UseVisualStyleBackColor = true;
+            this.btnChoMuon.Click += new System.EventHandler(this.btnChoMuon_Click);
             // 
             // btnXacNhanTra
             // 
@@ -141,6 +130,7 @@
             this.btnXacNhanTra.TabIndex = 24;
             this.btnXacNhanTra.Text = "Trả Sách";
             this.btnXacNhanTra.UseVisualStyleBackColor = true;
+            this.btnXacNhanTra.Click += new System.EventHandler(this.btnXacNhanTra_Click);
             // 
             // dtpNgayTra
             // 
@@ -170,9 +160,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 16);
+            this.label1.Size = new System.Drawing.Size(77, 16);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Mã Sinh Viên";
+            this.label1.Text = "Mã Độc Giả";
             // 
             // label5
             // 
@@ -213,59 +203,71 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1014, 142);
+            this.panel2.Size = new System.Drawing.Size(1014, 162);
             this.panel2.TabIndex = 5;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.DgvMuonTra);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 142);
+            this.panel3.Location = new System.Drawing.Point(0, 162);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1014, 568);
+            this.panel3.Size = new System.Drawing.Size(1014, 548);
             this.panel3.TabIndex = 6;
             // 
-            // STT
+            // label3
             // 
-            this.STT.HeaderText = "STT";
-            this.STT.MinimumWidth = 6;
-            this.STT.Name = "STT";
-            this.STT.Width = 125;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(222, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 16);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Mã NV";
             // 
-            // MaSach
+            // txtMaNV
             // 
-            this.MaSach.HeaderText = "Mã Sách";
-            this.MaSach.MinimumWidth = 6;
-            this.MaSach.Name = "MaSach";
-            this.MaSach.Width = 125;
+            this.txtMaNV.Location = new System.Drawing.Point(286, 19);
+            this.txtMaNV.Name = "txtMaNV";
+            this.txtMaNV.Size = new System.Drawing.Size(87, 22);
+            this.txtMaNV.TabIndex = 27;
             // 
-            // TenDauSach
+            // label6
             // 
-            this.TenDauSach.HeaderText = "Tên Sách";
-            this.TenDauSach.MinimumWidth = 6;
-            this.TenDauSach.Name = "TenDauSach";
-            this.TenDauSach.Width = 125;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(222, 59);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 16);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Mã PM";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // NgayMuon
+            // txtMaPhieuMuon
             // 
-            this.NgayMuon.HeaderText = "Ngày Mượn";
-            this.NgayMuon.MinimumWidth = 6;
-            this.NgayMuon.Name = "NgayMuon";
-            this.NgayMuon.Width = 125;
+            this.txtMaPhieuMuon.Location = new System.Drawing.Point(286, 55);
+            this.txtMaPhieuMuon.Name = "txtMaPhieuMuon";
+            this.txtMaPhieuMuon.Size = new System.Drawing.Size(87, 22);
+            this.txtMaPhieuMuon.TabIndex = 29;
             // 
-            // NgayPhaiTra
+            // btnXemDs
             // 
-            this.NgayPhaiTra.HeaderText = "Hạn Trả";
-            this.NgayPhaiTra.MinimumWidth = 6;
-            this.NgayPhaiTra.Name = "NgayPhaiTra";
-            this.NgayPhaiTra.Width = 125;
+            this.btnXemDs.Location = new System.Drawing.Point(6, 80);
+            this.btnXemDs.Name = "btnXemDs";
+            this.btnXemDs.Size = new System.Drawing.Size(122, 23);
+            this.btnXemDs.TabIndex = 2;
+            this.btnXemDs.Text = "Xem Danh Sách";
+            this.btnXemDs.UseVisualStyleBackColor = true;
+            this.btnXemDs.Click += new System.EventHandler(this.btnXemDs_Click);
             // 
-            // TienPhat
+            // DgvMuonTra
             // 
-            this.TienPhat.HeaderText = "Tiền Phạt";
-            this.TienPhat.MinimumWidth = 6;
-            this.TienPhat.Name = "TienPhat";
-            this.TienPhat.Width = 125;
+            this.DgvMuonTra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvMuonTra.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvMuonTra.Location = new System.Drawing.Point(0, 0);
+            this.DgvMuonTra.Name = "DgvMuonTra";
+            this.DgvMuonTra.RowHeadersWidth = 51;
+            this.DgvMuonTra.RowTemplate.Height = 24;
+            this.DgvMuonTra.Size = new System.Drawing.Size(1014, 548);
+            this.DgvMuonTra.TabIndex = 0;
             // 
             // ucMuonTra
             // 
@@ -275,19 +277,17 @@
             this.Controls.Add(this.panel2);
             this.Name = "ucMuonTra";
             this.Size = new System.Drawing.Size(1014, 710);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvMuonTra)).EndInit();
             this.cboTinhTrang.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvMuonTra)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView DgvMuonTra;
         private System.Windows.Forms.GroupBox cboTinhTrang;
         private System.Windows.Forms.Button btnLocQuaHan;
         private System.Windows.Forms.Button btnInPhieu;
@@ -303,12 +303,12 @@
         private System.Windows.Forms.Button btnXacNhanTra;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaSach;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenDauSach;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayMuon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayPhaiTra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TienPhat;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtMaPhieuMuon;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtMaNV;
+        private System.Windows.Forms.Button btnXemDs;
+        private System.Windows.Forms.DataGridView DgvMuonTra;
     }
 }
