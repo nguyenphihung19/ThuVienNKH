@@ -242,6 +242,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
 
+
                 // Kiem tra thong tin co day du hay khong
                 if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
                 {
