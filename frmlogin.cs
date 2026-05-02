@@ -22,7 +22,6 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             try
             {
-                DBConnect db = new DBConnect();
                 string user = txtUser.Text.Trim();
                 string pass = txtPass.Text.Trim();
 
@@ -32,12 +31,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     return;
                 }
 
-                // Dùng ISNULL để ưu tiên lấy HoTen từ NHANVIEN, nếu không có thì lấy từ DOCGIA
-                // Kết nối 3 bảng thông qua MaTaiKhoan
+                // SỬA SQL: Dùng đúng tên cột là MaDG
                 string sql = $@"SELECT T.QuyenTruyCap, 
-                               ISNULL(N.HoTen, D.HoTen) AS HoTenResult
+                               ISNULL(N.HoTen, D.HoTen) AS HoTenResult,
+                               N.MaNV,
+                               D.MaDG -- Đã sửa từ MaDocGia thành MaDG
                         FROM TAIKHOAN T 
-                        LEFT JOIN NHANVIEN N ON T.MaTaiKhoan = N.MaTaiKhoan 
+                        LEFT JOIN NHANVIEN N ON T.MaTaiKhoan = N.MaTaiKhoan
                         LEFT JOIN DOCGIA D ON T.MaTaiKhoan = D.MaTaiKhoan
                         WHERE T.TenDangNhap = '{user}' AND T.MatKhau = '{pass}'";
 
@@ -45,24 +45,30 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (dt.Rows.Count > 0)
                 {
-                    string hoTen = dt.Rows[0]["HoTenResult"].ToString();
-                    string quyen = dt.Rows[0]["QuyenTruyCap"].ToString();
+                    // Cập nhật Session
+                    Session.TenDangNhap = user;
+                    Session.HoTen = dt.Rows[0]["HoTenResult"].ToString();
+                    Session.Quyen = dt.Rows[0]["QuyenTruyCap"].ToString();
 
-                    // Trường hợp cả 2 bảng đều chưa điền tên thật
-                    if (string.IsNullOrEmpty(hoTen)) hoTen = user;
+                    // Gán mã tương ứng
+                    Session.MaNV = dt.Rows[0]["MaNV"] != DBNull.Value ? dt.Rows[0]["MaNV"].ToString() : "";
 
-                    MessageBox.Show($"Đăng nhập thành công! Chào {hoTen}");
+                    // SỬA TÊN CỘT Ở ĐÂY: Dùng MaDG thay vì MaDocGia
+                    Session.MaDocGia = dt.Rows[0]["MaDG"] != DBNull.Value ? dt.Rows[0]["MaDG"].ToString() : "";
 
-                    if (quyen == "Quản Trị" || quyen == "Thủ Thư")
+                    MessageBox.Show($"Đăng nhập thành công! Chào {Session.HoTen}");
+
+                    // Điều hướng form
+                    if (Session.Quyen == "Quản Trị" || Session.Quyen == "Thủ Thư")
                     {
-                        FrmMainAdmin fAdmin = new FrmMainAdmin(hoTen, quyen);
+                        FrmMainAdmin fAdmin = new FrmMainAdmin(Session.HoTen, Session.Quyen);
                         this.Hide();
                         fAdmin.ShowDialog();
                         this.Show();
                     }
-                    else // Sinh Viên, Giảng Viên, Khách...
+                    else
                     {
-                        frmMainReader fReader = new frmMainReader(hoTen, quyen);
+                        frmMainReader fReader = new frmMainReader(Session.HoTen, Session.Quyen);
                         this.Hide();
                         fReader.ShowDialog();
                         this.Show();
@@ -79,32 +85,19 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
         }
 
-        private void cboRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtUser_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        // Các hàm sự kiện khác giữ nguyên
+        private void cboRole_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void pictureBox2_Click(object sender, EventArgs e) { }
+        private void txtUser_TextChanged(object sender, EventArgs e) { }
+        private void panel1_Paint(object sender, PaintEventArgs e) { }
 
         private void BtnThoat_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Bạn có muốn thoát chương trình không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                this.Close(); // Hoặc Application.Exit();
+                this.Close();
             }
         }
 

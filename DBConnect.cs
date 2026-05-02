@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Bài_TH_Quản_Lý_Thư_Viện
 {
@@ -12,7 +13,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     {
         // Tên Server và Database chuẩn theo ảnh ông gửi
         // Tui bỏ đoạn 'TrustServerCertificate' vì dùng Integrated Security trên máy cá nhân thường không cần nó
-        private string strCon = @"Data Source=Hoang;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
+        private string strCon = @"Data Source=DESKTOP-SLHSE1S;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
+
 
         public SqlConnection conn { get; set; }
 
@@ -22,6 +24,25 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         }
 
         // Hàm mở kết nối an toàn có bọc Try-Catch
+        public object getScalar(string sql)
+        {
+            object result = null;
+            try
+            {
+                open(); // BẮT BUỘC PHẢI CÓ DÒNG NÀY
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                result = cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi thực thi getScalar: " + ex.Message);
+            }
+            finally
+            {
+                close(); // Đóng kết nối sau khi xong
+            }
+            return result;
+        }
         public void open()
         {
             try
@@ -48,12 +69,17 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             DataTable dt = new DataTable();
             try
             {
+                open(); // Mở kết nối trước
                 SqlDataAdapter ad = new SqlDataAdapter(sql, conn);
                 ad.Fill(dt);
             }
             catch (Exception ex)
             {
                 throw new Exception("Lỗi khi lấy dữ liệu: " + ex.Message);
+            }
+            finally
+            {
+                close(); // Luôn đóng kết nối
             }
             return dt;
         }
@@ -78,5 +104,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
             return n;
         }
+
     }
 }
+
+
