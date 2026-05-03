@@ -27,6 +27,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void btnInPhieu_Click(object sender, EventArgs e)
         {
+            // Lấy mã phiếu mượn từ textbox hoặc từ dòng đang chọn trên DataGridView
             string maPhieuMuon = txtMaPhieuMuon.Text.Trim();
 
             if (maPhieuMuon == "")
@@ -35,6 +36,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 return;
             }
 
+            // Lấy dữ liệu phiếu mượn
             string sql = @"SELECT pm.MaPhieuMuon, pm.MaDG, dg.HoTen, pm.NgayMuon, ct.MaSach, ds.TenDauSach
                    FROM PHIEUMUON pm
                    INNER JOIN DOCGIA dg ON pm.MaDG = dg.MaDG
@@ -44,32 +46,26 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                    WHERE pm.MaPhieuMuon = " + maPhieuMuon;
 
             DataTable dt = db.getTable(sql);
-
             if (dt.Rows.Count == 0)
             {
                 MessageBox.Show("Không tìm thấy phiếu mượn!");
                 return;
             }
 
+            // Tạo PrintDocument
             PrintDocument pd = new PrintDocument();
-
             pd.PrintPage += (s, ev) =>
             {
                 Font font = new Font("Arial", 12);
                 float y = 50;
 
-                ev.Graphics.DrawString("PHIẾU MƯỢN SÁCH",
-                    new Font("Arial", 16, FontStyle.Bold),
-                    Brushes.Black, 200, y);
+                ev.Graphics.DrawString("PHIẾU MƯỢN SÁCH", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, 200, y);
                 y += 40;
 
                 DataRow row = dt.Rows[0];
-
                 ev.Graphics.DrawString("Mã Phiếu Mượn: " + row["MaPhieuMuon"], font, Brushes.Black, 50, y); y += 25;
                 ev.Graphics.DrawString("Đọc Giả: " + row["HoTen"], font, Brushes.Black, 50, y); y += 25;
-                ev.Graphics.DrawString("Ngày Mượn: " +
-                    Convert.ToDateTime(row["NgayMuon"]).ToString("dd/MM/yyyy"),
-                    font, Brushes.Black, 50, y); y += 40;
+                ev.Graphics.DrawString("Ngày Mượn: " + Convert.ToDateTime(row["NgayMuon"]).ToString("dd/MM/yyyy"), font, Brushes.Black, 50, y); y += 40;
 
                 ev.Graphics.DrawString("Danh sách sách mượn:", font, Brushes.Black, 50, y); y += 25;
 
@@ -80,13 +76,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 }
             };
 
+            // Hiển thị hộp thoại in
             PrintPreviewDialog preview = new PrintPreviewDialog();
             preview.Document = pd;
-
-            if (preview.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show("Đã in phiếu mượn thành công!");
-            }
 
         }
 
@@ -102,16 +94,16 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 return;
             }
 
+            //DateTime ngayMuon = Convert.ToDateTime(dtPM.Rows[0]["NgayMuon"]);
             DateTime ngayTra = dtpNgayTra.Value;
             DateTime ngayMuonn = dtpNgayMuon.Value;
 
             // Kiểm tra ngày mượn > ngày trả
             if (ngayMuonn > ngayTra)
             {
-                MessageBox.Show("Ngày trả phải lớn hơn hoặc bằng ngày mượn!");
+                MessageBox.Show("Ngày trả phải lớn hơn hoặc bằng ngày mượn. Vui lòng nhập lại!");
                 return;
             }
-
             // Kiểm tra Đọc Giả
             string sqlDG = "SELECT * FROM DOCGIA WHERE MaDG = '" + maDG + "'";
             DataTable dtDG = db.getTable(sqlDG);
@@ -130,44 +122,22 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 return;
             }
 
-           
-            string sqlCheckMuon = @"
-        SELECT ct.MaSach
-        FROM CHITIETPHIEUMUON ct
-        INNER JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
-        LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
-        WHERE ct.MaSach = '" + maSach + @"'
-        AND pt.MaPhieuMuon IS NULL";
-
-            DataTable dtCheckMuon = db.getTable(sqlCheckMuon);
-
-            if (dtCheckMuon.Rows.Count > 0)
-            {
-                MessageBox.Show("Mã sách này đang được mượn, không thể mượn tiếp!");
-                return;
-            }
-
             DateTime ngayMuon = dtpNgayMuon.Value;
 
-            // Thêm phiếu mượn
-            string sqlInsertPM = "INSERT INTO PHIEUMUON(MaDG, MaNV, NgayMuon, NgayPhaiTra) " +
+            // Thêm phiếu mượn (không insert MaPhieuMuon vì là IDENTITY)
+            string sqlInsertPM = "INSERT INTO PHIEUMUON(MaDG, MaNV, NgayMuon) " +
                                  "VALUES('" + maDG + "', '" + maNV + "', '" +
-                                 ngayMuon.ToString("yyyy-MM-dd") + "', '" +
-                                 ngayTra.ToString("yyyy-MM-dd") + "'); " +
+                                 ngayMuon.ToString("yyyy-MM-dd") + "'); " +
                                  "SELECT SCOPE_IDENTITY() AS NewID;";
 
             DataTable dtPM = db.getTable(sqlInsertPM);
             int maPhieuMuon = Convert.ToInt32(dtPM.Rows[0]["NewID"]);
 
             // Thêm chi tiết phiếu mượn
-            string sqlInsertCT = "INSERT INTO CHITIETPHIEUMUON(MaPhieuMuon, MaSach) VALUES(" +
-                                 maPhieuMuon + ", '" + maSach + "')";
+            string sqlInsertCT = "INSERT INTO CHITIETPHIEUMUON(MaPhieuMuon, MaSach) VALUES("
+                                 + maPhieuMuon + ", '" + maSach + "')";
 
             db.update(sqlInsertCT);
-
-            // Cập nhật trạng thái sách
-            string sqlUpdateSach = "UPDATE SACH SET TinhTrang = N'Đang mượn' WHERE MaSach = '" + maSach + "'";
-            db.update(sqlUpdateSach);
 
             MessageBox.Show("Cho mượn sách thành công!");
             HienThiDanhSachMuon();
@@ -175,26 +145,15 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         void HienThiDanhSachMuon()
         {
-            string sql = @"
-            SELECT ROW_NUMBER() OVER(ORDER BY pm.MaPhieuMuon) AS STT,
-            pm.MaPhieuMuon,
-            pm.MaDG,
-            ct.MaSach,
-            pm.NgayMuon,
-            pm.NgayPhaiTra,
-
-            CASE
-               WHEN pt.MaPhieuMuon IS NULL THEN N'Chưa trả'
-               ELSE N'Đã trả'
-            END AS TrangThaiTra
-
-            FROM PHIEUMUON pm
-            INNER JOIN CHITIETPHIEUMUON ct
-            ON pm.MaPhieuMuon = ct.MaPhieuMuon
-            LEFT JOIN PHIEUTRA pt
-            ON pm.MaPhieuMuon = pt.MaPhieuMuon";
-
-            DgvMuonTra.DataSource = db.getTable(sql);
+            string sql = @"SELECT ROW_NUMBER() OVER(ORDER BY pm.MaPhieuMuon) AS STT,
+                          pm.MaPhieuMuon,
+                          pm.MaDG,
+                          ct.MaSach,
+                          pm.NgayMuon,
+                          0 AS TienPhat
+                   FROM PHIEUMUON pm
+                   INNER JOIN CHITIETPHIEUMUON ct ON pm.MaPhieuMuon = ct.MaPhieuMuon
+                   WHERE pm.MaPhieuMuon NOT IN (SELECT MaPhieuMuon FROM PHIEUTRA)";
 
             DgvMuonTra.DataSource = db.getTable(sql);
         }
@@ -210,32 +169,18 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 return;
             }
 
-            // Kiểm tra phiếu mượn tồn tại
+            // Kiểm tra Phiếu Mượn
             string sqlPM = "SELECT * FROM PHIEUMUON WHERE MaPhieuMuon = " + maPhieuMuon;
             DataTable dtPM = db.getTable(sqlPM);
-
             if (dtPM.Rows.Count == 0)
             {
                 MessageBox.Show("Mã Phiếu Mượn không tồn tại!");
                 return;
             }
 
-            // ==================================================
-            // KIỂM TRA ĐÃ TRẢ CHƯA
-            // ==================================================
-            string sqlCheckTra = "SELECT * FROM PHIEUTRA WHERE MaPhieuMuon = " + maPhieuMuon;
-            DataTable dtCheckTra = db.getTable(sqlCheckTra);
-
-            if (dtCheckTra.Rows.Count > 0)
-            {
-                MessageBox.Show("Sách đã được trả từ trước!");
-                return;
-            }
-
-            // Kiểm tra nhân viên
+            // Kiểm tra Nhân Viên
             string sqlNV = "SELECT * FROM NHANVIEN WHERE MaNV = '" + maNV + "'";
             DataTable dtNV = db.getTable(sqlNV);
-
             if (dtNV.Rows.Count == 0)
             {
                 MessageBox.Show("Mã Nhân Viên không tồn tại!");
@@ -243,9 +188,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
 
             DateTime ngayTra = dtpNgayTra.Value;
-            DateTime ngayMuon = Convert.ToDateTime(dtPM.Rows[0]["NgayMuon"]);
 
-            // Tính tiền phạt
+            // Tính tiền phạt (ví dụ: quá hạn 7 ngày thì phạt 5000/ngày)
+            DateTime ngayMuon = Convert.ToDateTime(dtPM.Rows[0]["NgayMuon"]);
             int soNgayTre = (ngayTra - ngayMuon).Days - 7;
             int tienPhat = (soNgayTre > 0) ? soNgayTre * 5000 : 0;
 
@@ -255,10 +200,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                                  ngayTra.ToString("yyyy-MM-dd") + "', " + tienPhat + ")";
             db.update(sqlInsertPT);
 
-            // Cập nhật trạng thái sách
+            // Cập nhật tình trạng sách về 'Có sẵn'
             string sqlCT = "SELECT MaSach FROM CHITIETPHIEUMUON WHERE MaPhieuMuon = " + maPhieuMuon;
             DataTable dtCT = db.getTable(sqlCT);
-
             foreach (DataRow row in dtCT.Rows)
             {
                 string maSach = row["MaSach"].ToString();
@@ -267,7 +211,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
 
             MessageBox.Show("Trả sách thành công!");
-            HienThiDanhSachMuon();
+            HienThiDanhSachMuon(); // refresh lại danh sách
         }
 
         private void btnXemDs_Click(object sender, EventArgs e)

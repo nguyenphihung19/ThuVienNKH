@@ -36,7 +36,7 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboTrangThai = new System.Windows.Forms.ComboBox();
+            this.cboTinhTrang = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cboQuyenTruyCap = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuyenTruyCap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatKhau = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TinhTrang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -139,7 +139,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cboTrangThai);
+            this.groupBox1.Controls.Add(this.cboTinhTrang);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cboQuyenTruyCap);
             this.groupBox1.Controls.Add(this.label5);
@@ -158,25 +158,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Tài Khoản";
             // 
-            // cboTrangThai
+            // cboTinhTrang
             // 
-            this.cboTrangThai.FormattingEnabled = true;
-            this.cboTrangThai.Items.AddRange(new object[] {
-            "Hoạt Động",
-            "Bị Khóa"});
-            this.cboTrangThai.Location = new System.Drawing.Point(140, 169);
-            this.cboTrangThai.Name = "cboTrangThai";
-            this.cboTrangThai.Size = new System.Drawing.Size(121, 24);
-            this.cboTrangThai.TabIndex = 17;
+            this.cboTinhTrang.FormattingEnabled = true;
+            this.cboTinhTrang.Items.AddRange(new object[] {
+            "Hoạt động",
+            "Bị khóa"});
+            this.cboTinhTrang.Location = new System.Drawing.Point(140, 169);
+            this.cboTinhTrang.Name = "cboTinhTrang";
+            this.cboTinhTrang.Size = new System.Drawing.Size(121, 24);
+            this.cboTinhTrang.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(9, 168);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 16);
+            this.label6.Size = new System.Drawing.Size(72, 16);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Trạng Thái";
+            this.label6.Text = "Tình Trạng";
             // 
             // cboQuyenTruyCap
             // 
@@ -284,7 +284,7 @@
             this.Email,
             this.QuyenTruyCap,
             this.MatKhau,
-            this.TrangThai});
+            this.TinhTrang});
             this.DgvTaiKhoan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvTaiKhoan.Location = new System.Drawing.Point(0, 0);
             this.DgvTaiKhoan.Name = "DgvTaiKhoan";
@@ -299,7 +299,7 @@
             // MaTaiKhoan
             // 
             this.MaTaiKhoan.DataPropertyName = "MaTaiKhoan";
-            this.MaTaiKhoan.HeaderText = "Ma Tai Khoan";
+            this.MaTaiKhoan.HeaderText = "Mã Tài Khoản";
             this.MaTaiKhoan.MinimumWidth = 6;
             this.MaTaiKhoan.Name = "MaTaiKhoan";
             this.MaTaiKhoan.Width = 125;
@@ -336,13 +336,13 @@
             this.MatKhau.Name = "MatKhau";
             this.MatKhau.Width = 125;
             // 
-            // TrangThai
+            // TinhTrang
             // 
-            this.TrangThai.DataPropertyName = "TrangThai";
-            this.TrangThai.HeaderText = "Trang Thai";
-            this.TrangThai.MinimumWidth = 6;
-            this.TrangThai.Name = "TrangThai";
-            this.TrangThai.Width = 125;
+            this.TinhTrang.DataPropertyName = "TinhTrang";
+            this.TinhTrang.HeaderText = "Tình Trạng";
+            this.TinhTrang.MinimumWidth = 6;
+            this.TinhTrang.Name = "TinhTrang";
+            this.TinhTrang.Width = 125;
             // 
             // ucQuanLyTaiKhoan
             // 
@@ -385,13 +385,14 @@
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.ComboBox cboTrangThai;
+        private System.Windows.Forms.ComboBox cboTinhTrang;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaTaiKhoan;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenDangNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuyenTruyCap;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatKhau;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TinhTrang;
     }
 }
