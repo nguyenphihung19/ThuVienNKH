@@ -15,12 +15,14 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         // Tui bỏ đoạn 'TrustServerCertificate' vì dùng Integrated Security trên máy cá nhân thường không cần nó
 
 
+
   
 
         private string strCon = @"Data Source=DESKTOP-SLHSE1S;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
 
 
        
+
 
 
         public SqlConnection conn { get; set; }
