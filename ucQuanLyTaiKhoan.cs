@@ -205,6 +205,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 string tinhTrangText = cboTinhTrang.SelectedItem != null ? cboTinhTrang.SelectedItem.ToString() : "Hoạt động";
                 int tinhTrang = tinhTrangText == "Hoạt động" ? 1 : 0;
 
+
                 if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
                 {
                     MessageBox.Show("Vui lòng điền đầy đủ thông tin!");

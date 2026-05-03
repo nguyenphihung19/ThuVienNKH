@@ -14,12 +14,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     {
         private string strCon = @"Data Source=DESKTOP-QREEVLD;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
 
-        //public SqlConnection conn { get; set; }
 
-        //public DBConnect()
-        //{
-        //    conn = new SqlConnection(strCon);
-        //}
 
         private SqlConnection _conn;
         public SqlConnection conn
