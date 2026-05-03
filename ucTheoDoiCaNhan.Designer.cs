@@ -31,21 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.pnlData = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TxtHoTen = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,13 +39,32 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DtpNgayhethan = new System.Windows.Forms.DateTimePicker();
+            this.Dtpngaylapthe = new System.Windows.Forms.DateTimePicker();
+            this.DtpNgaysinh = new System.Windows.Forms.DateTimePicker();
+            this.TxtDiachi = new System.Windows.Forms.TextBox();
+            this.TxtEmail = new System.Windows.Forms.TextBox();
+            this.TxtDocGia = new System.Windows.Forms.TextBox();
+            this.BtnLuu = new System.Windows.Forms.Button();
+            this.BtnChinhSuaThongTin = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.Pnlsachquahan = new System.Windows.Forms.Panel();
+            this.lblSachQuaHan = new System.Windows.Forms.Label();
+            this.Pnlsachmuon = new System.Windows.Forms.Panel();
+            this.lblSachMuon = new System.Windows.Forms.Label();
+            this.Pnlphiphat = new System.Windows.Forms.Panel();
+            this.lblTienPhat = new System.Windows.Forms.Label();
+            this.pnlData = new System.Windows.Forms.Panel();
+            this.rtbLichSu = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.Pnlsachquahan.SuspendLayout();
+            this.Pnlsachmuon.SuspendLayout();
+            this.Pnlphiphat.SuspendLayout();
+            this.pnlData.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -89,7 +94,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.TxtHoTen);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
@@ -97,14 +102,14 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.dateTimePicker3);
-            this.panel2.Controls.Add(this.dateTimePicker2);
-            this.panel2.Controls.Add(this.dateTimePicker1);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.DtpNgayhethan);
+            this.panel2.Controls.Add(this.Dtpngaylapthe);
+            this.panel2.Controls.Add(this.DtpNgaysinh);
+            this.panel2.Controls.Add(this.TxtDiachi);
+            this.panel2.Controls.Add(this.TxtEmail);
+            this.panel2.Controls.Add(this.TxtDocGia);
+            this.panel2.Controls.Add(this.BtnLuu);
+            this.panel2.Controls.Add(this.BtnChinhSuaThongTin);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 62);
@@ -113,173 +118,14 @@
             this.panel2.Size = new System.Drawing.Size(305, 425);
             this.panel2.TabIndex = 2;
             // 
-            // dateTimePicker3
+            // TxtHoTen
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(123, 292);
-            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(178, 22);
-            this.dateTimePicker3.TabIndex = 5;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(123, 264);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(178, 22);
-            this.dateTimePicker2.TabIndex = 5;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(123, 177);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(178, 22);
-            this.dateTimePicker1.TabIndex = 5;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(123, 210);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(178, 22);
-            this.textBox4.TabIndex = 4;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(123, 234);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(178, 22);
-            this.textBox3.TabIndex = 4;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(123, 135);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(178, 22);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Navy;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button2.Location = new System.Drawing.Point(34, 382);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(247, 32);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Lưu Thông Tin";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Navy;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button1.Location = new System.Drawing.Point(34, 347);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 31);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Chỉnh Sửa Thông tin";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label8.Location = new System.Drawing.Point(10, 292);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 17);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Ngày Hết Hạn";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button3
-            // 
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
-            this.button3.FlatAppearance.BorderSize = 4;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(257, 4);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(216, 40);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Sách Đang Giữ";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.button4.FlatAppearance.BorderSize = 4;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(6, 4);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(216, 40);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Sách Quá Hạn";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Orange;
-            this.button5.FlatAppearance.BorderSize = 4;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(498, 4);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(184, 40);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Phí Phạt";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.button5);
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(305, 62);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(685, 63);
-            this.panel4.TabIndex = 3;
-            // 
-            // pnlData
-            // 
-            this.pnlData.Controls.Add(this.dataGridView1);
-            this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(305, 125);
-            this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(685, 362);
-            this.pnlData.TabIndex = 4;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(685, 362);
-            this.dataGridView1.TabIndex = 0;
+            this.TxtHoTen.Location = new System.Drawing.Point(123, 109);
+            this.TxtHoTen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtHoTen.Name = "TxtHoTen";
+            this.TxtHoTen.Size = new System.Drawing.Size(178, 22);
+            this.TxtHoTen.TabIndex = 13;
+            this.TxtHoTen.TextChanged += new System.EventHandler(this.TxtHoTen_TextChanged);
             // 
             // pictureBox1
             // 
@@ -357,13 +203,194 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Email";
             // 
-            // textBox1
+            // DtpNgayhethan
             // 
-            this.textBox1.Location = new System.Drawing.Point(123, 109);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 22);
-            this.textBox1.TabIndex = 13;
+            this.DtpNgayhethan.Location = new System.Drawing.Point(123, 292);
+            this.DtpNgayhethan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DtpNgayhethan.Name = "DtpNgayhethan";
+            this.DtpNgayhethan.Size = new System.Drawing.Size(178, 22);
+            this.DtpNgayhethan.TabIndex = 5;
+            this.DtpNgayhethan.ValueChanged += new System.EventHandler(this.DtpNgayhethan_ValueChanged);
+            // 
+            // Dtpngaylapthe
+            // 
+            this.Dtpngaylapthe.Location = new System.Drawing.Point(123, 264);
+            this.Dtpngaylapthe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Dtpngaylapthe.Name = "Dtpngaylapthe";
+            this.Dtpngaylapthe.Size = new System.Drawing.Size(178, 22);
+            this.Dtpngaylapthe.TabIndex = 5;
+            this.Dtpngaylapthe.ValueChanged += new System.EventHandler(this.Dtpngaylapthe_ValueChanged);
+            // 
+            // DtpNgaysinh
+            // 
+            this.DtpNgaysinh.Location = new System.Drawing.Point(123, 177);
+            this.DtpNgaysinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DtpNgaysinh.Name = "DtpNgaysinh";
+            this.DtpNgaysinh.Size = new System.Drawing.Size(178, 22);
+            this.DtpNgaysinh.TabIndex = 5;
+            this.DtpNgaysinh.ValueChanged += new System.EventHandler(this.DtpNgaysinh_ValueChanged);
+            // 
+            // TxtDiachi
+            // 
+            this.TxtDiachi.Location = new System.Drawing.Point(123, 210);
+            this.TxtDiachi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtDiachi.Name = "TxtDiachi";
+            this.TxtDiachi.Size = new System.Drawing.Size(178, 22);
+            this.TxtDiachi.TabIndex = 4;
+            this.TxtDiachi.TextChanged += new System.EventHandler(this.TxtDiachi_TextChanged);
+            // 
+            // TxtEmail
+            // 
+            this.TxtEmail.Location = new System.Drawing.Point(123, 234);
+            this.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtEmail.Name = "TxtEmail";
+            this.TxtEmail.Size = new System.Drawing.Size(178, 22);
+            this.TxtEmail.TabIndex = 4;
+            this.TxtEmail.TextChanged += new System.EventHandler(this.TxtEmail_TextChanged);
+            // 
+            // TxtDocGia
+            // 
+            this.TxtDocGia.Location = new System.Drawing.Point(123, 135);
+            this.TxtDocGia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtDocGia.Name = "TxtDocGia";
+            this.TxtDocGia.Size = new System.Drawing.Size(178, 22);
+            this.TxtDocGia.TabIndex = 4;
+            this.TxtDocGia.TextChanged += new System.EventHandler(this.TxtDocGia_TextChanged);
+            // 
+            // BtnLuu
+            // 
+            this.BtnLuu.BackColor = System.Drawing.Color.Navy;
+            this.BtnLuu.FlatAppearance.BorderSize = 0;
+            this.BtnLuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLuu.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.BtnLuu.Location = new System.Drawing.Point(34, 382);
+            this.BtnLuu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnLuu.Name = "BtnLuu";
+            this.BtnLuu.Size = new System.Drawing.Size(247, 32);
+            this.BtnLuu.TabIndex = 3;
+            this.BtnLuu.Text = "Lưu Thông Tin";
+            this.BtnLuu.UseVisualStyleBackColor = false;
+            this.BtnLuu.Click += new System.EventHandler(this.BtnLuu_Click);
+            // 
+            // BtnChinhSuaThongTin
+            // 
+            this.BtnChinhSuaThongTin.BackColor = System.Drawing.Color.Navy;
+            this.BtnChinhSuaThongTin.FlatAppearance.BorderSize = 0;
+            this.BtnChinhSuaThongTin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnChinhSuaThongTin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnChinhSuaThongTin.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.BtnChinhSuaThongTin.Location = new System.Drawing.Point(34, 347);
+            this.BtnChinhSuaThongTin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnChinhSuaThongTin.Name = "BtnChinhSuaThongTin";
+            this.BtnChinhSuaThongTin.Size = new System.Drawing.Size(247, 31);
+            this.BtnChinhSuaThongTin.TabIndex = 2;
+            this.BtnChinhSuaThongTin.Text = "Chỉnh Sửa Thông tin";
+            this.BtnChinhSuaThongTin.UseVisualStyleBackColor = false;
+            this.BtnChinhSuaThongTin.Click += new System.EventHandler(this.BtnChinhSuaThongTin_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label8.Location = new System.Drawing.Point(10, 292);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(109, 17);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Ngày Hết Hạn";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.Pnlsachquahan);
+            this.panel4.Controls.Add(this.Pnlsachmuon);
+            this.panel4.Controls.Add(this.Pnlphiphat);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(305, 62);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(685, 105);
+            this.panel4.TabIndex = 3;
+            // 
+            // Pnlsachquahan
+            // 
+            this.Pnlsachquahan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Pnlsachquahan.Controls.Add(this.lblSachQuaHan);
+            this.Pnlsachquahan.Location = new System.Drawing.Point(332, 5);
+            this.Pnlsachquahan.Name = "Pnlsachquahan";
+            this.Pnlsachquahan.Size = new System.Drawing.Size(157, 75);
+            this.Pnlsachquahan.TabIndex = 1;
+            this.Pnlsachquahan.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnlsachquahan_Paint);
+            // 
+            // lblSachQuaHan
+            // 
+            this.lblSachQuaHan.AutoSize = true;
+            this.lblSachQuaHan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSachQuaHan.Location = new System.Drawing.Point(0, 0);
+            this.lblSachQuaHan.Name = "lblSachQuaHan";
+            this.lblSachQuaHan.Size = new System.Drawing.Size(88, 16);
+            this.lblSachQuaHan.TabIndex = 2;
+            this.lblSachQuaHan.Text = "SachQuaHan";
+            // 
+            // Pnlsachmuon
+            // 
+            this.Pnlsachmuon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Pnlsachmuon.Controls.Add(this.lblSachMuon);
+            this.Pnlsachmuon.Location = new System.Drawing.Point(169, 5);
+            this.Pnlsachmuon.Name = "Pnlsachmuon";
+            this.Pnlsachmuon.Size = new System.Drawing.Size(157, 75);
+            this.Pnlsachmuon.TabIndex = 1;
+            this.Pnlsachmuon.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnlsachmuon_Paint);
+            // 
+            // lblSachMuon
+            // 
+            this.lblSachMuon.AutoSize = true;
+            this.lblSachMuon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSachMuon.Location = new System.Drawing.Point(0, 0);
+            this.lblSachMuon.Name = "lblSachMuon";
+            this.lblSachMuon.Size = new System.Drawing.Size(85, 16);
+            this.lblSachMuon.TabIndex = 1;
+            this.lblSachMuon.Text = "lblSachMuon";
+            // 
+            // Pnlphiphat
+            // 
+            this.Pnlphiphat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Pnlphiphat.Controls.Add(this.lblTienPhat);
+            this.Pnlphiphat.Location = new System.Drawing.Point(6, 5);
+            this.Pnlphiphat.Name = "Pnlphiphat";
+            this.Pnlphiphat.Size = new System.Drawing.Size(157, 75);
+            this.Pnlphiphat.TabIndex = 0;
+            this.Pnlphiphat.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnlphiphat_Paint);
+            // 
+            // lblTienPhat
+            // 
+            this.lblTienPhat.AutoSize = true;
+            this.lblTienPhat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTienPhat.Location = new System.Drawing.Point(0, 0);
+            this.lblTienPhat.Name = "lblTienPhat";
+            this.lblTienPhat.Size = new System.Drawing.Size(61, 16);
+            this.lblTienPhat.TabIndex = 0;
+            this.lblTienPhat.Text = "TienPhat";
+            // 
+            // pnlData
+            // 
+            this.pnlData.Controls.Add(this.rtbLichSu);
+            this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlData.Location = new System.Drawing.Point(305, 167);
+            this.pnlData.Name = "pnlData";
+            this.pnlData.Size = new System.Drawing.Size(685, 320);
+            this.pnlData.TabIndex = 4;
+            // 
+            // rtbLichSu
+            // 
+            this.rtbLichSu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbLichSu.Font = new System.Drawing.Font("Microsoft Tai Le", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbLichSu.Location = new System.Drawing.Point(0, 0);
+            this.rtbLichSu.Name = "rtbLichSu";
+            this.rtbLichSu.Size = new System.Drawing.Size(685, 320);
+            this.rtbLichSu.TabIndex = 0;
+            this.rtbLichSu.Text = "";
+            this.rtbLichSu.TextChanged += new System.EventHandler(this.Rtbhienthongtin_TextChanged);
             // 
             // ucTheoDoiCaNhan
             // 
@@ -375,14 +402,20 @@
             this.Controls.Add(this.panel1);
             this.Name = "ucTheoDoiCaNhan";
             this.Size = new System.Drawing.Size(990, 487);
+            this.Load += new System.EventHandler(this.ucTheoDoiCaNhan_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.pnlData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.Pnlsachquahan.ResumeLayout(false);
+            this.Pnlsachquahan.PerformLayout();
+            this.Pnlsachmuon.ResumeLayout(false);
+            this.Pnlsachmuon.PerformLayout();
+            this.Pnlphiphat.ResumeLayout(false);
+            this.Pnlphiphat.PerformLayout();
+            this.pnlData.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -392,21 +425,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnLuu;
+        private System.Windows.Forms.Button BtnChinhSuaThongTin;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DateTimePicker DtpNgayhethan;
+        private System.Windows.Forms.DateTimePicker Dtpngaylapthe;
+        private System.Windows.Forms.DateTimePicker DtpNgaysinh;
+        private System.Windows.Forms.TextBox TxtDiachi;
+        private System.Windows.Forms.TextBox TxtEmail;
+        private System.Windows.Forms.TextBox TxtDocGia;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel pnlData;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -414,6 +443,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtHoTen;
+        private System.Windows.Forms.RichTextBox rtbLichSu;
+        private System.Windows.Forms.Panel Pnlsachquahan;
+        private System.Windows.Forms.Panel Pnlsachmuon;
+        private System.Windows.Forms.Panel Pnlphiphat;
+        private System.Windows.Forms.Label lblSachQuaHan;
+        private System.Windows.Forms.Label lblSachMuon;
+        private System.Windows.Forms.Label lblTienPhat;
     }
 }

@@ -14,13 +14,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     {
         string hoTenUser = "";
         string quyenUser = "";
+        DBConnect db = new DBConnect();
 
         public frmMainReader()
         {
             InitializeComponent();
         }
 
-        // Hàm nhận tên và quyền từ Form Login truyền sang
         public frmMainReader(string ten, string quyen)
         {
             InitializeComponent();
@@ -47,6 +47,20 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             pnlContent.Controls.Clear();
             ucTheoDoiCaNhan uc = new ucTheoDoiCaNhan();
             uc.Dock = DockStyle.Fill;
+
+            // --- CHỖ CẦN THÊM: GỌI HÀM LOAD DỮ LIỆU ---
+            // Vì ông đã lưu Mã Độc Giả vào Session ở Form Login, 
+            // nên giờ chỉ cần lấy ra và nạp vào UserControl thôi.
+            if (!string.IsNullOrEmpty(Session.MaDocGia))
+            {
+                uc.LoadData(Session.MaDocGia);
+            }
+            else
+            {
+                MessageBox.Show("Lỗi: Không tìm thấy Mã Độc Giả trong Session!");
+            }
+            // -----------------------------------------
+
             pnlContent.Controls.Add(uc);
             pnlContent.PerformLayout();
             uc.BringToFront();
@@ -76,27 +90,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             LoadNoiQuyHeThong();
         }
 
-        private void GbNoiQuy_Enter(object sender, EventArgs e)
-        {
-            // Sự kiện của GroupBox
-        }
-
-        private void lblNoiQuy_Click(object sender, EventArgs e)
-        {
-
-        }
-        // Khai báo kết nối (đặt dưới chỗ hoTenUser)
-        DBConnect db = new DBConnect();
-
         private void LoadNoiQuyHeThong()
         {
             try
             {
-                // 1. Lấy dữ liệu từ bảng QUYDINH
                 string sql = "SELECT TenQD, GiaTri FROM QUYDINH";
                 DataTable dt = db.getTable(sql);
 
-                // 2. Kiểm tra xem có dòng nào không
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     string chuoiNoiQuy = "📜 QUY ĐỊNH THƯ VIỆN:\n\n";
@@ -116,28 +116,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 lblNoiQuy.Text = "Lỗi kết nối nội quy!";
             }
         }
-        private void LoadNoiQuy()
-        {
-            try
-            {
-                // Lấy TenQD để hiển thị cho độc giả thấy chữ, thay vì chỉ lấy MaQD
-                string query = "SELECT TenQD, GiaTri FROM QUYDINH";
-                DataTable dt = db.getTable(query);
 
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    string content = "📜 NỘI QUY THƯ VIỆN:\n\n";
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        content += $"• {row["TenQD"]}: {row["GiaTri"]}\n";
-                    }
-                    lblNoiQuy.Text = content;
-                }
-            }
-            catch
-            {
-                lblNoiQuy.Text = "Không thể tải nội quy.";
-            }
-        }
+        // Các hàm sự kiện giữ nguyên
+        private void GbNoiQuy_Enter(object sender, EventArgs e) { }
+        private void lblNoiQuy_Click(object sender, EventArgs e) { }
+        private void LoadNoiQuy() { }
     }
 }
