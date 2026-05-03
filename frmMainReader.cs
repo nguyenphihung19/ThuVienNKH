@@ -50,6 +50,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             pnlContent.Controls.Add(uc);
             pnlContent.PerformLayout();
             uc.BringToFront();
+
         }
 
         private void BtnDoiMatKhau_Click(object sender, EventArgs e)

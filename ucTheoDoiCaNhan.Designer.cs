@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TxtSDT = new System.Windows.Forms.TextBox();
             this.TxtDocGia = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,8 +50,6 @@
             this.BtnLuu = new System.Windows.Forms.Button();
             this.BtnChinhSua = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.TxtSDT = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -108,6 +108,25 @@
             this.panel2.Size = new System.Drawing.Size(990, 425);
             this.panel2.TabIndex = 2;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label9.Location = new System.Drawing.Point(185, 206);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 17);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Số Điện Thoại";
+            // 
+            // TxtSDT
+            // 
+            this.TxtSDT.Location = new System.Drawing.Point(358, 201);
+            this.TxtSDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtSDT.Name = "TxtSDT";
+            this.TxtSDT.Size = new System.Drawing.Size(178, 22);
+            this.TxtSDT.TabIndex = 14;
+            // 
             // TxtDocGia
             // 
             this.TxtDocGia.Location = new System.Drawing.Point(358, 99);
@@ -131,7 +150,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label7.Location = new System.Drawing.Point(184, 106);
+            this.label7.Location = new System.Drawing.Point(185, 128);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 17);
             this.label7.TabIndex = 6;
@@ -164,7 +183,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label4.Location = new System.Drawing.Point(184, 130);
+            this.label4.Location = new System.Drawing.Point(184, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 17);
             this.label4.TabIndex = 9;
@@ -254,7 +273,7 @@
             this.BtnLuu.TabIndex = 3;
             this.BtnLuu.Text = "Lưu Thông Tin";
             this.BtnLuu.UseVisualStyleBackColor = false;
-            this.BtnLuu.Click += new System.EventHandler(this.BtnLuu_Click);
+            this.BtnLuu.Click += new System.EventHandler(this.BtnLuu_Click_1);
             // 
             // BtnChinhSua
             // 
@@ -270,7 +289,7 @@
             this.BtnChinhSua.TabIndex = 2;
             this.BtnChinhSua.Text = "Chỉnh Sửa Thông tin";
             this.BtnChinhSua.UseVisualStyleBackColor = false;
-            this.BtnChinhSua.Click += new System.EventHandler(this.BtnChinhSua_Click);
+            this.BtnChinhSua.Click += new System.EventHandler(this.BtnChinhSua_Click_1);
             // 
             // label8
             // 
@@ -283,25 +302,6 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Ngày Hết Hạn";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TxtSDT
-            // 
-            this.TxtSDT.Location = new System.Drawing.Point(358, 201);
-            this.TxtSDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtSDT.Name = "TxtSDT";
-            this.TxtSDT.Size = new System.Drawing.Size(178, 22);
-            this.TxtSDT.TabIndex = 14;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label9.Location = new System.Drawing.Point(185, 206);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 17);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Số Điện Thoại";
             // 
             // ucTheoDoiCaNhan
             // 
