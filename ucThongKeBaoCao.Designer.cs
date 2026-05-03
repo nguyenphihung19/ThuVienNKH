@@ -30,9 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.lblDoanhThu = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblDangMuon = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.lblQuaHan = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblTongSach = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -40,22 +42,19 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.gridviewThongKe = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnTim = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.lblQuaHan = new System.Windows.Forms.Label();
-            this.lblDoanhThu = new System.Windows.Forms.Label();
             this.MaSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenDauSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiMuon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgayMuon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayPhaiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HanTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TinhTrang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.SoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -89,6 +88,16 @@
             this.panel7.Size = new System.Drawing.Size(200, 100);
             this.panel7.TabIndex = 3;
             // 
+            // lblDoanhThu
+            // 
+            this.lblDoanhThu.AutoSize = true;
+            this.lblDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoanhThu.Location = new System.Drawing.Point(14, 39);
+            this.lblDoanhThu.Name = "lblDoanhThu";
+            this.lblDoanhThu.Size = new System.Drawing.Size(111, 18);
+            this.lblDoanhThu.TabIndex = 2;
+            this.lblDoanhThu.Text = "TongDoanhThu";
+            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Lime;
@@ -116,6 +125,16 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(200, 100);
             this.panel8.TabIndex = 2;
+            // 
+            // lblQuaHan
+            // 
+            this.lblQuaHan.AutoSize = true;
+            this.lblQuaHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuaHan.Location = new System.Drawing.Point(38, 39);
+            this.lblQuaHan.Name = "lblQuaHan";
+            this.lblQuaHan.Size = new System.Drawing.Size(97, 18);
+            this.lblQuaHan.TabIndex = 2;
+            this.lblQuaHan.Text = "TongQuaHan";
             // 
             // panel5
             // 
@@ -171,11 +190,11 @@
             this.gridviewThongKe.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaSach,
             this.TenDauSach,
-            this.MaDG,
-            this.HoTen,
+            this.NguoiMuon,
             this.NgayMuon,
-            this.NgayPhaiTra,
-            this.TinhTrang});
+            this.HanTra,
+            this.TinhTrang,
+            this.SoTien});
             this.gridviewThongKe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridviewThongKe.Location = new System.Drawing.Point(0, 0);
             this.gridviewThongKe.Name = "gridviewThongKe";
@@ -192,23 +211,32 @@
             this.panel3.Controls.Add(this.btnExport);
             this.panel3.Controls.Add(this.btnXoa);
             this.panel3.Controls.Add(this.btnSua);
-            this.panel3.Controls.Add(this.btnThem);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 18);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(982, 50);
             this.panel3.TabIndex = 0;
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(714, 3);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(57, 23);
+            this.btnReset.TabIndex = 6;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(645, 3);
+            this.txtSearch.Location = new System.Drawing.Point(320, 3);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(199, 22);
+            this.txtSearch.Size = new System.Drawing.Size(310, 22);
             this.txtSearch.TabIndex = 5;
             // 
             // btnTim
             // 
-            this.btnTim.Location = new System.Drawing.Point(850, 3);
+            this.btnTim.Location = new System.Drawing.Point(648, 3);
             this.btnTim.Name = "btnTim";
             this.btnTim.Size = new System.Drawing.Size(60, 23);
             this.btnTim.TabIndex = 4;
@@ -218,9 +246,9 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(259, 3);
+            this.btnExport.Location = new System.Drawing.Point(919, 3);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.Size = new System.Drawing.Size(60, 23);
             this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Export Excel";
             this.btnExport.UseVisualStyleBackColor = true;
@@ -228,7 +256,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(178, 3);
+            this.btnXoa.Location = new System.Drawing.Point(126, 0);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
             this.btnXoa.TabIndex = 2;
@@ -238,46 +266,17 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(97, 3);
+            this.btnSua.Location = new System.Drawing.Point(26, 0);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 1;
-            this.btnSua.Text = "Sua";
+            this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
-            // 
-            // btnThem
-            // 
-            this.btnThem.Location = new System.Drawing.Point(16, 3);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(75, 23);
-            this.btnThem.TabIndex = 0;
-            this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
-            // 
-            // lblQuaHan
-            // 
-            this.lblQuaHan.AutoSize = true;
-            this.lblQuaHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuaHan.Location = new System.Drawing.Point(38, 39);
-            this.lblQuaHan.Name = "lblQuaHan";
-            this.lblQuaHan.Size = new System.Drawing.Size(97, 18);
-            this.lblQuaHan.TabIndex = 2;
-            this.lblQuaHan.Text = "TongQuaHan";
-            // 
-            // lblDoanhThu
-            // 
-            this.lblDoanhThu.AutoSize = true;
-            this.lblDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDoanhThu.Location = new System.Drawing.Point(41, 39);
-            this.lblDoanhThu.Name = "lblDoanhThu";
-            this.lblDoanhThu.Size = new System.Drawing.Size(111, 18);
-            this.lblDoanhThu.TabIndex = 2;
-            this.lblDoanhThu.Text = "TongDoanhThu";
             // 
             // MaSach
             // 
             this.MaSach.DataPropertyName = "MaSach";
-            this.MaSach.HeaderText = "Ma Sach";
+            this.MaSach.HeaderText = "Mã Sách";
             this.MaSach.MinimumWidth = 6;
             this.MaSach.Name = "MaSach";
             this.MaSach.Width = 125;
@@ -285,60 +284,50 @@
             // TenDauSach
             // 
             this.TenDauSach.DataPropertyName = "TenDauSach";
-            this.TenDauSach.HeaderText = "Ten Sach";
+            this.TenDauSach.HeaderText = "Tên Sách";
             this.TenDauSach.MinimumWidth = 6;
             this.TenDauSach.Name = "TenDauSach";
             this.TenDauSach.Width = 125;
             // 
-            // MaDG
+            // NguoiMuon
             // 
-            this.MaDG.DataPropertyName = "MaDG";
-            this.MaDG.HeaderText = "Ma Doc Gia";
-            this.MaDG.MinimumWidth = 6;
-            this.MaDG.Name = "MaDG";
-            this.MaDG.Width = 125;
-            // 
-            // HoTen
-            // 
-            this.HoTen.DataPropertyName = "HoTen";
-            this.HoTen.HeaderText = "Nguoi Muon";
-            this.HoTen.MinimumWidth = 6;
-            this.HoTen.Name = "HoTen";
-            this.HoTen.Width = 125;
+            this.NguoiMuon.DataPropertyName = "NguoiMuon";
+            this.NguoiMuon.HeaderText = "Người Mượn";
+            this.NguoiMuon.MinimumWidth = 6;
+            this.NguoiMuon.Name = "NguoiMuon";
+            this.NguoiMuon.Width = 125;
             // 
             // NgayMuon
             // 
             this.NgayMuon.DataPropertyName = "NgayMuon";
-            this.NgayMuon.HeaderText = "Ngay Muon";
+            this.NgayMuon.HeaderText = "Ngày Mượn";
             this.NgayMuon.MinimumWidth = 6;
             this.NgayMuon.Name = "NgayMuon";
             this.NgayMuon.Width = 125;
             // 
-            // NgayPhaiTra
+            // HanTra
             // 
-            this.NgayPhaiTra.DataPropertyName = "NgayPhaiTra";
-            this.NgayPhaiTra.HeaderText = "Ngay Tra";
-            this.NgayPhaiTra.MinimumWidth = 6;
-            this.NgayPhaiTra.Name = "NgayPhaiTra";
-            this.NgayPhaiTra.Width = 125;
+            this.HanTra.DataPropertyName = "HanTra";
+            this.HanTra.HeaderText = "Ngày Trả";
+            this.HanTra.MinimumWidth = 6;
+            this.HanTra.Name = "HanTra";
+            this.HanTra.Width = 125;
             // 
             // TinhTrang
             // 
             this.TinhTrang.DataPropertyName = "TinhTrang";
-            this.TinhTrang.HeaderText = "Tinh Trang";
+            this.TinhTrang.HeaderText = "Tình Trạng";
             this.TinhTrang.MinimumWidth = 6;
             this.TinhTrang.Name = "TinhTrang";
             this.TinhTrang.Width = 125;
             // 
-            // btnReset
+            // SoTien
             // 
-            this.btnReset.Location = new System.Drawing.Point(916, 3);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(63, 23);
-            this.btnReset.TabIndex = 6;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.SoTien.DataPropertyName = "SoTien";
+            this.SoTien.HeaderText = "Số Tiền";
+            this.SoTien.MinimumWidth = 6;
+            this.SoTien.Name = "SoTien";
+            this.SoTien.Width = 125;
             // 
             // ucThongKeBaoCao
             // 
@@ -378,7 +367,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
@@ -389,13 +377,13 @@
         private System.Windows.Forms.Label lblTongSach;
         private System.Windows.Forms.Label lblDoanhThu;
         private System.Windows.Forms.Label lblQuaHan;
+        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenDauSach;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaDG;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoTen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiMuon;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayMuon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayPhaiTra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HanTra;
         private System.Windows.Forms.DataGridViewTextBoxColumn TinhTrang;
-        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoTien;
     }
 }

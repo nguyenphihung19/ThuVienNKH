@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Bài_TH_Quản_Lý_Thư_Viện
@@ -13,19 +13,21 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     public partial class ucThongKeBaoCao : UserControl
     {
         DBConnect db = new DBConnect();
-
-        // Biến lưu dòng đang chọn
         private DataGridViewRow selectedRow;
 
         public ucThongKeBaoCao()
         {
             InitializeComponent();
+            ExcelPackage.License.SetNonCommercialPersonal("Bài TH Quản Lý Thư Viện");
         }
 
         private void ucThongKeBaoCao_Load(object sender, EventArgs e)
         {
             LoadAllData();
             LoadStatistics();
+
+            btnSua.Visible = false;
+            btnXoa.Visible = false;
         }
 
         private void LoadAllData()
@@ -34,35 +36,34 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             {
                 string sql = @"
                 SELECT 
-                s.MaSach, ds.TenDauSach, 
-                ISNULL(dg.MaDG, '') AS MaDG,
-                ISNULL(dg.HoTen, '') AS HoTen,
-                ISNULL(pm.NgayMuon, '') AS NgayMuon,
-                ISNULL(pm.NgayPhaiTra, '') AS NgayPhaiTra,
-                CASE 
-                WHEN pt.MaPhieuTra IS NOT NULL THEN N'Đã trả'
-                WHEN pm.MaPhieuMuon IS NOT NULL AND GETDATE() > pm.NgayPhaiTra THEN N'Quá hạn'
-                WHEN pm.MaPhieuMuon IS NOT NULL THEN N'Đang mượn'
-                ELSE N'Còn'
-                END AS TinhTrang
+                    s.MaSach, 
+                    ds.TenDauSach, 
+                    ISNULL(dg.HoTen, '') AS NguoiMuon,
+                    CONVERT(varchar(10), pm.NgayMuon, 103) AS NgayMuon,
+                    CONVERT(varchar(10), pm.NgayPhaiTra, 103) AS HanTra,
+                    ISNULL(pt.TienPhatKyNay, 0) AS SoTien,
+                    CASE 
+                        WHEN pt.MaPhieuTra IS NOT NULL THEN N'Đã trả'
+                        WHEN pm.MaPhieuMuon IS NOT NULL AND GETDATE() > pm.NgayPhaiTra THEN N'Quá hạn'
+                        WHEN pm.MaPhieuMuon IS NOT NULL THEN N'Đang mượn'
+                        ELSE N'Còn'
+                    END AS TinhTrang
                 FROM SACH s
                 INNER JOIN DAUSACH ds ON s.MaDauSach = ds.MaDauSach
                 LEFT JOIN CHITIETPHIEUMUON ct ON s.MaSach = ct.MaSach
                 LEFT JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
                 LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
                 LEFT JOIN DOCGIA dg ON pm.MaDG = dg.MaDG
-                GROUP BY s.MaSach, ds.TenDauSach, dg.MaDG, dg.HoTen, 
-                pm.NgayMuon, pm.NgayPhaiTra, pt.MaPhieuTra, pm.MaPhieuMuon
+                GROUP BY s.MaSach, ds.TenDauSach, dg.HoTen, pm.NgayMuon, pm.NgayPhaiTra, pt.MaPhieuTra, pm.MaPhieuMuon, pt.TienPhatKyNay
                 ORDER BY s.MaSach";
 
                 DataTable dt = db.getTable(sql);
                 gridviewThongKe.DataSource = dt;
                 SetColumns();
-                LoadStatistics();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải dữ liệu thống kê: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
@@ -70,316 +71,388 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             try
             {
-                // 1. Tổng số sách
-                string sqlTongSach = "SELECT COUNT(*) FROM SACH";
-                DataTable dtTongSach = db.getTable(sqlTongSach);
-                int tongSach = dtTongSach.Rows.Count > 0 ? Convert.ToInt32(dtTongSach.Rows[0][0]) : 0;
+                int tongSach = Convert.ToInt32(db.getScalar("SELECT COUNT(*) FROM SACH"));
+                int dangMuon = Convert.ToInt32(db.getScalar(@"
+                    SELECT COUNT(DISTINCT ct.MaSach) 
+                    FROM CHITIETPHIEUMUON ct
+                    INNER JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
+                    LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
+                    WHERE pt.MaPhieuTra IS NULL"));
 
-                // 2. Số sách đang được mượn
-                string sqlDangMuon = @"
-                SELECT COUNT(DISTINCT ct.MaSach) 
-                FROM CHITIETPHIEUMUON ct
-                INNER JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
-                LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
-                WHERE pt.MaPhieuTra IS NULL";
-                DataTable dtDangMuon = db.getTable(sqlDangMuon);
-                int dangMuon = dtDangMuon.Rows.Count > 0 ? Convert.ToInt32(dtDangMuon.Rows[0][0]) : 0;
+                int quaHan = Convert.ToInt32(db.getScalar(@"
+                    SELECT COUNT(DISTINCT ct.MaSach) 
+                    FROM CHITIETPHIEUMUON ct
+                    INNER JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
+                    LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
+                    WHERE pt.MaPhieuTra IS NULL AND GETDATE() > pm.NgayPhaiTra"));
 
-                // 3. Số sách quá hạn
-                string sqlQuaHan = @"
-                SELECT COUNT(DISTINCT ct.MaSach) 
-                FROM CHITIETPHIEUMUON ct
-                INNER JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
-                LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
-                WHERE pt.MaPhieuTra IS NULL 
-                AND GETDATE() > pm.NgayPhaiTra";
-                DataTable dtQuaHan = db.getTable(sqlQuaHan);
-                int quaHan = dtQuaHan.Rows.Count > 0 ? Convert.ToInt32(dtQuaHan.Rows[0][0]) : 0;
+                long doanhThu = Convert.ToInt64(db.getScalar("SELECT ISNULL(SUM(TienPhatKyNay), 0) FROM PHIEUTRA"));
 
-                // 4. Tổng doanh thu
-                string sqlDoanhThu = @"SELECT ISNULL(SUM(TienPhatKyNay), 0) FROM PHIEUTRA";
-                DataTable dtDoanhThu = db.getTable(sqlDoanhThu);
-                long doanhThu = dtDoanhThu.Rows.Count > 0 ? Convert.ToInt64(dtDoanhThu.Rows[0][0]) : 0;
-
-                // Hiển thị lên Label
-                lblTongSach.Text = $"Tổng số sách: {tongSach}";
-                lblDangMuon.Text = $"Sách đang mượn: {dangMuon}";
-                lblQuaHan.Text = $"Sách quá hạn: {quaHan}";
+                lblTongSach.Text = $"Tổng sách: {tongSach}";
+                lblDangMuon.Text = $"Đang mượn: {dangMuon}";
+                lblQuaHan.Text = $"Quá hạn: {quaHan}";
                 lblDoanhThu.Text = $"Doanh thu: {doanhThu:N0} VND";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tính thống kê: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
         private void SetColumns()
         {
-            // Đặt HeaderText cho các cột
             if (gridviewThongKe.Columns.Contains("MaSach"))
             {
                 gridviewThongKe.Columns["MaSach"].HeaderText = "Mã Sách";
                 gridviewThongKe.Columns["MaSach"].DataPropertyName = "MaSach";
             }
-
             if (gridviewThongKe.Columns.Contains("TenDauSach"))
             {
                 gridviewThongKe.Columns["TenDauSach"].HeaderText = "Tên Sách";
                 gridviewThongKe.Columns["TenDauSach"].DataPropertyName = "TenDauSach";
             }
-
-            if (gridviewThongKe.Columns.Contains("MaDG"))
+            if (gridviewThongKe.Columns.Contains("NguoiMuon"))
             {
-                gridviewThongKe.Columns["MaDG"].HeaderText = "Mã Độc Giả";
-                gridviewThongKe.Columns["MaDG"].DataPropertyName = "MaDG";
+                gridviewThongKe.Columns["NguoiMuon"].HeaderText = "Người Mượn";
+                gridviewThongKe.Columns["NguoiMuon"].DataPropertyName = "NguoiMuon";
             }
-
-            if (gridviewThongKe.Columns.Contains("HoTen"))
-            {
-                gridviewThongKe.Columns["HoTen"].HeaderText = "Người Mượn";
-                gridviewThongKe.Columns["HoTen"].DataPropertyName = "HoTen";
-            }
-
             if (gridviewThongKe.Columns.Contains("NgayMuon"))
             {
                 gridviewThongKe.Columns["NgayMuon"].HeaderText = "Ngày Mượn";
                 gridviewThongKe.Columns["NgayMuon"].DataPropertyName = "NgayMuon";
-                gridviewThongKe.Columns["NgayMuon"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                gridviewThongKe.Columns["NgayMuon"].DefaultCellStyle.NullValue = "";
             }
-
-            if (gridviewThongKe.Columns.Contains("NgayPhaiTra"))
+            if (gridviewThongKe.Columns.Contains("HanTra"))
             {
-                gridviewThongKe.Columns["NgayPhaiTra"].HeaderText = "Hạn Trả";
-                gridviewThongKe.Columns["NgayPhaiTra"].DataPropertyName = "NgayPhaiTra";
-                gridviewThongKe.Columns["NgayPhaiTra"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                gridviewThongKe.Columns["NgayPhaiTra"].DefaultCellStyle.NullValue = "";
+                gridviewThongKe.Columns["HanTra"].HeaderText = "Hạn Trả";
+                gridviewThongKe.Columns["HanTra"].DataPropertyName = "HanTra";
             }
-
             if (gridviewThongKe.Columns.Contains("TinhTrang"))
             {
                 gridviewThongKe.Columns["TinhTrang"].HeaderText = "Tình Trạng";
                 gridviewThongKe.Columns["TinhTrang"].DataPropertyName = "TinhTrang";
             }
-
-            // Sự kiện tô màu
-            gridviewThongKe.CellFormatting -= GridViewThongKe_CellFormatting; // Tránh trùng lặp
-            gridviewThongKe.CellFormatting += GridViewThongKe_CellFormatting;
-        }
-
-        private void GridViewThongKe_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex >= 0 && gridviewThongKe.Rows[e.RowIndex].Cells["TinhTrang"].Value != null)
+            if (gridviewThongKe.Columns.Contains("SoTien"))
             {
-                string tinhTrang = gridviewThongKe.Rows[e.RowIndex].Cells["TinhTrang"].Value.ToString();
-
-                if (tinhTrang == "Đang mượn")
-                {
-                    e.CellStyle.ForeColor = Color.Blue;
-                    e.CellStyle.Font = new Font(gridviewThongKe.Font, FontStyle.Bold);
-                }
-                else if (tinhTrang == "Còn")
-                {
-                    e.CellStyle.ForeColor = Color.Green;
-                }
-                else if (tinhTrang == "Quá hạn")
-                {
-                    e.CellStyle.ForeColor = Color.Red;
-                    e.CellStyle.Font = new Font(gridviewThongKe.Font, FontStyle.Bold);
-                }
+                gridviewThongKe.Columns["SoTien"].HeaderText = "Số Tiền";
+                gridviewThongKe.Columns["SoTien"].DataPropertyName = "SoTien";
+                gridviewThongKe.Columns["SoTien"].DefaultCellStyle.Format = "N0";
+                gridviewThongKe.Columns["SoTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
+
+            // Tô màu
+            gridviewThongKe.CellFormatting += (s, e) =>
+            {
+                if (e.RowIndex >= 0 && gridviewThongKe.Rows[e.RowIndex].Cells["TinhTrang"].Value != null)
+                {
+                    string tt = gridviewThongKe.Rows[e.RowIndex].Cells["TinhTrang"].Value.ToString();
+                    if (tt == "Đang mượn") e.CellStyle.ForeColor = Color.Blue;
+                    else if (tt == "Còn") e.CellStyle.ForeColor = Color.Green;
+                    else if (tt == "Quá hạn") e.CellStyle.ForeColor = Color.Red;
+                }
+            };
         }
 
-        // Sự kiện chọn dòng trên gridview
         private void gridviewThongKe_SelectionChanged(object sender, EventArgs e)
         {
             if (gridviewThongKe.SelectedRows.Count > 0)
-            {
                 selectedRow = gridviewThongKe.SelectedRows[0];
-            }
         }
 
-        // TÌM KIẾM
         private void btnTim_Click(object sender, EventArgs e)
         {
             try
             {
-                string textname = txtSearch.Text.Trim();
-
+                string keyword = txtSearch.Text.Trim();
                 string sql = @"
                 SELECT 
-                s.MaSach, 
-                ds.TenDauSach, 
-                ISNULL(dg.MaDG, '') AS MaDG,
-                ISNULL(dg.HoTen, '') AS HoTen,
-                ISNULL(pm.NgayMuon, '') AS NgayMuon,
-                ISNULL(pm.NgayPhaiTra, '') AS NgayPhaiTra,
-                CASE 
-                WHEN pt.MaPhieuTra IS NOT NULL THEN N'Đã trả'
-                WHEN pm.MaPhieuMuon IS NOT NULL AND GETDATE() > pm.NgayPhaiTra THEN N'Quá hạn'
-                WHEN pm.MaPhieuMuon IS NOT NULL THEN N'Đang mượn'
-                ELSE N'Còn'
-                END AS TinhTrang
-                FROM SACH s
-                INNER JOIN DAUSACH ds ON s.MaDauSach = ds.MaDauSach
-                LEFT JOIN CHITIETPHIEUMUON ct ON s.MaSach = ct.MaSach
-                LEFT JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
-                LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
-                LEFT JOIN DOCGIA dg ON pm.MaDG = dg.MaDG";
+                    s.MaSach, ds.TenDauSach, ISNULL(dg.HoTen, '') AS NguoiMuon,
+                    CONVERT(varchar(10), pm.NgayMuon, 103) AS NgayMuon,
+                    CONVERT(varchar(10), pm.NgayPhaiTra, 103) AS HanTra,
+                    ISNULL(pt.TienPhatKyNay, 0) AS SoTien,
+                    CASE 
+                    WHEN pt.MaPhieuTra IS NOT NULL THEN N'Đã trả'
+                    WHEN pm.MaPhieuMuon IS NOT NULL AND GETDATE() > pm.NgayPhaiTra THEN N'Quá hạn'
+                    WHEN pm.MaPhieuMuon IS NOT NULL THEN N'Đang mượn'
+                    ELSE N'Còn'
+                    END AS TinhTrang
+                    FROM SACH s
+                    INNER JOIN DAUSACH ds ON s.MaDauSach = ds.MaDauSach
+                    LEFT JOIN CHITIETPHIEUMUON ct ON s.MaSach = ct.MaSach
+                    LEFT JOIN PHIEUMUON pm ON ct.MaPhieuMuon = pm.MaPhieuMuon
+                    LEFT JOIN PHIEUTRA pt ON pm.MaPhieuMuon = pt.MaPhieuMuon
+                    LEFT JOIN DOCGIA dg ON pm.MaDG = dg.MaDG
+                    WHERE s.MaSach LIKE @key OR ds.TenDauSach LIKE @key OR dg.HoTen LIKE @key
+                    GROUP BY s.MaSach, ds.TenDauSach, dg.HoTen, pm.NgayMuon, pm.NgayPhaiTra, pt.MaPhieuTra, pm.MaPhieuMuon, pt.TienPhatKyNay
+                    ORDER BY s.MaSach";
 
-                if (!string.IsNullOrEmpty(textname))
-                {
-                    sql += @"
-                WHERE (s.MaSach LIKE N'%" + textname + @"%' 
-                OR ds.TenDauSach LIKE N'%" + textname + @"%' 
-                OR dg.HoTen LIKE N'%" + textname + @"%' 
-                OR dg.MaDG LIKE N'%" + textname + @"%')";
-                }
-
-                sql += @"
-                GROUP BY s.MaSach, ds.TenDauSach, dg.MaDG, dg.HoTen, 
-                pm.NgayMuon, pm.NgayPhaiTra, pt.MaPhieuTra, pm.MaPhieuMuon
-                ORDER BY s.MaSach";
-
-                DataTable dt = db.getTable(sql);
+                SqlParameter[] param = { new SqlParameter("@key", "%" + keyword + "%") };
+                DataTable dt = db.getTable(sql, param);
                 gridviewThongKe.DataSource = dt;
                 SetColumns();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
-        // THÊM 
-        //private void btnThem_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        string maSach = Microsoft.VisualBasic.Interaction.InputBox("Nhập mã sách:", "Thêm sách", "");
-        //        string tenSach = Microsoft.VisualBasic.Interaction.InputBox("Nhập tên sách:", "Thêm sách", "");
-        //        string tacGia = Microsoft.VisualBasic.Interaction.InputBox("Nhập tác giả:", "Thêm sách", "");
-        //        string soLuong = Microsoft.VisualBasic.Interaction.InputBox("Nhập số lượng:", "Thêm sách", "1");
-
-        //        if (!string.IsNullOrEmpty(maSach) && !string.IsNullOrEmpty(tenSach))
-        //        {
-        //            string sql = $@"INSERT INTO SACH (MaSach, MaDauSach, TinhTrang) 
-        //                           VALUES ('{maSach}', (SELECT MaDauSach FROM DAUSACH WHERE TenDauSach = N'{tenSach}'), N'Còn')";
-
-        //            db.executeNonQuery(sql);
-        //            MessageBox.Show("Thêm sách thành công!");
-        //            LoadAllData(); // Refresh lại dữ liệu
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Lỗi khi thêm sách: " + ex.Message);
-        //    }
-        //}
-
-        // XÓA 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (selectedRow != null)
-                {
-                    string maSach = selectedRow.Cells["MaSach"].Value.ToString();
-                    string tinhTrang = selectedRow.Cells["TinhTrang"].Value.ToString();
+            //if (selectedRow == null)
+            //{
+            //    MessageBox.Show("Vui lòng chọn sách cần xóa!");
+            //    return;
+            //}
 
-                    // Kiểm tra nếu sách đang được mượn thì không cho xóa
-                    if (tinhTrang == "Đang mượn" || tinhTrang == "Quá hạn")
-                    {
-                        MessageBox.Show("Không thể xóa sách đang được mượn!", "Cảnh báo",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+            //string maSach = selectedRow.Cells["MaSach"].Value.ToString();
+            //string tinhTrang = selectedRow.Cells["TinhTrang"].Value.ToString();
 
-                    DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa sách {maSach}?",
-                                                          "Xác nhận xóa",
-                                                          MessageBoxButtons.YesNo,
-                                                          MessageBoxIcon.Question);
+            //if (tinhTrang != "Còn")
+            //{
+            //    MessageBox.Show("Chỉ xóa được sách có tình trạng 'Còn'!");
+            //    return;
+            //}
 
-                    if (result == DialogResult.Yes)
-                    {
-                        string sql = $"DELETE FROM SACH WHERE MaSach = '{maSach}'";
-                        //db.ExecuteNonQuery(sql);
-                        MessageBox.Show("Xóa sách thành công!");
-                        LoadAllData(); // Refresh lại dữ liệu
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Vui lòng chọn sách cần xóa!", "Thông báo",
-                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi xóa sách: " + ex.Message);
-            }
+            //// Kiểm tra đã từng mượn chưa
+            //int count = Convert.ToInt32(db.getScalar("SELECT COUNT(*) FROM CHITIETPHIEUMUON WHERE MaSach = @MaSach",
+            //    new SqlParameter("@MaSach", maSach)));
+
+            //if (count > 0)
+            //{
+            //    MessageBox.Show("Sách đã từng được mượn, không thể xóa!");
+            //    return;
+            //}
+
+            //if (MessageBox.Show($"Xóa sách {maSach}?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+            //    // Lấy MaDauSach
+            //    DataTable dt = db.getTable("SELECT MaDauSach FROM SACH WHERE MaSach = @MaSach",
+            //        new SqlParameter("@MaSach", maSach));
+            //    string maDauSach = dt.Rows[0][0].ToString();
+
+            //    // Xóa sách
+            //    db.update("DELETE FROM SACH WHERE MaSach = @MaSach", new SqlParameter("@MaSach", maSach));
+
+            //    // Xóa đầu sách nếu không còn sách nào
+            //    int remaining = Convert.ToInt32(db.getScalar("SELECT COUNT(*) FROM SACH WHERE MaDauSach = @MaDauSach",
+            //        new SqlParameter("@MaDauSach", maDauSach)));
+
+            //    if (remaining == 0)
+            //        db.update("DELETE FROM DAUSACH WHERE MaDauSach = @MaDauSach", new SqlParameter("@MaDauSach", maDauSach));
+
+            //    MessageBox.Show("Xóa thành công!");
+            //    LoadAllData();
+            //    LoadStatistics();
+            //}
         }
 
-        // SỬA 
-        //private void btnSua_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (selectedRow != null)
-        //        {
-        //            string maSach = selectedRow.Cells["MaSach"].Value.ToString();
-        //            string tenSachHienTai = selectedRow.Cells["TenDauSach"].Value.ToString();
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            //if (selectedRow == null)
+            //{
+            //    MessageBox.Show("Vui lòng chọn sách cần sửa!");
+            //    return;
+            //}
 
-        //            string tenSachMoi = Microsoft.VisualBasic.Interaction.InputBox("Nhập tên sách mới:", "Sửa sách", tenSachHienTai);
+            //string maSach = selectedRow.Cells["MaSach"].Value.ToString();
+            //string tenSachCu = selectedRow.Cells["TenDauSach"].Value.ToString();
+            //string tinhTrang = selectedRow.Cells["TinhTrang"].Value.ToString();
 
-        //            if (!string.IsNullOrEmpty(tenSachMoi) && tenSachMoi != tenSachHienTai)
-        //            {
-        //                // Cập nhật tên sách trong bảng DAUSACH
-        //                string sql = $@"UPDATE DAUSACH SET TenDauSach = N'{tenSachMoi}' 
-        //                               WHERE MaDauSach = (SELECT MaDauSach FROM SACH WHERE MaSach = '{maSach}')";
+            //if (tinhTrang != "Còn")
+            //{
+            //    MessageBox.Show("Chỉ sửa được sách có tình trạng 'Còn'!");
+            //    return;
+            //}
 
-        //                db.executeNonQuery(sql);
-        //                MessageBox.Show("Sửa sách thành công!");
-        //                LoadAllData(); // Refresh lại dữ liệu
-        //            }
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Vui lòng chọn sách cần sửa!", "Thông báo",
-        //                           MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Lỗi khi sửa sách: " + ex.Message);
-        //    }
-        //}
+            //// Tạo form nhập liệu
+            //Form inputForm = new Form();
+            //inputForm.Text = "Sửa tên sách";
+            //inputForm.Width = 400;
+            //inputForm.Height = 130;
+            //inputForm.StartPosition = FormStartPosition.CenterParent;
+            //inputForm.FormBorderStyle = FormBorderStyle.FixedDialog;
 
-        // RESET 
+            //Label lbl = new Label() { Text = "Tên sách mới:", Location = new Point(20, 20), Size = new Size(100, 25) };
+            //TextBox txt = new TextBox() { Text = tenSachCu, Location = new Point(20, 50), Size = new Size(340, 23) };
+            //Button btnOK = new Button() { Text = "OK", Location = new Point(260, 80), Size = new Size(80, 30), DialogResult = DialogResult.OK };
+            //Button btnCancel = new Button() { Text = "Hủy", Location = new Point(170, 80), Size = new Size(80, 30), DialogResult = DialogResult.Cancel };
+
+            //inputForm.Controls.Add(lbl);
+            //inputForm.Controls.Add(txt);
+            //inputForm.Controls.Add(btnOK);
+            //inputForm.Controls.Add(btnCancel);
+
+            //if (inputForm.ShowDialog() == DialogResult.OK)
+            //{
+            //    string tenSachMoi = txt.Text.Trim();
+
+            //    if (!string.IsNullOrEmpty(tenSachMoi) && tenSachMoi != tenSachCu)
+            //    {
+            //        // Kiểm tra tên sách mới đã tồn tại chưa
+            //        int exists = Convert.ToInt32(db.getScalar("SELECT COUNT(*) FROM DAUSACH WHERE TenDauSach = @TenSach",
+            //            new SqlParameter("@TenSach", tenSachMoi)));
+
+            //        if (exists > 0)
+            //        {
+            //            // Gộp vào đầu sách đã có
+            //            string maDauSachMoi = db.getTable("SELECT MaDauSach FROM DAUSACH WHERE TenDauSach = @TenSach",
+            //                new SqlParameter("@TenSach", tenSachMoi)).Rows[0][0].ToString();
+
+            //            db.update("UPDATE SACH SET MaDauSach = @MaDauSachMoi WHERE MaSach = @MaSach",
+            //                new SqlParameter("@MaDauSachMoi", maDauSachMoi),
+            //                new SqlParameter("@MaSach", maSach));
+            //        }
+            //        else
+            //        {
+            //            // Cập nhật tên sách
+            //            db.update(@"UPDATE DAUSACH SET TenDauSach = @TenSachMoi 
+            //                       WHERE MaDauSach = (SELECT MaDauSach FROM SACH WHERE MaSach = @MaSach)",
+            //                new SqlParameter("@TenSachMoi", tenSachMoi),
+            //                new SqlParameter("@MaSach", maSach));
+            //        }
+
+            //        MessageBox.Show("Sửa thành công!");
+            //        LoadAllData();
+            //        LoadStatistics();
+            //    }
+            //}
+        }
+
         private void btnReset_Click(object sender, EventArgs e)
         {
             txtSearch.Text = "";
             LoadAllData();
+            LoadStatistics();
         }
 
-        // EXPORT EXCEL (nếu có)
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            try
+            if (gridviewThongKe.Rows.Count > 0)
             {
-                SaveFileDialog saveFile = new SaveFileDialog();
-                saveFile.Filter = "Excel Files|*.xlsx|Excel 97-2003|*.xls";
-                saveFile.Title = "Export dữ liệu ra Excel";
-
-                if (saveFile.ShowDialog() == DialogResult.OK)
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    // Code export Excel ở đây
-                    MessageBox.Show("Export thành công!");
+                    saveFileDialog.Filter = "Excel Files|*.xlsx";
+                    saveFileDialog.Title = "Save as Excel File";
+                    saveFileDialog.FileName = $"ThongKeSach_{DateTime.Now:ddMMyyyy_HHmmss}.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        ExportToExcel(gridviewThongKe, saveFileDialog.FileName);
+                        MessageBox.Show("Xuất Excel thành công!", "Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi export: " + ex.Message);
+                MessageBox.Show("Không có dữ liệu để xuất!", "Cảnh báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ExportToExcel(DataGridView dgv, string filePath)
+        {
+            OfficeOpenXml.ExcelPackage.License.SetNonCommercialPersonal("Your Name");
+
+            using (ExcelPackage excel = new ExcelPackage())
+            {
+                // Tạo worksheet
+                ExcelWorksheet worksheet = excel.Workbook.Worksheets.Add("ThongKeSach");
+
+                // Thêm tiêu đề chính
+                worksheet.Cells[1, 1].Value = "BẢNG THỐNG KÊ SÁCH THƯ VIỆN";
+                worksheet.Cells[1, 1, 1, dgv.Columns.Count].Merge = true;
+                worksheet.Cells[1, 1].Style.Font.Size = 14;
+                worksheet.Cells[1, 1].Style.Font.Bold = true;
+                worksheet.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+
+                // Thêm ngày xuất
+                worksheet.Cells[2, 1].Value = $"Ngày xuất: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
+                worksheet.Cells[2, 1, 2, dgv.Columns.Count].Merge = true;
+                worksheet.Cells[2, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+
+                // Thêm header (tên cột)
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    worksheet.Cells[4, i + 1].Value = dgv.Columns[i].HeaderText;
+                    worksheet.Cells[4, i + 1].Style.Font.Bold = true;
+                    worksheet.Cells[4, i + 1].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    worksheet.Cells[4, i + 1].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                }
+
+                // Thêm dữ liệu - KIỂM TRA KỸ HƠN
+                int row = 5;
+                foreach (DataGridViewRow dgvRow in dgv.Rows)
+                {
+                    if (!dgvRow.IsNewRow)
+                    {
+                        for (int j = 0; j < dgv.Columns.Count; j++)
+                        {
+                            var cellValue = dgvRow.Cells[j].Value;
+
+                            // Xử lý giá trị null
+                            if (cellValue == null || cellValue == DBNull.Value)
+                            {
+                                worksheet.Cells[row, j + 1].Value = "";
+                                continue;
+                            }
+
+                            string columnName = dgv.Columns[j].HeaderText;
+                            string stringValue = cellValue.ToString();
+
+                            // Xử lý cột Số Tiền
+                            if (columnName == "Số Tiền")
+                            {
+                                decimal sotien;
+                                if (decimal.TryParse(stringValue, out sotien))
+                                {
+                                    worksheet.Cells[row, j + 1].Value = sotien;
+                                    worksheet.Cells[row, j + 1].Style.Numberformat.Format = "#,##0";
+                                    worksheet.Cells[row, j + 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Right;
+                                }
+                                else
+                                {
+                                    worksheet.Cells[row, j + 1].Value = 0;
+                                }
+                            }
+
+                            // Xử lý cột Ngày tháng
+                            else if (columnName == "Ngày Mượn" || columnName == "Hạn Trả")
+                            {
+                                if (!string.IsNullOrWhiteSpace(stringValue))
+                                {
+                                    DateTime dateValue;
+                                    if (DateTime.TryParse(stringValue, out dateValue))
+                                    {
+                                        worksheet.Cells[row, j + 1].Value = dateValue;
+                                        worksheet.Cells[row, j + 1].Style.Numberformat.Format = "dd/MM/yyyy";
+                                    }
+                                    else
+                                    {
+                                        worksheet.Cells[row, j + 1].Value = stringValue;
+                                    }
+                                }
+                                else
+                                {
+                                    worksheet.Cells[row, j + 1].Value = "";
+                                }
+                            }
+                            // Các cột khác
+                            else
+                            {
+                                worksheet.Cells[row, j + 1].Value = stringValue;
+                            }
+                        }
+                        row++;
+                    }
+                }
+
+                // Tự động căn chỉnh độ rộng cột
+                worksheet.Cells[4, 1, row - 1, dgv.Columns.Count].AutoFitColumns();
+
+                // Lưu file
+                FileInfo excelFile = new FileInfo(filePath);
+                excel.SaveAs(excelFile);
             }
         }
     }
