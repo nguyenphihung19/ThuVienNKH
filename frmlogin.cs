@@ -25,6 +25,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 string user = txtUser.Text.Trim();
                 string pass = txtPass.Text.Trim();
 
+
                 if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
@@ -32,10 +33,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 }
 
                 // SỬA SQL: Dùng đúng tên cột là MaDG
-                string sql = $@"SELECT T.QuyenTruyCap, 
+                string sql = $@"SELECT T.QuyenTruyCap, T.TinhTrang,
                                ISNULL(N.HoTen, D.HoTen) AS HoTenResult,
                                N.MaNV,
-                               D.MaDG -- Đã sửa từ MaDocGia thành MaDG
+                               D.MaDG
                         FROM TAIKHOAN T 
                         LEFT JOIN NHANVIEN N ON T.MaTaiKhoan = N.MaTaiKhoan
                         LEFT JOIN DOCGIA D ON T.MaTaiKhoan = D.MaTaiKhoan
@@ -45,16 +46,24 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (dt.Rows.Count > 0)
                 {
+                    int tinhTrangValue = dt.Rows[0]["TinhTrang"] != DBNull.Value ? Convert.ToInt32(dt.Rows[0]["TinhTrang"]): 1;
                     // Cập nhật Session
                     Session.TenDangNhap = user;
                     Session.HoTen = dt.Rows[0]["HoTenResult"].ToString();
                     Session.Quyen = dt.Rows[0]["QuyenTruyCap"].ToString();
+                    Session.TinhTrang = (tinhTrangValue == 0);
 
                     // Gán mã tương ứng
                     Session.MaNV = dt.Rows[0]["MaNV"] != DBNull.Value ? dt.Rows[0]["MaNV"].ToString() : "";
 
                     // SỬA TÊN CỘT Ở ĐÂY: Dùng MaDG thay vì MaDocGia
                     Session.MaDocGia = dt.Rows[0]["MaDG"] != DBNull.Value ? dt.Rows[0]["MaDG"].ToString() : "";
+
+                    if (Session.TinhTrang)
+                    {
+                        MessageBox.Show("Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên.");
+                        return;
+                    }
 
                     MessageBox.Show($"Đăng nhập thành công! Chào {Session.HoTen}");
 

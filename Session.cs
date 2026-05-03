@@ -13,5 +13,6 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         public static string TenDangNhap = "";
         public static string HoTen = "";
         public static string Quyen = "";
+        public static bool TinhTrang = false;
     }
 }
