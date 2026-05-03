@@ -24,19 +24,19 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             try
             {
-                // Sử dụng lệnh JOIN để kết nối các bảng theo đúng cấu trúc database của ông
                 string sql = @"SELECT S.MaSach, D.TenDauSach, L.TenLoaiSach, S.TriGia, S.TinhTrang 
-                               FROM SACH S 
-                               JOIN DAUSACH D ON S.MaDauSach = D.MaDauSach 
-                               JOIN LOAISACH L ON D.MaLoaiSach = L.MaLoaiSach";
-                
-                dgvSach.DataSource = db.getTable(sql);
+                        FROM SACH S 
+                        JOIN DAUSACH D ON S.MaDauSach = D.MaDauSach 
+                        JOIN LOAISACH L ON D.MaLoaiSach = L.MaLoaiSach";
+
+                DataTable dt = db.getTable(sql);
+                dgvSach.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi load dữ liệu: " + ex.Message);
             }
-            
+
         }
 
         private void dgvSach_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -79,6 +79,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void BtnSua_Click(object sender, EventArgs e)
         {
+            if (CboTinhTrangSach.Text == "Đã thanh lý")
+            {
+                MessageBox.Show("Vui lòng thực hiện thanh lý tại màn hình Thanh Lý Sách!", "Cảnh báo");
+                return;
+            }
             try
             {
                 SqlConnection conn = db.conn; // Lấy kết nối từ class DBConnect của ông
@@ -206,6 +211,14 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " );
+            }
+        }
+        // Thêm sự kiện này trong ucQuanLySach.cs
+        private void ucQuanLySach_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible) // Nếu Control đang hiển thị
+            {
+                loadData(); // Tự động load lại dữ liệu mới nhất
             }
         }
 
