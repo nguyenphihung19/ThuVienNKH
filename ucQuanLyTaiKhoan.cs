@@ -101,6 +101,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 {
                     cboTinhTrang.SelectedItem = TinhTrang;
                 }
+
+                cboQuyenTruyCap.Enabled = false;
+                cboQuyenTruyCap.BackColor = System.Drawing.SystemColors.ControlLight;
             }
         }
 
@@ -126,6 +129,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 {
                     txtMatKhau.Text = row["MatKhau"].ToString();
                 }
+
+                cboQuyenTruyCap.Enabled = false;
+                cboQuyenTruyCap.BackColor = System.Drawing.SystemColors.ControlLight;
             }
         }
 
@@ -303,11 +309,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 string email = txtEmail.Text.Trim();
                 string matKhau = txtMatKhau.Text.Trim();
 
-                if (cboQuyenTruyCap.SelectedItem == null)
-                {
-                    MessageBox.Show("Vui lòng chọn quyền truy cập!");
-                    return;
-                }
+                //if (cboQuyenTruyCap.SelectedItem == null)
+                //{
+                //    MessageBox.Show("Vui lòng chọn quyền truy cập!");
+                //    return;
+                //}
 
                 string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
 
@@ -345,9 +351,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                                                 SET TenDangNhap = @tenDN, 
                                                 MatKhau = @matKhau,
                                                 Email = @email,
-                                                QuyenTruyCap = @quyenTruyCap,
                                                 TinhTrang = @tinhTrang
-                                                WHERE MaTaiKhoan = @maTaiKhoan";
+                                                WHERE MaTaiKhoan = @maTaiKhoan"; //QuyenTruyCap = @quyenTruyCap,
 
                             using (SqlCommand cmd = new SqlCommand(sqlTaiKhoan, db.conn, transaction))
                             {
@@ -361,9 +366,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                             }
 
                             string sqlNhanVien = @"UPDATE NHANVIEN 
-                                                   SET Email = @email, 
-                                                       QuyenTruyCap = @quyenTruyCap 
-                                                   WHERE MaTaiKhoan = @maTaiKhoan";
+                                                   SET Email = @email 
+                                                   WHERE MaTaiKhoan = @maTaiKhoan"; //QuyenTruyCap = @quyenTruyCap
 
                             using (SqlCommand cmd = new SqlCommand(sqlNhanVien, db.conn, transaction))
                             {
@@ -429,6 +433,14 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                         {
                             try
                             {
+                                // Xóa trong bảng DOCGIA (bảng con tham chiếu đến TAIKHOAN)
+                                string sqlDocGia = "DELETE FROM DOCGIA WHERE MaTaiKhoan = @maTaiKhoan";
+                                using (SqlCommand cmd = new SqlCommand(sqlDocGia, db.conn, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                                    cmd.ExecuteNonQuery();
+                                }
+
                                 // Xóa trong bảng NHANVIEN trước (bảng con)
                                 string sqlNhanVien = "DELETE FROM NHANVIEN WHERE MaTaiKhoan = @maTaiKhoan";
                                 using (SqlCommand cmd = new SqlCommand(sqlNhanVien, db.conn, transaction))
@@ -481,6 +493,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 MessageBox.Show("Vui lòng chọn một tài khoản để xóa!");
             }
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (DgvTaiKhoan.Rows.Count == 0)
@@ -665,6 +678,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             ClearInputFields();
             LoadAllData();
+            cboQuyenTruyCap.Enabled = true;
+            cboQuyenTruyCap.BackColor = System.Drawing.SystemColors.Window;
         }
     }
 }

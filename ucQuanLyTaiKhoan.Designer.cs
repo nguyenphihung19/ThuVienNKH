@@ -182,7 +182,7 @@
             // 
             this.cboQuyenTruyCap.FormattingEnabled = true;
             this.cboQuyenTruyCap.Items.AddRange(new object[] {
-            "Admin",
+            "Quản Trị",
             "Thủ Thư",
             "Sinh Viên",
             "Giảng Viên",
@@ -205,7 +205,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(140, 110);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(100, 22);
+            this.txtEmail.Size = new System.Drawing.Size(166, 22);
             this.txtEmail.TabIndex = 13;
             // 
             // label3
@@ -213,22 +213,22 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 110);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.Size = new System.Drawing.Size(41, 16);
             this.label3.TabIndex = 12;
-            this.label3.Text = "email";
+            this.label3.Text = "Email";
             // 
             // txtMatKhau
             // 
             this.txtMatKhau.Location = new System.Drawing.Point(140, 82);
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(100, 22);
+            this.txtMatKhau.Size = new System.Drawing.Size(166, 22);
             this.txtMatKhau.TabIndex = 11;
             // 
             // txtTenDangNhap
             // 
             this.txtTenDangNhap.Location = new System.Drawing.Point(140, 57);
             this.txtTenDangNhap.Name = "txtTenDangNhap";
-            this.txtTenDangNhap.Size = new System.Drawing.Size(100, 22);
+            this.txtTenDangNhap.Size = new System.Drawing.Size(166, 22);
             this.txtTenDangNhap.TabIndex = 9;
             // 
             // label4
