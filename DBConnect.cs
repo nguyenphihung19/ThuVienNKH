@@ -15,7 +15,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         // Tui bỏ đoạn 'TrustServerCertificate' vì dùng Integrated Security trên máy cá nhân thường không cần nó
 
 
+
         private string strCon = @"Data Source=VIT-SAMA;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
+
 
 
 

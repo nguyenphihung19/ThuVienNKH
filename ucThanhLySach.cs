@@ -74,23 +74,41 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 return;
             }
 
-            string maS = txtMaSach.Text.Trim();
-
-            // SỬ DỤNG HÀM getScalar CỦA BẠN ĐỂ KIỂM TRA TRÙNG
-            string checkSql = $"SELECT COUNT(*) FROM CHITIETTHANHLY WHERE MaSach = '{maS}'";
-            object result = db.getScalar(checkSql);
-
-            // Chuyển đổi result sang int để so sánh
-            int count = (result != null) ? Convert.ToInt32(result) : 0;
-
-            if (count > 0)
+            // Kiểm tra đã chọn trạng thái thanh lý chưa
+            if (!radCo.Checked && !radKhong.Checked)
             {
-                MessageBox.Show("Sách này đã có trong phiếu thanh lý rồi, không thể thêm trùng!");
+                MessageBox.Show("Vui lòng chọn trạng thái thanh lý (Có/Không)!");
                 return;
             }
 
-            // Nếu không trùng thì mới thực hiện thêm
-            string trangThai = radCo.Checked ? "Có" : "Không";
+            string maS = txtMaSach.Text.Trim();
+            string trangThaiThanhLy = radCo.Checked ? "Có" : "Không";
+
+            // BIẾN QUYẾT ĐỊNH TÌNH TRẠNG SÁCH
+            string tinhTrangSachMoi;
+
+            if (radCo.Checked)
+            {
+                // Nếu chọn "Có" -> Chuyển thành "Đã thanh lý"
+                tinhTrangSachMoi = "Đã thanh lý";
+            }
+            else
+            {
+                // Nếu chọn "Không" -> GIỮ NGUYÊN tình trạng cũ
+                // Ta lấy giá trị từ TextBox tình trạng đã được load lúc Leave (txtMaSach_Leave)
+                tinhTrangSachMoi = txtTinhTrang.Text.Trim();
+            }
+
+            // Kiểm tra trùng mã sách trong chi tiết thanh lý
+            string checkSql = $"SELECT COUNT(*) FROM CHITIETTHANHLY WHERE MaSach = '{maS}'";
+            int count = Convert.ToInt32(db.getScalar(checkSql));
+
+            if (count > 0)
+            {
+                MessageBox.Show("Sách này đã có trong phiếu thanh lý rồi!");
+                return;
+            }
+
             try
             {
                 db.open();
@@ -98,28 +116,53 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 string lyDo = cboLyDo.Text;
                 string ngay = DateTime.Now.ToString("yyyy-MM-dd");
 
-                db.update($"INSERT INTO THANHLY (MaPhieuTL, NgayTL, MaNV) VALUES ('{maP}','{ngay}','{Session.MaNV}')");
-                db.update($"INSERT INTO CHITIETTHANHLY (MaPhieuTL, MaSach, LyDoTL, TrangThaiThanhLy) VALUES ('{maP}','{maS}',N'{lyDo}',N'{trangThai}')");
-                db.update($"UPDATE SACH SET TinhTrang = N'Đã thanh lý' WHERE MaSach='{maS}'");
+                // 1. Thêm phiếu thanh lý (nếu chưa tồn tại)
+                string sqlPhieu = $@"IF NOT EXISTS (SELECT 1 FROM THANHLY WHERE MaPhieuTL = '{maP}') 
+                             INSERT INTO THANHLY (MaPhieuTL, NgayTL, MaNV) VALUES ('{maP}','{ngay}','{Session.MaNV}')";
+                db.update(sqlPhieu);
 
-                MessageBox.Show("Thêm thành công!");
+                // 2. Thêm vào chi tiết thanh lý
+                string sqlChiTiet = $@"INSERT INTO CHITIETTHANHLY (MaPhieuTL, MaSach, LyDoTL, TrangThaiThanhLy) 
+                               VALUES ('{maP}','{maS}', N'{lyDo}', N'{trangThaiThanhLy}')";
+                db.update(sqlChiTiet);
+
+                // 3. Cập nhật tình trạng sách vào bảng SACH
+                string sqlUpdateSach = $"UPDATE SACH SET TinhTrang = N'{tinhTrangSachMoi}' WHERE MaSach = '{maS}'";
+                db.update(sqlUpdateSach);
+
+                MessageBox.Show("Cập nhật thành công!");
+
                 ClearInput();
                 LoadHistoryFromSQL();
             }
-            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
-            finally { db.close(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+            finally
+            {
+                db.close();
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMaSach.Text)) return;
+
             string maS = txtMaSach.Text.Trim();
             try
             {
                 db.open();
+                // Xóa chi tiết thanh lý
                 db.update($"DELETE FROM CHITIETTHANHLY WHERE MaSach = '{maS}'");
+                // Khi xóa thanh lý, trả trạng thái sách về "Bình thường" (hoặc trạng thái mặc định của bạn)
                 db.update($"UPDATE SACH SET TinhTrang = N'Bình thường' WHERE MaSach = '{maS}'");
+
+                MessageBox.Show("Đã xóa và cập nhật lại trạng thái sách!");
                 LoadHistoryFromSQL();
+                ClearInput();
             }
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
             finally { db.close(); }
         }
 
