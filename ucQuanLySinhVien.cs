@@ -239,5 +239,20 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 MessageBox.Show("Lỗi khi lọc dữ liệu: " + ex.Message);
             }
         }
+        public string TaoMaDocGiaMoi()
+        {
+            // Lấy mã độc giả lớn nhất hiện có
+            string sql = "SELECT TOP 1 MaDG FROM DOCGIA ORDER BY MaDG DESC";
+            DataTable dt = db.getTable(sql);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string maCu = dt.Rows[0]["MaDG"].ToString(); // Ví dụ: "DG26"
+                string so = maCu.Substring(2); // Lấy phần số: "26"
+                int soMoi = int.Parse(so) + 1;
+                return "DG" + soMoi.ToString(); // Trả về "DG27"
+            }
+            return "DG01"; // Nếu chưa có ai
+        }
     }
 }

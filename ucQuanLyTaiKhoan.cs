@@ -202,9 +202,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 }
 
                 string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
-                string tinhTrangText = cboTinhTrang.SelectedItem != null ? cboTinhTrang.SelectedItem.ToString() : "Hoạt động";
-                int tinhTrang = tinhTrangText == "Hoạt động" ? 1 : 0;
-
+                int tinhTrang = (cboTinhTrang.SelectedItem != null && cboTinhTrang.SelectedItem.ToString() == "Hoạt động") ? 1 : 0;
 
                 if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
                 {
@@ -212,15 +210,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     return;
                 }
 
-                if (!IsValidEmail(email))
-                {
-                    MessageBox.Show("Email không hợp lệ!");
-                    return;
-                }
-
                 if (IsTenDangNhapExists(tenDN))
                 {
-                    MessageBox.Show("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
+                    MessageBox.Show("Tên đăng nhập đã tồn tại!");
                     return;
                 }
 
@@ -229,13 +221,12 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 {
                     try
                     {
-                        // 1. Thêm vào bảng TAIKHOAN trước (bảng chính)
+                        // 1. Thêm TAIKHOAN và lấy ID vừa tạo
                         string sqlTaiKhoan = @"INSERT INTO TAIKHOAN (TenDangNhap, MatKhau, Email, QuyenTruyCap, TinhTrang) 
-                                               VALUES (@tenDN, @matKhau, @email, @quyenTruyCap, @tinhTrang);
-                                               SELECT SCOPE_IDENTITY();";
+                                       VALUES (@tenDN, @matKhau, @email, @quyenTruyCap, @tinhTrang);
+                                       SELECT SCOPE_IDENTITY();";
 
                         int maTaiKhoan;
-
                         using (SqlCommand cmd = new SqlCommand(sqlTaiKhoan, db.conn, transaction))
                         {
                             cmd.Parameters.AddWithValue("@tenDN", tenDN);
@@ -246,37 +237,43 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                             maTaiKhoan = Convert.ToInt32(cmd.ExecuteScalar());
                         }
 
-                        // 2. Thêm vào bảng NHANVIEN với MaTaiKhoan vừa lấy
-                        string getMaxMaNV = "SELECT ISNULL(MAX(MaNV), 'NV00') FROM NHANVIEN";
-                        string maxMaNV;
-                        using (SqlCommand cmdMax = new SqlCommand(getMaxMaNV, db.conn, transaction))
+                        // 2. PHÂN LOẠI: Thêm vào bảng tương ứng
+                        if (quyenTruyCap == "Quản Trị" || quyenTruyCap == "Thủ Thư")
                         {
-                            maxMaNV = cmdMax.ExecuteScalar().ToString();
+                            // Tạo mã Nhân viên mới
+                            string maxMaNV = new SqlCommand("SELECT ISNULL(MAX(MaNV), 'NV00') FROM NHANVIEN", db.conn, transaction).ExecuteScalar().ToString();
+                            string maNV = "NV" + (int.Parse(maxMaNV.Substring(2)) + 1).ToString("D2");
+
+                            string sqlNV = "INSERT INTO NHANVIEN (MaNV, MaTaiKhoan) VALUES (@maNV, @maTK)";
+                            SqlCommand cmdNV = new SqlCommand(sqlNV, db.conn, transaction);
+                            cmdNV.Parameters.AddWithValue("@maNV", maNV);
+                            cmdNV.Parameters.AddWithValue("@maTK", maTaiKhoan);
+                            cmdNV.ExecuteNonQuery();
                         }
-
-                        int soThuTu = int.Parse(maxMaNV.Substring(2));
-                        int soMoi = soThuTu + 1;
-                        string maNV = "NV" + soMoi.ToString("D2");
-
-                        string sqlNhanVien = @"INSERT INTO NHANVIEN (MaNV, MaTaiKhoan) 
-                                       VALUES (@maNV, @maTaiKhoan)";
-
-                        using (SqlCommand cmd = new SqlCommand(sqlNhanVien, db.conn, transaction))
+                        else
                         {
-                            cmd.Parameters.AddWithValue("@maNV", maNV);
-                            cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
-                            cmd.ExecuteNonQuery();
+                            // Tạo mã Độc giả mới (Ví dụ: DG27, DG28...)
+                            string maxMaDG = new SqlCommand("SELECT ISNULL(MAX(MaDG), 'DG00') FROM DOCGIA", db.conn, transaction).ExecuteScalar().ToString();
+                            string maDG = "DG" + (int.Parse(maxMaDG.Substring(2)) + 1).ToString("D2");
+
+                            string sqlDG = @"INSERT INTO DOCGIA (MaDG, HoTen, MaTaiKhoan, LoaiDG, NgayLapThe) 
+                                     VALUES (@maDG, N'Chưa cập nhật', @maTK, @loai, GETDATE())";
+                            SqlCommand cmdDG = new SqlCommand(sqlDG, db.conn, transaction);
+                            cmdDG.Parameters.AddWithValue("@maDG", maDG);
+                            cmdDG.Parameters.AddWithValue("@maTK", maTaiKhoan);
+                            cmdDG.Parameters.AddWithValue("@loai", quyenTruyCap);
+                            cmdDG.ExecuteNonQuery();
                         }
 
                         transaction.Commit();
-                        MessageBox.Show("Thêm tài khoản thành công!");
+                        MessageBox.Show("Thêm tài khoản và khởi tạo thông tin thành công!");
                         ClearInputFields();
                         LoadAllData();
                     }
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw new Exception("Lỗi khi thêm dữ liệu: " + ex.Message);
+                        throw ex;
                     }
                     finally
                     {
@@ -286,8 +283,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thêm tài khoản: " + ex.Message);
+                MessageBox.Show("Lỗi hệ thống: " + ex.Message);
             }
+
         }
 
         private void btnSua_Click(object sender, EventArgs e)
