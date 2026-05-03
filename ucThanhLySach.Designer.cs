@@ -128,8 +128,8 @@
             // 
             this.cboLyDo.FormattingEnabled = true;
             this.cboLyDo.Items.AddRange(new object[] {
-            "Hỏng Móc",
-            "Mất Sách",
+            "Hỏng móc, mục nát",
+            "Rách nát, mất trang",
             "Sách Quá Hạn Sử Dụng"});
             this.cboLyDo.Location = new System.Drawing.Point(485, 132);
             this.cboLyDo.Name = "cboLyDo";
