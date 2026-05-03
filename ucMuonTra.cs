@@ -177,24 +177,24 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             string sql = @"
             SELECT ROW_NUMBER() OVER(ORDER BY pm.MaPhieuMuon) AS STT,
-                   pm.MaPhieuMuon,
-                   pm.MaDG,
-                   ct.MaSach,
-                   pm.NgayMuon,
-                   pm.NgayPhaiTra,
+            pm.MaPhieuMuon,
+            pm.MaDG,
+            ct.MaSach,
+            pm.NgayMuon,
+            pm.NgayPhaiTra,
 
-                   CASE
-                       WHEN pt.MaPhieuMuon IS NULL THEN N'Chưa trả'
-                       ELSE N'Đã trả'
-                   END AS TrangThaiTra,
-
-                   ISNULL(pt.TienPhatKyNay,0) AS TienPhat
+            CASE
+               WHEN pt.MaPhieuMuon IS NULL THEN N'Chưa trả'
+               ELSE N'Đã trả'
+            END AS TrangThaiTra
 
             FROM PHIEUMUON pm
             INNER JOIN CHITIETPHIEUMUON ct
-                ON pm.MaPhieuMuon = ct.MaPhieuMuon
+            ON pm.MaPhieuMuon = ct.MaPhieuMuon
             LEFT JOIN PHIEUTRA pt
-                ON pm.MaPhieuMuon = pt.MaPhieuMuon";
+            ON pm.MaPhieuMuon = pt.MaPhieuMuon";
+
+            DgvMuonTra.DataSource = db.getTable(sql);
 
             DgvMuonTra.DataSource = db.getTable(sql);
         }
@@ -210,18 +210,32 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 return;
             }
 
-            // Kiểm tra Phiếu Mượn
+            // Kiểm tra phiếu mượn tồn tại
             string sqlPM = "SELECT * FROM PHIEUMUON WHERE MaPhieuMuon = " + maPhieuMuon;
             DataTable dtPM = db.getTable(sqlPM);
+
             if (dtPM.Rows.Count == 0)
             {
                 MessageBox.Show("Mã Phiếu Mượn không tồn tại!");
                 return;
             }
 
-            // Kiểm tra Nhân Viên
+            // ==================================================
+            // KIỂM TRA ĐÃ TRẢ CHƯA
+            // ==================================================
+            string sqlCheckTra = "SELECT * FROM PHIEUTRA WHERE MaPhieuMuon = " + maPhieuMuon;
+            DataTable dtCheckTra = db.getTable(sqlCheckTra);
+
+            if (dtCheckTra.Rows.Count > 0)
+            {
+                MessageBox.Show("Sách đã được trả từ trước!");
+                return;
+            }
+
+            // Kiểm tra nhân viên
             string sqlNV = "SELECT * FROM NHANVIEN WHERE MaNV = '" + maNV + "'";
             DataTable dtNV = db.getTable(sqlNV);
+
             if (dtNV.Rows.Count == 0)
             {
                 MessageBox.Show("Mã Nhân Viên không tồn tại!");
@@ -229,9 +243,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
 
             DateTime ngayTra = dtpNgayTra.Value;
-
-            // Tính tiền phạt (ví dụ: quá hạn 7 ngày thì phạt 5000/ngày)
             DateTime ngayMuon = Convert.ToDateTime(dtPM.Rows[0]["NgayMuon"]);
+
+            // Tính tiền phạt
             int soNgayTre = (ngayTra - ngayMuon).Days - 7;
             int tienPhat = (soNgayTre > 0) ? soNgayTre * 5000 : 0;
 
@@ -241,9 +255,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                                  ngayTra.ToString("yyyy-MM-dd") + "', " + tienPhat + ")";
             db.update(sqlInsertPT);
 
-            // Cập nhật tình trạng sách về 'Có sẵn'
+            // Cập nhật trạng thái sách
             string sqlCT = "SELECT MaSach FROM CHITIETPHIEUMUON WHERE MaPhieuMuon = " + maPhieuMuon;
             DataTable dtCT = db.getTable(sqlCT);
+
             foreach (DataRow row in dtCT.Rows)
             {
                 string maSach = row["MaSach"].ToString();
@@ -252,7 +267,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
 
             MessageBox.Show("Trả sách thành công!");
-            HienThiDanhSachMuon(); // refresh lại danh sách
+            HienThiDanhSachMuon();
         }
 
         private void btnXemDs_Click(object sender, EventArgs e)
