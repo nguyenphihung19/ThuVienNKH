@@ -1,52 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Bài_TH_Quản_Lý_Thư_Viện
 {
     internal class DBConnect
     {
-        // Tên Server và Database chuẩn theo ảnh ông gửi
-        // Tui bỏ đoạn 'TrustServerCertificate' vì dùng Integrated Security trên máy cá nhân thường không cần nó
-<<<<<<< HEAD
-        private string strCon = @"Data Source=DESKTOP-SLHSE1S;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
-
-=======
         private string strCon = @"Data Source=DESKTOP-QREEVLD;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
->>>>>>> 151e9dcadc8d68f278f2868162f0029b53021a78
 
-        public SqlConnection conn { get; set; }
+        //public SqlConnection conn { get; set; }
+
+        //public DBConnect()
+        //{
+        //    conn = new SqlConnection(strCon);
+        //}
+
+        private SqlConnection _conn;
+        public SqlConnection conn
+        {
+            get
+            {
+                if (_conn == null)
+                    _conn = new SqlConnection(strCon);
+                else if (string.IsNullOrEmpty(_conn.ConnectionString))
+                    _conn.ConnectionString = strCon;
+
+                return _conn;
+            }
+            set
+            {
+                _conn = value;
+            }
+        }
 
         public DBConnect()
         {
-            conn = new SqlConnection(strCon);
+            _conn = new SqlConnection(strCon);
         }
 
-        // Hàm mở kết nối an toàn có bọc Try-Catch
-        public object getScalar(string sql)
-        {
-            object result = null;
-            try
-            {
-                open(); // BẮT BUỘC PHẢI CÓ DÒNG NÀY
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                result = cmd.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi thực thi getScalar: " + ex.Message);
-            }
-            finally
-            {
-                close(); // Đóng kết nối sau khi xong
-            }
-            return result;
-        }
         public void open()
         {
             try
@@ -60,22 +57,54 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
         }
 
-        // Hàm đóng kết nối
         public void close()
         {
             if (conn.State == ConnectionState.Open)
                 conn.Close();
         }
 
+        // Hàm lấy giá trị đơn (SELECT COUNT(*), MAX(...), MIN(...), ...)
+        public object getScalar(string sql, params SqlParameter[] parameters)
+        {
+            object result = null;
+            try
+            {
+                open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    if (parameters != null && parameters.Length > 0)
+                        cmd.Parameters.AddRange(parameters);
+                    result = cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi thực thi getScalar: " + ex.Message);
+            }
+            finally
+            {
+                close();
+            }
+            return result;
+        }
+
         // Hàm lấy dữ liệu (SELECT)
-        public DataTable getTable(string sql)
+        public DataTable getTable(string sql, params SqlParameter[] parameters)
         {
             DataTable dt = new DataTable();
             try
             {
-                open(); // Mở kết nối trước
-                SqlDataAdapter ad = new SqlDataAdapter(sql, conn);
-                ad.Fill(dt);
+                open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    if (parameters != null && parameters.Length > 0)
+                        cmd.Parameters.AddRange(parameters);
+
+                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                    {
+                        ad.Fill(dt);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -83,20 +112,24 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
             finally
             {
-                close(); // Luôn đóng kết nối
+                close();
             }
             return dt;
         }
 
         // Hàm thực thi lệnh (INSERT, UPDATE, DELETE)
-        public int update(string sql)
+        public int update(string sql, params SqlParameter[] parameters)
         {
             int n = -1;
             try
             {
                 open();
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                n = cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    if (parameters != null && parameters.Length > 0)
+                        cmd.Parameters.AddRange(parameters);
+                    n = cmd.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
@@ -109,7 +142,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             return n;
         }
 
+        public SqlConnection getConnection()
+        {
+            return conn;
+        }
     }
 }
-
-

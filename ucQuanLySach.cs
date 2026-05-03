@@ -85,7 +85,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
                 // Câu lệnh SQL phải chuẩn: SET (cột cần đổi) WHERE (khóa chính)
-                string sql = "UPDATE SACH SET TinhTrang = @tinhTrang, TriGia = @gia WHERE MaSach = @ma";
+                string sql = "UPDATE SACH SET TinhTrang = @tinhTrang, TacGia = @gia WHERE MaSach = @ma";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@tinhTrang", CboTinhTrangSach.Text);
@@ -187,7 +187,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 cmdD.ExecuteNonQuery();
 
                 // 4. Thêm vào bảng SACH (Sử dụng textBox1 làm Trị giá)
-                string sqlSach = "INSERT INTO SACH (MaSach, MaDauSach, TinhTrang, TriGia) VALUES (@maS, @maD, @tinhTrang, @gia)";
+                string sqlSach = "INSERT INTO SACH (MaSach, MaDauSach, TinhTrang, TacGia) VALUES (@maS, @maD, @tinhTrang, @gia)";
                 SqlCommand cmdS = new SqlCommand(sqlSach, conn);
                 cmdS.Parameters.AddWithValue("@maS", ms);
                 cmdS.Parameters.AddWithValue("@maD", md);

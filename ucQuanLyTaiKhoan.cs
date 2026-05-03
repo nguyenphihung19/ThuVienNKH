@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +17,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     {
         DBConnect db = new DBConnect();
         private string filename = "";
+
         public ucQuanLyTaiKhoan()
         {
             InitializeComponent();
@@ -29,15 +32,15 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             try
             {
-                string sql = @"SELECT MaTaiKhoan, TenDangNhap, Email, MatKhau, QuyenTruyCap FROM TAIKHOAN";
-
+                string sql = @"SELECT MaTaiKhoan, 
+                              TenDangNhap, 
+                              MatKhau, 
+                              Email, 
+                              QuyenTruyCap,
+                              CASE WHEN TinhTrang = 1 THEN N'Hoạt động' ELSE N'Bị khóa' END AS TinhTrang
+                              FROM TAIKHOAN";
                 DataTable dt = db.getTable(sql);
                 DgvTaiKhoan.DataSource = dt;
-
-                if (DgvTaiKhoan.Columns.Contains("TrangThai"))
-                {
-                    DgvTaiKhoan.Columns["TrangThai"].Visible = false;
-                }
                 SetupColums();
             }
             catch (Exception ex)
@@ -52,6 +55,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             txtEmail.Text = "";
             txtMatKhau.Text = "";
             cboQuyenTruyCap.SelectedIndex = -1;
+            cboTinhTrang.SelectedIndex = -1;
             txtTenDangNhap.Focus();
         }
 
@@ -71,6 +75,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
             if (DgvTaiKhoan.Columns.Contains("QuyenTruyCap"))
                 DgvTaiKhoan.Columns["QuyenTruyCap"].DataPropertyName = "QuyenTruyCap";
+
+            if (DgvTaiKhoan.Columns.Contains("TinhTrang"))
+                DgvTaiKhoan.Columns["TinhTrang"].DataPropertyName = "TinhTrang";
         }
 
         private void DgvTaiKhoan_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -82,11 +89,17 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 txtTenDangNhap.Text = row.Cells["TenDangNhap"].Value?.ToString();
                 txtEmail.Text = row.Cells["Email"].Value?.ToString();
                 txtMatKhau.Text = row.Cells["MatKhau"].Value?.ToString();
-
                 string quyen = row.Cells["QuyenTruyCap"].Value?.ToString();
+                string TinhTrang = row.Cells["TinhTrang"].Value?.ToString();
+
                 if (!string.IsNullOrEmpty(quyen))
                 {
                     cboQuyenTruyCap.SelectedItem = quyen;
+                }
+
+                if (!string.IsNullOrEmpty(TinhTrang))
+                {
+                    cboTinhTrang.SelectedItem = TinhTrang;
                 }
             }
         }
@@ -106,82 +119,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 txtTenDangNhap.Text = DgvTaiKhoan.SelectedRows[0].Cells["TenDangNhap"].Value.ToString();
                 txtEmail.Text = DgvTaiKhoan.SelectedRows[0].Cells["Email"].Value.ToString();
                 cboQuyenTruyCap.SelectedItem = DgvTaiKhoan.SelectedRows[0].Cells["QuyenTruyCap"].Value.ToString();
-
+                cboTinhTrang.SelectedItem = DgvTaiKhoan.SelectedRows[0].Cells["TinhTrang"].Value.ToString();
                 // Lấy mật khẩu từ DataSource gốc
                 DataRowView row = DgvTaiKhoan.SelectedRows[0].DataBoundItem as DataRowView;
                 if (row != null)
                 {
                     txtMatKhau.Text = row["MatKhau"].ToString();
                 }
-            }
-        }
-
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string tenDN = txtTenDangNhap.Text.Trim();
-                string email = txtEmail.Text.Trim();
-                string matKhau = txtMatKhau.Text.Trim();
-
-                if (cboQuyenTruyCap.SelectedItem == null)
-                {
-                    MessageBox.Show("Vui lòng chọn quyền truy cập!");
-                    return;
-                }
-
-                string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
-
-                if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
-                {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
-                    return;
-                }
-
-                if (!IsValidEmail(email))
-                {
-                    MessageBox.Show("Email không hợp lệ!");
-                    return;
-                }
-
-                if (IsTenDangNhapExists(tenDN))
-                {
-                    MessageBox.Show("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
-                    return;
-                }
-
-                tenDN = tenDN.Replace("'", "''");
-                email = email.Replace("'", "''");
-                matKhau = matKhau.Replace("'", "''");
-                quyenTruyCap = quyenTruyCap.Replace("'", "''");
-
-                string sql = $@"INSERT INTO TAIKHOAN (TenDangNhap, Email, MatKhau, QuyenTruyCap) 
-                                VALUES (N'{tenDN}', N'{email}', N'{matKhau}', N'{quyenTruyCap}')";
-
-                //var parameters = new Dictionary<string, object>
-                //{
-                //    { "@tenDN", tenDN },
-                //    { "@email", email },
-                //    { "@matKhau", matKhau },
-                //    { "@quyenTruyCap", quyenTruyCap }
-                //};
-
-                int result = db.update(sql);
-
-                if (result > 0)
-                {
-                    MessageBox.Show("Thêm tài khoản thành công!");
-                    ClearInputFields();
-                    LoadAllData();
-                }
-                else
-                {
-                    MessageBox.Show("Không thể thêm tài khoản! Vui lòng thử lại.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi thêm tài khoản: " + ex.Message);
             }
         }
 
@@ -202,14 +146,17 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             try
             {
-                string sql = $"SELECT COUNT(*) FROM TAIKHOAN WHERE TenDangNhap = N'{tenDN.Replace("'", "''")}'";
-                DataTable dt = db.getTable(sql);
-                if (dt.Rows.Count > 0)
+                string sql = "SELECT COUNT(*) FROM TAIKHOAN WHERE TenDangNhap = @tenDN";
+                using (SqlConnection conn = db.getConnection())
                 {
-                    int count = Convert.ToInt32(dt.Rows[0][0]);
-                    return count > 0;
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@tenDN", tenDN);
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
                 }
-                return false;
             }
             catch
             {
@@ -217,23 +164,37 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
         }
 
-        private void btnSua_Click(object sender, EventArgs e)
+        private bool IsTenDangNhapExistsForUpdate(string tenDN, string maTK)
         {
-            if (DgvTaiKhoan.SelectedRows.Count > 0)
+            try
             {
-                // Kiểm tra nếu MaTaiKhoan là null hoặc không tồn tại trong DataGridView
-                if (DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value == null)
+                string sql = "SELECT COUNT(*) FROM TAIKHOAN WHERE TenDangNhap = @tenDN AND MaTaiKhoan != @maTK";
+                using (SqlConnection conn = db.getConnection())
                 {
-                    MessageBox.Show("Dữ liệu không hợp lệ!");
-                    return;
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@tenDN", tenDN);
+                        cmd.Parameters.AddWithValue("@maTK", maTK);
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
                 }
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
-                string maTK = DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value.ToString();
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 string tenDN = txtTenDangNhap.Text.Trim();
                 string email = txtEmail.Text.Trim();
                 string matKhau = txtMatKhau.Text.Trim();
 
-                // Kiem tra co chon quyen truy cap hay khong
                 if (cboQuyenTruyCap.SelectedItem == null)
                 {
                     MessageBox.Show("Vui lòng chọn quyền truy cập!");
@@ -241,8 +202,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 }
 
                 string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
+                string tinhTrangText = cboTinhTrang.SelectedItem != null ? cboTinhTrang.SelectedItem.ToString() : "Hoạt động";
+                int tinhTrang = tinhTrangText == "Hoạt động" ? 1 : 0;
 
-                // Kiem tra thong tin co day du hay khong
                 if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
                 {
                     MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
@@ -255,32 +217,177 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     return;
                 }
 
-                if (IsTenDangNhapExistsForUpdate(tenDN, maTK))
+                if (IsTenDangNhapExists(tenDN))
                 {
-                    MessageBox.Show("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
                     return;
                 }
 
-                tenDN = tenDN.Replace("'", "''");
-                email = email.Replace("'", "''");
-                matKhau = matKhau.Replace("'", "''");
-                quyenTruyCap = quyenTruyCap.Replace("'", "''");
-                try
+                db.open();
+                using (SqlTransaction transaction = db.conn.BeginTransaction())
                 {
-                    string sql = $@"UPDATE TAIKHOAN 
-                                    SET TenDangNhap = N'{tenDN}', Email = N'{email}', MatKhau = N'{matKhau}', QuyenTruyCap = N'{quyenTruyCap}' 
-                                    WHERE MaTaiKhoan = {maTK}";
-                    int result = db.update(sql);
-                    if (result > 0)
+                    try
                     {
-                        MessageBox.Show("Cập nhật tài khoản thành công!"); 
+                        // 1. Thêm vào bảng TAIKHOAN trước (bảng chính)
+                        string sqlTaiKhoan = @"INSERT INTO TAIKHOAN (TenDangNhap, MatKhau, Email, QuyenTruyCap, TinhTrang) 
+                                               VALUES (@tenDN, @matKhau, @email, @quyenTruyCap, @tinhTrang);
+                                               SELECT SCOPE_IDENTITY();";
+
+                        int maTaiKhoan;
+
+                        using (SqlCommand cmd = new SqlCommand(sqlTaiKhoan, db.conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@tenDN", tenDN);
+                            cmd.Parameters.AddWithValue("@matKhau", matKhau);
+                            cmd.Parameters.AddWithValue("@email", email);
+                            cmd.Parameters.AddWithValue("@quyenTruyCap", quyenTruyCap);
+                            cmd.Parameters.AddWithValue("@tinhTrang", tinhTrang);
+                            maTaiKhoan = Convert.ToInt32(cmd.ExecuteScalar());
+                        }
+
+                        // 2. Thêm vào bảng NHANVIEN với MaTaiKhoan vừa lấy
+                        string getMaxMaNV = "SELECT ISNULL(MAX(MaNV), 'NV00') FROM NHANVIEN";
+                        string maxMaNV;
+                        using (SqlCommand cmdMax = new SqlCommand(getMaxMaNV, db.conn, transaction))
+                        {
+                            maxMaNV = cmdMax.ExecuteScalar().ToString();
+                        }
+
+                        int soThuTu = int.Parse(maxMaNV.Substring(2));
+                        int soMoi = soThuTu + 1;
+                        string maNV = "NV" + soMoi.ToString("D2");
+
+                        string sqlNhanVien = @"INSERT INTO NHANVIEN (MaNV, MaTaiKhoan) 
+                                       VALUES (@maNV, @maTaiKhoan)";
+
+                        using (SqlCommand cmd = new SqlCommand(sqlNhanVien, db.conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@maNV", maNV);
+                            cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        MessageBox.Show("Thêm tài khoản thành công!");
                         ClearInputFields();
                         LoadAllData();
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Không thể cập nhật tài khoản! Vui lòng thử lại.");
+                        transaction.Rollback();
+                        throw new Exception("Lỗi khi thêm dữ liệu: " + ex.Message);
+                    }
+                    finally
+                    {
+                        db.close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi thêm tài khoản: " + ex.Message);
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (DgvTaiKhoan.SelectedRows.Count > 0)
+            {
+                if (DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value == null)
+                {
+                    MessageBox.Show("Dữ liệu không hợp lệ!");
+                    return;
+                }
+
+                string maTaiKhoan = DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value.ToString();
+                string tenDN = txtTenDangNhap.Text.Trim();
+                string email = txtEmail.Text.Trim();
+                string matKhau = txtMatKhau.Text.Trim();
+
+                if (cboQuyenTruyCap.SelectedItem == null)
+                {
+                    MessageBox.Show("Vui lòng chọn quyền truy cập!");
+                    return;
+                }
+
+                string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
+
+                if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
+                {
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
+                    return;
+                }
+
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Email không hợp lệ!");
+                    return;
+                }
+
+                if (IsTenDangNhapExistsForUpdate(tenDN, maTaiKhoan))
+                {
+                    MessageBox.Show("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
+                    return;
+                }
+
+
+                string TinhTrangText = cboTinhTrang.SelectedItem.ToString();
+                int TinhTrang = TinhTrangText == "Hoạt động" ? 1 : 0;
+
+                try
+                {
+                    db.open();
+                    using (SqlTransaction transaction = db.conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Update bảng TAIKHOAN (chỉ có TenDangNhap, MatKhau, TrangThai)
+                            string sqlTaiKhoan = @"UPDATE TAIKHOAN 
+                                                SET TenDangNhap = @tenDN, 
+                                                MatKhau = @matKhau,
+                                                Email = @email,
+                                                QuyenTruyCap = @quyenTruyCap,
+                                                TinhTrang = @tinhTrang
+                                                WHERE MaTaiKhoan = @maTaiKhoan";
+
+                            using (SqlCommand cmd = new SqlCommand(sqlTaiKhoan, db.conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@tenDN", tenDN);
+                                cmd.Parameters.AddWithValue("@matKhau", matKhau);
+                                cmd.Parameters.AddWithValue("@tinhTrang", TinhTrang);
+                                cmd.Parameters.AddWithValue("@email", email);
+                                cmd.Parameters.AddWithValue("@quyenTruyCap", quyenTruyCap);
+                                cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            string sqlNhanVien = @"UPDATE NHANVIEN 
+                                                   SET Email = @email, 
+                                                       QuyenTruyCap = @quyenTruyCap 
+                                                   WHERE MaTaiKhoan = @maTaiKhoan";
+
+                            using (SqlCommand cmd = new SqlCommand(sqlNhanVien, db.conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@email", email);
+                                cmd.Parameters.AddWithValue("@quyenTruyCap", quyenTruyCap);
+                                cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                            MessageBox.Show("Cập nhật tài khoản thành công!");
+                            ClearInputFields();
+                            LoadAllData();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            throw new Exception("Lỗi khi cập nhật: " + ex.Message);
+                        }
+                        finally
+                        {
+                            db.close();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -294,40 +401,19 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
         }
 
-        private bool IsTenDangNhapExistsForUpdate(string tenDN, string maTK)
-        {
-            try
-            {
-                string sql = $"SELECT COUNT(*) FROM TAIKHOAN WHERE TenDangNhap = N'{tenDN.Replace("'", "''")}' AND MaTaiKhoan != {maTK}";
-                DataTable dt = db.getTable(sql);
-                if (dt.Rows.Count > 0)
-                {
-                    int count = Convert.ToInt32(dt.Rows[0][0]);
-                    return count > 0;
-                }
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (DgvTaiKhoan.SelectedRows.Count > 0)
             {
-                // Kiểm tra nếu MaTaiKhoan là null hoặc không tồn tại trong DataGridView
                 if (DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value == null)
                 {
                     MessageBox.Show("Dữ liệu không hợp lệ!");
                     return;
                 }
 
-                string maTK = DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value.ToString();
+                string maTaiKhoan = DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value.ToString();
                 string tenDN = DgvTaiKhoan.SelectedRows[0].Cells["TenDangNhap"].Value.ToString();
 
-                // Không cho phép xóa tài khoản Admin
                 if (tenDN.Equals("admin", StringComparison.OrdinalIgnoreCase))
                 {
                     MessageBox.Show("Không thể xóa tài khoản Admin!");
@@ -339,17 +425,50 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 {
                     try
                     {
-                        string sql = $"DELETE FROM TAIKHOAN WHERE MaTaiKhoan = {maTK}";
-                        int result = db.update(sql);
-                        if (result > 0)
+                        db.open();
+                        using (SqlTransaction transaction = db.conn.BeginTransaction())
                         {
-                            MessageBox.Show("Xóa tài khoản thành công!");
-                            ClearInputFields();
-                            LoadAllData();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không thể xóa tài khoản! Vui lòng thử lại.");
+                            try
+                            {
+                                // Xóa trong bảng NHANVIEN trước (bảng con)
+                                string sqlNhanVien = "DELETE FROM NHANVIEN WHERE MaTaiKhoan = @maTaiKhoan";
+                                using (SqlCommand cmd = new SqlCommand(sqlNhanVien, db.conn, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                                    cmd.ExecuteNonQuery();
+                                }
+
+                                // Sau đó mới xóa TAIKHOAN
+                                string sqlTaiKhoan = "DELETE FROM TAIKHOAN WHERE MaTaiKhoan = @maTaiKhoan";
+
+                                using (SqlCommand cmd = new SqlCommand(sqlTaiKhoan, db.conn, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                                    int result = cmd.ExecuteNonQuery();
+
+                                    if (result > 0)
+                                    {
+                                        transaction.Commit();
+                                        MessageBox.Show("Xóa tài khoản thành công!");
+                                        ClearInputFields();
+                                        LoadAllData();
+                                    }
+                                    else
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show("Không thể xóa tài khoản! Vui lòng thử lại.");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                throw new Exception("Lỗi khi xóa: " + ex.Message);
+                            }
+                            finally
+                            {
+                                db.close();
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -363,7 +482,6 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 MessageBox.Show("Vui lòng chọn một tài khoản để xóa!");
             }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (DgvTaiKhoan.Rows.Count == 0)
@@ -375,9 +493,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Filter = "Excel Files|*.xlsx|CSV Files|*.csv|All Files|*.*";
+                sfd.Filter = "Excel CSV Files|*.csv|All Files|*.*"; //Excel Files|*.xlsx|
                 sfd.Title = "Lưu danh sách tài khoản";
-                sfd.DefaultExt = "xlsx";
+                sfd.DefaultExt = ".";
                 sfd.FileName = "DanhSachTaiKhoan_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
                 if (sfd.ShowDialog() == DialogResult.OK)
@@ -407,7 +525,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             btnSave_Click(sender, e);
         }
 
-        // Hàm lưu dữ liệu vào file
+        // Hàm lưu dữ liệu vào file CSV
         private void SaveToCSV(string fileName)
         {
             try
@@ -454,6 +572,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
         }
 
+        // Hàm lưu dữ liệu vào file Excel
         //private void SaveToExcel(string fileName)
         //{
         //    try
@@ -515,7 +634,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     {
                         header += DgvTaiKhoan.Columns[i].HeaderText;
                         if (i < DgvTaiKhoan.Columns.Count - 1)
-                            header += "\t"; // Tab分隔
+                            header += "\t";
                     }
                     sw.WriteLine(header);
 
