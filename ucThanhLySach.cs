@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Bài_TH_Quản_Lý_Thư_Viện
@@ -13,69 +7,105 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     public partial class ucThanhLySach : UserControl
     {
         DBConnect db = new DBConnect();
+
         public ucThanhLySach()
         {
             InitializeComponent();
             this.Load += ucThanhLySach_Load;
+            btnThem.Click += btnThem_Click;
+            btnXoa.Click += btnXoa_Click;
+            btnTimKiem.Click += btnTimKiem_Click;
+            dgvThanhLy.CellClick += dgvThanhLy_CellClick;
+            txtMaSach.Leave += txtMaSach_Leave;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void ucThanhLySach_Load(object sender, EventArgs e)
         {
-            // Hiển thị mã NV từ Session (nếu là SV/Khách thì Session.MaNV rỗng)
             txtMaNV.Text = Session.MaNV;
             txtMaNV.Enabled = false;
-
-            // Load dữ liệu
+            txtTenSach.ReadOnly = true;
+            txtTinhTrang.ReadOnly = true;
             LoadHistoryFromSQL();
-
-            // Tạo mã phiếu mới tự động
             txtMaPhieu.Text = "PTL" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            dgvThanhLy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
+        private void txtMaSach_Leave(object sender, EventArgs e)
+        {
+            string maS = txtMaSach.Text.Trim();
+            if (string.IsNullOrEmpty(maS)) return;
+
+            string sql = $@"SELECT d.TenDauSach, s.TinhTrang FROM SACH s 
+                           JOIN DAUSACH d ON s.MaDauSach = d.MaDauSach WHERE s.MaSach = '{maS}'";
+            DataTable dt = db.getTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                txtTenSach.Text = dt.Rows[0]["TenDauSach"].ToString();
+                txtTinhTrang.Text = dt.Rows[0]["TinhTrang"].ToString();
+            }
+        }
+
         private void LoadHistoryFromSQL()
         {
             try
             {
-                // Sử dụng JOIN đúng với cấu trúc bảng thông thường
-                string sql = @"SELECT ct.MaPhieuTL, t.NgayTL, t.MaNV, ct.MaSach, ct.LyDoTL 
-                               FROM CHITIETTHANHLY ct 
-                               LEFT JOIN THANHLY t ON ct.MaPhieuTL = t.MaPhieuTL";
+                // Truy vấn lấy dữ liệu. Nếu chưa có cột TrangThaiThanhLy, 
+                // bạn có thể tạm thời xóa tên cột đó trong dòng SELECT này để chạy trước
+                string sql = @"SELECT ct.MaPhieuTL, t.NgayTL, ct.MaSach, d.TenDauSach, s.TinhTrang, ct.LyDoTL, ct.TrangThaiThanhLy 
+                       FROM CHITIETTHANHLY ct 
+                       LEFT JOIN THANHLY t ON ct.MaPhieuTL = t.MaPhieuTL
+                       LEFT JOIN SACH s ON ct.MaSach = s.MaSach
+                       LEFT JOIN DAUSACH d ON s.MaDauSach = d.MaDauSach";
 
                 DataTable dt = db.getTable(sql);
-                dgvThanhLy.DataSource = dt;
-
-                if (dgvThanhLy.Columns.Count > 0)
-                {
-                    dgvThanhLy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    dgvThanhLy.Columns["MaPhieuTL"].HeaderText = "Mã Phiếu";
-                    dgvThanhLy.Columns["NgayTL"].HeaderText = "Ngày TL";
-                    dgvThanhLy.Columns["MaNV"].HeaderText = "Mã NV";
-                    dgvThanhLy.Columns["MaSach"].HeaderText = "Mã Sách";
-                    dgvThanhLy.Columns["LyDoTL"].HeaderText = "Lý Do";
-                }
+                dgvThanhLy.DataSource = dt; // Đảm bảo gán lại DataSource sau khi lấy bảng
             }
             catch (Exception ex)
             {
-                // Nếu lỗi do tên bảng, hãy kiểm tra lại tên trong SQL Server
-                MessageBox.Show("Lỗi load dữ liệu (kiểm tra tên bảng trong SQL): " + ex.Message);
+                MessageBox.Show("Lỗi load lưới: " + ex.Message);
             }
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Kiểm tra quyền (chỉ nhân viên mới được thêm)
-            if (string.IsNullOrEmpty(Session.MaNV))
+            if (string.IsNullOrWhiteSpace(txtMaSach.Text))
             {
-                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!");
+                MessageBox.Show("Vui lòng nhập mã sách!");
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtMaSach.Text))
+            // Kiểm tra đã chọn trạng thái thanh lý chưa
+            if (!radCo.Checked && !radKhong.Checked)
             {
-                MessageBox.Show("Vui lòng nhập Mã Sách!");
+                MessageBox.Show("Vui lòng chọn trạng thái thanh lý (Có/Không)!");
+                return;
+            }
+
+            string maS = txtMaSach.Text.Trim();
+            string trangThaiThanhLy = radCo.Checked ? "Có" : "Không";
+
+            // BIẾN QUYẾT ĐỊNH TÌNH TRẠNG SÁCH
+            string tinhTrangSachMoi;
+
+            if (radCo.Checked)
+            {
+                // Nếu chọn "Có" -> Chuyển thành "Đã thanh lý"
+                tinhTrangSachMoi = "Đã thanh lý";
+            }
+            else
+            {
+                // Nếu chọn "Không" -> GIỮ NGUYÊN tình trạng cũ
+                // Ta lấy giá trị từ TextBox tình trạng đã được load lúc Leave (txtMaSach_Leave)
+                tinhTrangSachMoi = txtTinhTrang.Text.Trim();
+            }
+
+            // Kiểm tra trùng mã sách trong chi tiết thanh lý
+            string checkSql = $"SELECT COUNT(*) FROM CHITIETTHANHLY WHERE MaSach = '{maS}'";
+            int count = Convert.ToInt32(db.getScalar(checkSql));
+
+            if (count > 0)
+            {
+                MessageBox.Show("Sách này đã có trong phiếu thanh lý rồi!");
                 return;
             }
 
@@ -83,26 +113,27 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             {
                 db.open();
                 string maP = txtMaPhieu.Text;
-                string maS = txtMaSach.Text;
                 string lyDo = cboLyDo.Text;
                 string ngay = DateTime.Now.ToString("yyyy-MM-dd");
 
-                // Thực thi các câu lệnh SQL
-                db.update($"INSERT INTO THANHLY (MaPhieuTL, NgayTL, MaNV) VALUES ('{maP}','{ngay}','{Session.MaNV}')");
-                db.update($"INSERT INTO CHITIETTHANHLY (MaPhieuTL, MaSach, LyDoTL) VALUES ('{maP}','{maS}',N'{lyDo}')");
-                db.update($"UPDATE SACH SET TinhTrang = N'Đã thanh lý' WHERE MaSach='{maS}'");
+                // 1. Thêm phiếu thanh lý (nếu chưa tồn tại)
+                string sqlPhieu = $@"IF NOT EXISTS (SELECT 1 FROM THANHLY WHERE MaPhieuTL = '{maP}') 
+                             INSERT INTO THANHLY (MaPhieuTL, NgayTL, MaNV) VALUES ('{maP}','{ngay}','{Session.MaNV}')";
+                db.update(sqlPhieu);
 
-                MessageBox.Show("Thêm thành công!");
+                // 2. Thêm vào chi tiết thanh lý
+                string sqlChiTiet = $@"INSERT INTO CHITIETTHANHLY (MaPhieuTL, MaSach, LyDoTL, TrangThaiThanhLy) 
+                               VALUES ('{maP}','{maS}', N'{lyDo}', N'{trangThaiThanhLy}')";
+                db.update(sqlChiTiet);
 
-                // --- ĐOẠN CODE RESET DỮ LIỆU ---
-                txtMaSach.Clear();             // Xóa trắng ô Mã Sách
-                cboLyDo.SelectedIndex = -1;    // Bỏ chọn trong ComboBox (hoặc đặt = 0 nếu muốn về mặc định)
+                // 3. Cập nhật tình trạng sách vào bảng SACH
+                string sqlUpdateSach = $"UPDATE SACH SET TinhTrang = N'{tinhTrangSachMoi}' WHERE MaSach = '{maS}'";
+                db.update(sqlUpdateSach);
 
-                // Sinh mã phiếu mới tự động để chuẩn bị cho lần thêm tiếp theo
-                txtMaPhieu.Text = "PTL" + DateTime.Now.ToString("yyyyMMddHHmmss");
-                // -------------------------------
+                MessageBox.Show("Cập nhật thành công!");
 
-                LoadHistoryFromSQL(); // Tải lại lưới để hiển thị dữ liệu mới
+                ClearInput();
+                LoadHistoryFromSQL();
             }
             catch (Exception ex)
             {
@@ -116,108 +147,64 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string maSachCanXoa = txtMaSach.Text.Trim();
+            if (string.IsNullOrWhiteSpace(txtMaSach.Text)) return;
 
-            if (string.IsNullOrEmpty(maSachCanXoa))
-            {
-                MessageBox.Show("Vui lòng nhập Mã Sách cần xóa!");
-                txtMaSach.Focus();
-                return;
-            }
-
+            string maS = txtMaSach.Text.Trim();
             try
             {
                 db.open();
+                // Xóa chi tiết thanh lý
+                db.update($"DELETE FROM CHITIETTHANHLY WHERE MaSach = '{maS}'");
+                // Khi xóa thanh lý, trả trạng thái sách về "Bình thường" (hoặc trạng thái mặc định của bạn)
+                db.update($"UPDATE SACH SET TinhTrang = N'Bình thường' WHERE MaSach = '{maS}'");
 
-                // 1. Kiểm tra tồn tại
-                string checkQuery = $"SELECT COUNT(*) FROM CHITIETTHANHLY WHERE MaSach = '{maSachCanXoa}'";
-                int exists = Convert.ToInt32(db.getScalar(checkQuery));
-
-                if (exists > 0)
-                {
-                    DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xóa sách {maSachCanXoa} khỏi danh sách thanh lý?", "Xác nhận", MessageBoxButtons.YesNo);
-                    if (dr == DialogResult.Yes)
-                    {
-                        // 2. Xóa dữ liệu và cập nhật trạng thái sách
-                        db.update($"DELETE FROM CHITIETTHANHLY WHERE MaSach = '{maSachCanXoa}'");
-                        db.update($"UPDATE SACH SET TinhTrang = N'Bình thường' WHERE MaSach = '{maSachCanXoa}'");
-
-                        MessageBox.Show("Đã xóa sách thành công!");
-
-                        // 3. Nạp lại lưới để thấy sự thay đổi
-                        LoadHistoryFromSQL();
-
-                        // 4. GỌI HÀM CLEAR ĐỂ LÀM TRẮNG FORM
-                        ClearInput();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy sách này trong danh sách thanh lý!");
-                }
+                MessageBox.Show("Đã xóa và cập nhật lại trạng thái sách!");
+                LoadHistoryFromSQL();
+                ClearInput();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
-            finally
-            {
-                db.close();
-            }
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
+            finally { db.close(); }
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            string tuKhoa = txtTimKiem.Text.Trim();
-
-            try
-            {
-                // Câu lệnh SQL lọc kết hợp JOIN
-                string sql = @"SELECT ct.MaPhieuTL, t.NgayTL, t.MaNV, ct.MaSach, ct.LyDoTL 
-                       FROM CHITIETTHANHLY ct 
-                       JOIN THANHLY t ON ct.MaPhieuTL = t.MaPhieuTL 
-                       WHERE ct.MaSach LIKE '%" + tuKhoa + "%' OR ct.MaPhieuTL LIKE '%" + tuKhoa + "%'";
-
-                DataTable dt = db.getTable(sql);
-                dgvThanhLy.DataSource = dt;
-
-                if (dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("Không tìm thấy dữ liệu phù hợp!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
-            }
+            string tuKhoa = txtMaSach.Text.Trim();
+            string sql = $@"SELECT ct.MaPhieuTL, t.NgayTL, ct.MaSach, d.TenDauSach, s.TinhTrang, ct.LyDoTL, ct.TrangThaiThanhLy 
+                           FROM CHITIETTHANHLY ct 
+                           JOIN THANHLY t ON ct.MaPhieuTL = t.MaPhieuTL 
+                           JOIN SACH s ON ct.MaSach = s.MaSach
+                           JOIN DAUSACH d ON s.MaDauSach = d.MaDauSach
+                           WHERE ct.MaSach LIKE '%{tuKhoa}%'";
+            dgvThanhLy.DataSource = db.getTable(sql);
         }
+
         private void dgvThanhLy_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dgvThanhLy.Rows.Count - 1)
             {
                 DataGridViewRow row = dgvThanhLy.Rows[e.RowIndex];
+                txtMaPhieu.Text = row.Cells["MaPhieuTL"].Value?.ToString();
+                txtMaSach.Text = row.Cells["MaSach"].Value?.ToString();
+                txtTenSach.Text = row.Cells["TenDauSach"].Value?.ToString();
+                txtTinhTrang.Text = row.Cells["TinhTrang"].Value?.ToString();
+                cboLyDo.Text = row.Cells["LyDoTL"].Value?.ToString();
 
-                // Đây là đoạn code khiến dữ liệu bị đẩy lên
-                txtMaPhieu.Text = row.Cells["MaPhieuTL"].Value.ToString();
-                txtMaSach.Text = row.Cells["MaSach"].Value.ToString();
-
-                // Chỗ này khiến ComboBox nhảy theo giá trị của dòng được chọn
-                cboLyDo.Text = row.Cells["LyDoTL"].Value.ToString();
+                // Hiển thị lại lên RadioButton khi click vào lưới
+                string status = row.Cells["TrangThaiThanhLy"].Value?.ToString();
+                radCo.Checked = (status == "Có");
+                radKhong.Checked = (status == "Không");
             }
         }
+
         private void ClearInput()
         {
-            // Reset lại mã phiếu cho lần thêm mới
             txtMaPhieu.Text = "PTL" + DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            // Xóa trắng mã sách
             txtMaSach.Clear();
-
-            // Đặt chỉ số về -1 để ComboBox không hiển thị nội dung gì
+            txtTenSach.Clear();
+            txtTinhTrang.Clear();
             cboLyDo.SelectedIndex = -1;
-
-            // Đưa con trỏ chuột về lại ô mã sách để nhập tiếp
-            txtMaSach.Focus();
+            radCo.Checked = false;
+            radKhong.Checked = false;
         }
     }
 }
