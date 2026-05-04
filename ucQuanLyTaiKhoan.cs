@@ -102,6 +102,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     cboTinhTrang.SelectedItem = TinhTrang;
                 }
             }
+
+            cboQuyenTruyCap.Enabled = false;
+            cboQuyenTruyCap.BackColor = SystemColors.ControlLight;
+
         }
 
         private void DgvTaiKhoan_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -127,6 +131,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     txtMatKhau.Text = row["MatKhau"].ToString();
                 }
             }
+
+            cboQuyenTruyCap.Enabled = false;
+            cboQuyenTruyCap.BackColor = SystemColors.ControlLight;
         }
 
         private bool IsValidEmail(string email)
@@ -303,11 +310,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 string email = txtEmail.Text.Trim();
                 string matKhau = txtMatKhau.Text.Trim();
 
-                if (cboQuyenTruyCap.SelectedItem == null)
+                /*if (cboQuyenTruyCap.SelectedItem == null)
                 {
                     MessageBox.Show("Vui lòng chọn quyền truy cập!");
                     return;
-                }
+                }*/
 
                 string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
 
@@ -665,6 +672,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             ClearInputFields();
             LoadAllData();
+            cboQuyenTruyCap.Enabled = true;
+            cboQuyenTruyCap.BackColor = System.Drawing.SystemColors.Window;
         }
     }
 }

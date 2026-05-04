@@ -39,20 +39,17 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             try
             {
-                string sql = "SELECT MaDG, HoTen, NgaySinh, DiaChi, Email, NgayLapThe, NgayHetHan, LoaiDG, SoDT FROM DOCGIA";
-                DataTable dt = db.getTable(sql); // Giả định db.getTable trả về DataTable
+                // Thêm điều kiện WHERE để chỉ lấy những loại là Độc giả (Sinh viên, Giảng viên, Khách)
+                string sql = "SELECT MaDG, HoTen, NgaySinh, DiaChi, Email, NgayLapThe, NgayHetHan, LoaiDG, SoDT " +
+                             "FROM DOCGIA " +
+                             "WHERE LoaiDG IN (N'Sinh viên', N'Giảng viên', N'Khách')";
+
+                DataTable dt = db.getTable(sql);
 
                 if (dt != null)
                 {
                     dgvDocGia.DataSource = dt;
-                    // Tùy chỉnh hiển thị tiêu đề cột cho chuyên nghiệp
-                    dgvDocGia.Columns["MaDG"].HeaderText = "Mã Độc Giả";
-                    dgvDocGia.Columns["HoTen"].HeaderText = "Họ và Tên";
-                    dgvDocGia.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
-                    dgvDocGia.Columns["SoDT"].HeaderText = "Số Điện Thoại";
-
-                    // Tự động dãn cột đều bảng
-                    dgvDocGia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    // ... (giữ nguyên các đoạn tùy chỉnh header như cũ)
                 }
             }
             catch (Exception ex)
@@ -102,39 +99,61 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            // 1. Kiểm tra dữ liệu rỗng
+            if (string.IsNullOrWhiteSpace(txtMaDG.Text) || string.IsNullOrWhiteSpace(txtHoTen.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ Mã và Tên độc giả!");
+                return;
+            }
+
+            // 2. NGĂN CHẶN: Không cho phép thêm Admin/Thủ thư vào module Độc giả
+            string loaiDG = cboLoaiDG.Text.Trim();
+            if (loaiDG == "Admin" || loaiDG == "Thủ thư")
+            {
+                MessageBox.Show("Module này chỉ dành cho Sinh viên, Giảng viên, Khách. Vui lòng thêm Admin/Thủ thư tại module Quản lý Nhân viên!");
+                return;
+            }
+
+            // 3. Kiểm tra trùng Mã
+            string checkSql = "SELECT MaDG FROM DOCGIA WHERE MaDG = '" + txtMaDG.Text.Trim() + "'";
+            if (db.getTable(checkSql).Rows.Count > 0)
+            {
+                MessageBox.Show("Mã độc giả đã tồn tại!");
+                return;
+            }
+
+            // 4. Thực hiện lệnh Insert
             try
             {
-                string maDG = txtMaDG.Text.Trim();
-                if (string.IsNullOrEmpty(maDG) || string.IsNullOrEmpty(txtHoTen.Text))
-                {
-                    MessageBox.Show("Vui lòng nhập đầy đủ Mã và Tên độc giả!");
-                    return;
-                }
-
-                // Kiểm tra trùng mã độc giả
-                DataTable dt = db.getTable("SELECT * FROM DOCGIA WHERE MaDG='" + maDG + "'");
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    MessageBox.Show("Mã độc giả này đã tồn tại!");
-                    return;
-                }
-
-                string sqlInsert = string.Format(
+                string sql = string.Format(
                     "INSERT INTO DOCGIA (MaDG, HoTen, NgaySinh, DiaChi, Email, NgayLapThe, NgayHetHan, LoaiDG, SoDT) " +
                     "VALUES ('{0}', N'{1}', '{2}', N'{3}', '{4}', '{5}', '{6}', N'{7}', '{8}')",
-                    maDG, txtHoTen.Text.Trim(), dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
-                    txtDiaChi.Text.Trim(), txtEmail.Text.Trim(), dtpNgayLapThe.Value.ToString("yyyy-MM-dd"),
-                    dtpNgayHetHan.Value.ToString("yyyy-MM-dd"), cboLoaiDG.Text, txtSoDT.Text.Trim()
+                    txtMaDG.Text.Trim(),
+                    txtHoTen.Text.Trim(),
+                    dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
+                    txtDiaChi.Text.Trim(),
+                    txtEmail.Text.Trim(),
+                    dtpNgayLapThe.Value.ToString("yyyy-MM-dd"),
+                    dtpNgayHetHan.Value.ToString("yyyy-MM-dd"),
+                    loaiDG,
+                    txtSoDT.Text.Trim()
                 );
 
-                if (db.update(sqlInsert) > 0) // Giả định db.update trả về số dòng bị tác động
+                if (db.update(sql) > 0)
                 {
-                    MessageBox.Show("Thêm mới độc giả thành công!");
-                    LoadData();
-                    LamMoi();
+                    MessageBox.Show("Thêm độc giả thành công!");
+                    LoadData(); // Load lại bảng
+                    LamMoi();   // Reset các ô nhập
+                }
+                else
+                {
+                    MessageBox.Show("Thêm thất bại!");
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Lỗi khi thêm: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)

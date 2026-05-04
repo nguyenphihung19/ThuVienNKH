@@ -17,8 +17,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             LoadAllData();
 
-            lblMaSach.Visible = false;
-            cboMaDauSach.Visible = false;
+          
         }
 
         private void LoadAllData()
@@ -47,8 +46,21 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void HideColums()
         {
+            // Kiểm tra xem cột có tồn tại trước khi ẩn để tránh lỗi
             if (gridviewTraCuu.Columns.Contains("MaLoaiSach"))
                 gridviewTraCuu.Columns["MaLoaiSach"].Visible = false;
+
+            // Ẩn cột Tác giả
+            if (gridviewTraCuu.Columns.Contains("TacGia"))
+                gridviewTraCuu.Columns["TacGia"].Visible = false;
+
+            // Ẩn cột Nhà xuất bản
+            if (gridviewTraCuu.Columns.Contains("NhaXB"))
+                gridviewTraCuu.Columns["NhaXB"].Visible = false;
+
+            // Ẩn cột Năm xuất bản
+            if (gridviewTraCuu.Columns.Contains("NamXB"))
+                gridviewTraCuu.Columns["NamXB"].Visible = false;
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -57,9 +69,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             {
                 string searchText = txtSearch.Text.Trim();
                 string category = cboTheLoaiSach.SelectedItem?.ToString();
-                string maSach = cboMaDauSach.SelectedItem?.ToString();
-                string namXB = cboNamXB.SelectedItem?.ToString();
-                string tinhTrang = cboTinhTrang.SelectedItem?.ToString();
+                
+                //string tinhTrang = cboTinhTrang.SelectedItem?.ToString();
 
                 // Validate: Nếu chọn mã sách thì bắt buộc phải chọn thể loại
                 //if (!string.IsNullOrEmpty(maSach) && string.IsNullOrEmpty(category))
@@ -110,16 +121,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 //}
 
                 // 4. Lọc theo Năm xuất bản
-                if (!string.IsNullOrEmpty(namXB))
-                {
-                    sql += $" AND ds.NamXB = {int.Parse(namXB)}";
-                }
+                
 
                 // 5. Lọc theo Tình trạng sách
-                if (!string.IsNullOrEmpty(tinhTrang))
+                /*if (!string.IsNullOrEmpty(tinhTrang))
                 {
                     sql += $" AND s.TinhTrang = N'{tinhTrang}'";
-                }
+                }*/
 
                 sql += @"
                         GROUP BY 
@@ -183,10 +191,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             txtSearch.Text = "";
             cboTheLoaiSach.SelectedIndex = -1;
-            cboMaDauSach.DataSource = null;
-            cboMaDauSach.Items.Clear();
-            cboNamXB.SelectedIndex = -1;
-            cboTinhTrang.SelectedIndex = -1;
+            
+            //cboTinhTrang.SelectedIndex = -1;
             LoadAllData();
         }
     }

@@ -137,9 +137,9 @@
             // 
             // btnDoiMatKhau
             // 
-            this.btnDoiMatKhau.Location = new System.Drawing.Point(368, 353);
+            this.btnDoiMatKhau.Location = new System.Drawing.Point(354, 353);
             this.btnDoiMatKhau.Name = "btnDoiMatKhau";
-            this.btnDoiMatKhau.Size = new System.Drawing.Size(75, 23);
+            this.btnDoiMatKhau.Size = new System.Drawing.Size(136, 23);
             this.btnDoiMatKhau.TabIndex = 11;
             this.btnDoiMatKhau.Text = "Đổi Mật Khẩu";
             this.btnDoiMatKhau.UseVisualStyleBackColor = true;
@@ -147,9 +147,9 @@
             // 
             // btnXacNhan
             // 
-            this.btnXacNhan.Location = new System.Drawing.Point(172, 353);
+            this.btnXacNhan.Location = new System.Drawing.Point(97, 353);
             this.btnXacNhan.Name = "btnXacNhan";
-            this.btnXacNhan.Size = new System.Drawing.Size(75, 23);
+            this.btnXacNhan.Size = new System.Drawing.Size(150, 23);
             this.btnXacNhan.TabIndex = 10;
             this.btnXacNhan.Text = "Xác Nhận";
             this.btnXacNhan.UseVisualStyleBackColor = true;

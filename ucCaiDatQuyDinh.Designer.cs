@@ -428,6 +428,7 @@
             this.RtbQuyDinh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.RtbQuyDinh.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RtbQuyDinh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RtbQuyDinh.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RtbQuyDinh.Location = new System.Drawing.Point(0, 0);
             this.RtbQuyDinh.Name = "RtbQuyDinh";
             this.RtbQuyDinh.ReadOnly = true;

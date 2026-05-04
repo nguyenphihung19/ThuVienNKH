@@ -128,9 +128,10 @@
             // 
             this.cboLyDo.FormattingEnabled = true;
             this.cboLyDo.Items.AddRange(new object[] {
-            "Hỏng Móc",
-            "Mất Sách",
-            "Sách Quá Hạn Sử Dụng"});
+            "Sách lỗi in ấn",
+            "Hỏng móc",
+            "Mất Trang",
+            "Sách quá hạn sử dụng"});
             this.cboLyDo.Location = new System.Drawing.Point(485, 132);
             this.cboLyDo.Name = "cboLyDo";
             this.cboLyDo.Size = new System.Drawing.Size(259, 24);
@@ -258,10 +259,10 @@
             // 
             // txtMaPhieu
             // 
-            this.txtMaPhieu.Location = new System.Drawing.Point(134, 30);
+            this.txtMaPhieu.Location = new System.Drawing.Point(146, 30);
             this.txtMaPhieu.Name = "txtMaPhieu";
             this.txtMaPhieu.ReadOnly = true;
-            this.txtMaPhieu.Size = new System.Drawing.Size(211, 22);
+            this.txtMaPhieu.Size = new System.Drawing.Size(199, 22);
             this.txtMaPhieu.TabIndex = 3;
             // 
             // label3
