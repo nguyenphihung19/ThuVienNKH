@@ -161,7 +161,15 @@
             this.txtEmail.Location = new System.Drawing.Point(213, 154);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
+<<<<<<< HEAD
             this.txtEmail.Size = new System.Drawing.Size(252, 30);
+=======
+
+            this.txtEmail.Size = new System.Drawing.Size(191, 22);
+
+            this.txtEmail.Size = new System.Drawing.Size(166, 22);
+
+>>>>>>> 929eb2314b804712afef1e269b21357838de18af
             this.txtEmail.TabIndex = 13;
             // 
             // label3
@@ -181,7 +189,15 @@
             this.txtMatKhau.Location = new System.Drawing.Point(213, 116);
             this.txtMatKhau.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatKhau.Name = "txtMatKhau";
+<<<<<<< HEAD
             this.txtMatKhau.Size = new System.Drawing.Size(252, 30);
+=======
+
+            this.txtMatKhau.Size = new System.Drawing.Size(191, 22);
+
+            this.txtMatKhau.Size = new System.Drawing.Size(166, 22);
+
+>>>>>>> 929eb2314b804712afef1e269b21357838de18af
             this.txtMatKhau.TabIndex = 11;
             // 
             // txtTenDangNhap
@@ -189,7 +205,15 @@
             this.txtTenDangNhap.Location = new System.Drawing.Point(213, 80);
             this.txtTenDangNhap.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTenDangNhap.Name = "txtTenDangNhap";
+<<<<<<< HEAD
             this.txtTenDangNhap.Size = new System.Drawing.Size(252, 30);
+=======
+
+            this.txtTenDangNhap.Size = new System.Drawing.Size(191, 22);
+
+            this.txtTenDangNhap.Size = new System.Drawing.Size(166, 22);
+
+>>>>>>> 929eb2314b804712afef1e269b21357838de18af
             this.txtTenDangNhap.TabIndex = 9;
             // 
             // label4
