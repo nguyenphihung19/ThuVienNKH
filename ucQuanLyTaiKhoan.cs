@@ -315,20 +315,18 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 string tenDN = txtTenDangNhap.Text.Trim();
                 string email = txtEmail.Text.Trim();
                 string matKhau = txtMatKhau.Text.Trim();
-
-<<<<<<< HEAD
                 /*if (cboQuyenTruyCap.SelectedItem == null)
                 {
                     MessageBox.Show("Vui lòng chọn quyền truy cập!");
                     return;
                 }*/
-=======
+
                 //if (cboQuyenTruyCap.SelectedItem == null)
                 //{
                 //    MessageBox.Show("Vui lòng chọn quyền truy cập!");
                 //    return;
                 //}
->>>>>>> 48241ed300dd6f77c86c3d34c66270c39bcdd6e0
+
 
                 string quyenTruyCap = cboQuyenTruyCap.SelectedItem.ToString();
 
