@@ -206,5 +206,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             radCo.Checked = false;
             radKhong.Checked = false;
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
