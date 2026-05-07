@@ -29,22 +29,23 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnThoat = new System.Windows.Forms.Button();
+            this.txtPass = new System.Windows.Forms.TextBox();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.BtnQuenMatKhau = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnDangKy = new System.Windows.Forms.Button();
-            this.txtPass = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbtest = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -58,28 +59,6 @@
             this.panel1.Size = new System.Drawing.Size(1074, 593);
             this.panel1.TabIndex = 11;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(556, 593);
-            this.panel2.TabIndex = 12;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Screenshot_2026_04_20_173034;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(556, 593);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
@@ -110,7 +89,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(85, 65);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(251, 44);
+            this.label3.Size = new System.Drawing.Size(213, 37);
             this.label3.TabIndex = 11;
             this.label3.Text = "LIBRARY NKH";
             // 
@@ -129,12 +108,21 @@
             this.BtnThoat.UseVisualStyleBackColor = false;
             this.BtnThoat.Click += new System.EventHandler(this.BtnThoat_Click);
             // 
+            // txtPass
+            // 
+            this.txtPass.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Location = new System.Drawing.Point(93, 289);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(312, 34);
+            this.txtPass.TabIndex = 2;
+            this.txtPass.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+            // 
             // txtUser
             // 
             this.txtUser.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUser.Location = new System.Drawing.Point(93, 197);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(312, 40);
+            this.txtUser.Size = new System.Drawing.Size(312, 34);
             this.txtUser.TabIndex = 2;
             this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
             // 
@@ -146,7 +134,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(100, 254);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 32);
+            this.label2.Size = new System.Drawing.Size(115, 27);
             this.label2.TabIndex = 5;
             this.label2.Text = "Mật Khẩu";
             // 
@@ -188,7 +176,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(100, 162);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 32);
+            this.label1.Size = new System.Drawing.Size(121, 27);
             this.label1.TabIndex = 4;
             this.label1.Text = "Tài Khoản";
             // 
@@ -208,14 +196,38 @@
             this.BtnDangKy.UseVisualStyleBackColor = false;
             this.BtnDangKy.Click += new System.EventHandler(this.BtnDangKy_Click);
             // 
-            // txtPass
+            // panel2
             // 
-            this.txtPass.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass.Location = new System.Drawing.Point(93, 289);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(312, 40);
-            this.txtPass.TabIndex = 2;
-            this.txtPass.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+            this.panel2.Controls.Add(this.lbtest);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(556, 593);
+            this.panel2.TabIndex = 12;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Screenshot_2026_04_20_173034;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(556, 593);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lbtest
+            // 
+            this.lbtest.AutoSize = true;
+            this.lbtest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.lbtest.Location = new System.Drawing.Point(12, 12);
+            this.lbtest.Name = "lbtest";
+            this.lbtest.Size = new System.Drawing.Size(172, 16);
+            this.lbtest.TabIndex = 1;
+            this.lbtest.Text = "Tài Khoản Test: admin - 123";
             // 
             // frmLogin
             // 
@@ -227,10 +239,11 @@
             this.Name = "frmLogin";
             this.Text = "frmLogin";
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,6 +262,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Label lbtest;
     }
 }
 

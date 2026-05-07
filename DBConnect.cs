@@ -19,11 +19,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
   
 
-<<<<<<< HEAD
+
         private string strCon = @"Data Source=Hoang;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
-=======
-        private string strCon = @"Data Source=DESKTOP-SLHSE1S1;Initial Catalog=QuanLyThuVienMoi;Integrated Security=True;Encrypt=False";
->>>>>>> 38392fb9a5a5f374b2beb13536e9d7fab50e5b61
 
 
 

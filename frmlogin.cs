@@ -24,7 +24,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             try
             {
                 string user = txtUser.Text.Trim();
-                string pass = txtUser.Text.Trim();
+                string pass = txtPass.Text.Trim();
 
                 // Kiểm tra rỗng
                 if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))

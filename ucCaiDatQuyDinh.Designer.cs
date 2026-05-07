@@ -434,18 +434,15 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-<<<<<<< HEAD
-            this.label1.Location = new System.Drawing.Point(438, 0);
-=======
+
             this.label1.Location = new System.Drawing.Point(307, 10);
->>>>>>> ff44a3fe8152d951cec16fa3bfa8ba289d19fa9c
+
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(400, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "Thiết Lập Quy Định Hệ Thống";
             // 
-<<<<<<< HEAD
-=======
+
             // lblNoiQuy
             // 
             this.lblNoiQuy.Controls.Add(this.RtbQuyDinh);
@@ -470,7 +467,7 @@
             this.RtbQuyDinh.Text = "";
             this.RtbQuyDinh.TextChanged += new System.EventHandler(this.RtbQuyDinh_TextChanged);
             // 
->>>>>>> ff44a3fe8152d951cec16fa3bfa8ba289d19fa9c
+
             // ucCaiDatQuyDinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -479,12 +476,9 @@
             this.Controls.Add(this.lblNoiQuy);
             this.Controls.Add(this.panel1);
             this.Name = "ucCaiDatQuyDinh";
-<<<<<<< HEAD
-            this.Size = new System.Drawing.Size(1169, 702);
-            this.lblNoiQuy.ResumeLayout(false);
-=======
+
             this.Size = new System.Drawing.Size(1039, 562);
->>>>>>> ff44a3fe8152d951cec16fa3bfa8ba289d19fa9c
+
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox4.ResumeLayout(false);

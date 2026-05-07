@@ -45,7 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            //this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -245,9 +245,9 @@
             this.groupBox1.Controls.Add(this.CboTinhTrangSach);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox4);
+            //this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label5);
+            //this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label2);
@@ -262,14 +262,14 @@
             this.groupBox1.Text = "Thông tin sách";
             // 
             // 
-            this.panel2.Controls.Add(this.dateTimePicker1);
+            //this.panel2.Controls.Add(this.dateTimePicker1);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.dgvSach);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 165);
             this.panel2.Name = "panel2";
-            this.dateTimePicker1.Size = new System.Drawing.Size(8, 26);
-            this.dateTimePicker1.TabIndex = 4;
+            //this.dateTimePicker1.Size = new System.Drawing.Size(8, 26);
+            //this.dateTimePicker1.TabIndex = 4;
             // 
             // pictureBox1
             // 
