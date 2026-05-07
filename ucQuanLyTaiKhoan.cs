@@ -210,7 +210,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (cboQuyenTruyCap.SelectedItem == null)
                 {
-                    MessageBox.Show("Vui lòng chọn quyền truy cập!");
+                    MessageBox.Show("Vui lòng chọn quyền truy cập!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -219,13 +219,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
                 {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (IsTenDangNhapExists(tenDN))
                 {
-                    MessageBox.Show("Tên đăng nhập đã tồn tại!");
+                    MessageBox.Show("Tên đăng nhập đã tồn tại!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -279,7 +279,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                         }
 
                         transaction.Commit();
-                        MessageBox.Show("Thêm tài khoản và khởi tạo thông tin thành công!");
+                        MessageBox.Show("Thêm tài khoản và khởi tạo thông tin thành công!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         ClearInputFields();
                         LoadAllData();
                     }
@@ -307,7 +307,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             {
                 if (DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value == null)
                 {
-                    MessageBox.Show("Dữ liệu không hợp lệ!");
+                    MessageBox.Show("Dữ liệu không hợp lệ!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -332,19 +332,19 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (string.IsNullOrEmpty(tenDN) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matKhau))
                 {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (!IsValidEmail(email))
                 {
-                    MessageBox.Show("Email không hợp lệ!");
+                    MessageBox.Show("Email không hợp lệ!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (IsTenDangNhapExistsForUpdate(tenDN, maTaiKhoan))
                 {
-                    MessageBox.Show("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
+                    MessageBox.Show("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -391,7 +391,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                             }
 
                             transaction.Commit();
-                            MessageBox.Show("Cập nhật tài khoản thành công!");
+                            MessageBox.Show("Cập nhật tài khoản thành công!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             ClearInputFields();
                             LoadAllData();
                         }
@@ -413,7 +413,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một tài khoản để sửa!");
+                MessageBox.Show("Vui lòng chọn một tài khoản để sửa!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -423,7 +423,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             {
                 if (DgvTaiKhoan.SelectedRows[0].Cells["MaTaiKhoan"].Value == null)
                 {
-                    MessageBox.Show("Dữ liệu không hợp lệ!");
+                    MessageBox.Show("Dữ liệu không hợp lệ!", "thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -432,7 +433,8 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (tenDN.Equals("admin", StringComparison.OrdinalIgnoreCase))
                 {
-                    MessageBox.Show("Không thể xóa tài khoản Admin!");
+                    MessageBox.Show("Không thể xóa tài khoản Admin!", "thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -473,14 +475,14 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                                     if (result > 0)
                                     {
                                         transaction.Commit();
-                                        MessageBox.Show("Xóa tài khoản thành công!");
+                                        MessageBox.Show("Xóa tài khoản thành công!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         ClearInputFields();
                                         LoadAllData();
                                     }
                                     else
                                     {
                                         transaction.Rollback();
-                                        MessageBox.Show("Không thể xóa tài khoản! Vui lòng thử lại.");
+                                        MessageBox.Show("Không thể xóa tài khoản! Vui lòng thử lại.", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
                                 }
                             }
@@ -503,7 +505,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một tài khoản để xóa!");
+                MessageBox.Show("Vui lòng chọn một tài khoản để xóa!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

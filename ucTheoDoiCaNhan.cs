@@ -11,22 +11,41 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         public ucTheoDoiCaNhan()
         {
             InitializeComponent();
-            // Đăng ký sự kiện Load để tự động chạy khi hiển thị
+
+            // Đăng ký sự kiện Load
             this.Load += UcTheoDoiCaNhan_Load;
         }
 
         private void UcTheoDoiCaNhan_Load(object sender, EventArgs e)
         {
-            // Kiểm tra xem đã có MaDocGia trong Session chưa
-            if (!string.IsNullOrEmpty(Session.MaDocGia))
+            try
             {
-                LoadData(Session.MaDocGia);
+                // Kiểm tra đăng nhập
+                if (!string.IsNullOrEmpty(Session.MaDocGia))
+                {
+                    LoadData(Session.MaDocGia);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Không tìm thấy thông tin đăng nhập của độc giả!",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+
+                SetReadOnly(true);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Không tìm thấy thông tin đăng nhập của độc giả!");
+                MessageBox.Show(
+                    "Lỗi khi tải giao diện: " + ex.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
-            SetReadOnly(true);
         }
 
         public void LoadData(string maDG)
@@ -39,21 +58,49 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    TxtHoTen.Text = row["HoTen"].ToString();
-                    TxtDocGia.Text = row["MaDG"].ToString();
-                    TxtDiaChi.Text = row["DiaChi"].ToString();
-                    TxtEmail.Text = row["Email"].ToString();
-                    TxtSDT.Text = row["SoDT"].ToString();
 
-                    // Gán ngày tháng an toàn
-                    DtpNgaysinh.Value = (row["NgaySinh"] != DBNull.Value) ? Convert.ToDateTime(row["NgaySinh"]) : DateTime.Now;
-                    Dtpngaylapthe.Value = (row["NgayLapThe"] != DBNull.Value) ? Convert.ToDateTime(row["NgayLapThe"]) : DateTime.Now;
-                    DtpNgayhethan.Value = (row["NgayHetHan"] != DBNull.Value) ? Convert.ToDateTime(row["NgayHetHan"]) : DateTime.Now;
+                    TxtHoTen.Text = row["HoTen"]?.ToString();
+                    TxtDocGia.Text = row["MaDG"]?.ToString();
+                    TxtDiaChi.Text = row["DiaChi"]?.ToString();
+                    TxtEmail.Text = row["Email"]?.ToString();
+                    TxtSDT.Text = row["SoDT"]?.ToString();
+
+                    // Gán ngày sinh
+                    if (row["NgaySinh"] != DBNull.Value)
+                        DtpNgaysinh.Value = Convert.ToDateTime(row["NgaySinh"]);
+                    else
+                        DtpNgaysinh.Value = DateTime.Now;
+
+                    // Gán ngày lập thẻ
+                    if (row["NgayLapThe"] != DBNull.Value)
+                        Dtpngaylapthe.Value = Convert.ToDateTime(row["NgayLapThe"]);
+                    else
+                        Dtpngaylapthe.Value = DateTime.Now;
+
+                    // Gán ngày hết hạn
+                    if (row["NgayHetHan"] != DBNull.Value)
+                        DtpNgayhethan.Value = Convert.ToDateTime(row["NgayHetHan"]);
+                    else
+                        DtpNgayhethan.Value = DateTime.Now;
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Không tìm thấy dữ liệu độc giả!",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi tải dữ liệu: " + ex.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -63,37 +110,98 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             TxtDiaChi.ReadOnly = readOnly;
             TxtEmail.ReadOnly = readOnly;
             TxtSDT.ReadOnly = readOnly;
+
             DtpNgaysinh.Enabled = !readOnly;
+
+            // Luôn khóa mã độc giả
+            TxtDocGia.ReadOnly = true;
+
+            // Không cho sửa ngày lập thẻ và ngày hết hạn
+            Dtpngaylapthe.Enabled = false;
+            DtpNgayhethan.Enabled = false;
         }
 
         private void BtnChinhSua_Click_1(object sender, EventArgs e)
         {
             SetReadOnly(false);
-            TxtDocGia.Enabled = false; // Luôn khóa mã vì không được sửa ID
+
+            MessageBox.Show(
+                "Đã bật chế độ chỉnh sửa!",
+                "Thông báo",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
 
         private void BtnLuu_Click_1(object sender, EventArgs e)
         {
             try
             {
-                string sql = string.Format("UPDATE DOCGIA SET HoTen=N'{0}', NgaySinh='{1}', DiaChi=N'{2}', Email='{3}', SoDT=N'{4}' WHERE MaDG='{5}'",
-                    TxtHoTen.Text, DtpNgaysinh.Value.ToString("yyyy-MM-dd"), TxtDiaChi.Text, TxtEmail.Text, TxtSDT.Text, TxtDocGia.Text);
+                // Kiểm tra rỗng
+                if (string.IsNullOrWhiteSpace(TxtHoTen.Text) ||
+                    string.IsNullOrWhiteSpace(TxtEmail.Text))
+                {
+                    MessageBox.Show(
+                        "Vui lòng nhập đầy đủ Họ tên và Email!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return;
+                }
 
-                int ketQua = db.update(sql); // Gọi đúng hàm update trong DBConnect của bạn
+                // SQL cập nhật
+                string sql = string.Format(
+                    @"UPDATE DOCGIA 
+                      SET HoTen = N'{0}',
+                          NgaySinh = '{1}',
+                          DiaChi = N'{2}',
+                          Email = '{3}',
+                          SoDT = N'{4}'
+                      WHERE MaDG = '{5}'",
+
+                    TxtHoTen.Text.Trim().Replace("'", "''"),
+                    DtpNgaysinh.Value.ToString("yyyy-MM-dd"),
+                    TxtDiaChi.Text.Trim().Replace("'", "''"),
+                    TxtEmail.Text.Trim().Replace("'", "''"),
+                    TxtSDT.Text.Trim().Replace("'", "''"),
+                    TxtDocGia.Text.Trim()
+                );
+
+                int ketQua = db.update(sql);
 
                 if (ketQua > 0)
                 {
-                    MessageBox.Show("Cập nhật thành công!");
+                    MessageBox.Show(
+                        "Cập nhật thông tin thành công!",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
                     SetReadOnly(true);
+
+                    // Load lại dữ liệu mới
+                    LoadData(TxtDocGia.Text.Trim());
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật thất bại, vui lòng kiểm tra lại.");
+                    MessageBox.Show(
+                        "Cập nhật thất bại!",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi lưu: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi lưu dữ liệu: " + ex.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
     }
