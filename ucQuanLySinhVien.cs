@@ -13,6 +13,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     public partial class ucQuanLySinhVien : UserControl
     {
         DBConnect db = new DBConnect();
+
         public ucQuanLySinhVien()
         {
             InitializeComponent();
@@ -28,18 +29,19 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
 
         }
+
         private void ucQuanLySinhVien_Load(object sender, EventArgs e)
         {
             LoadData();
-            // Thiết lập giá trị mặc định cho các ô ngày tháng
+
             dtpNgayLapThe.Value = DateTime.Now;
-            dtpNgayHetHan.Value = DateTime.Now.AddMonths(6); // Mặc định hạn 6 tháng
+            dtpNgayHetHan.Value = DateTime.Now.AddMonths(6);
         }
+
         public void LoadData()
         {
             try
             {
-                // Thêm điều kiện WHERE để chỉ lấy những loại là Độc giả (Sinh viên, Giảng viên, Khách)
                 string sql = "SELECT MaDG, HoTen, NgaySinh, DiaChi, Email, NgayLapThe, NgayHetHan, LoaiDG, SoDT " +
                              "FROM DOCGIA " +
                              "WHERE LoaiDG IN (N'Sinh viên', N'Giảng viên', N'Khách')";
@@ -49,14 +51,19 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 if (dt != null)
                 {
                     dgvDocGia.DataSource = dt;
-                    // ... (giữ nguyên các đoạn tùy chỉnh header như cũ)
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi hiển thị bảng: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi hiển thị bảng: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
+
         private void LamMoi()
         {
             txtMaDG.Clear();
@@ -64,10 +71,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             txtDiaChi.Clear();
             txtEmail.Clear();
             txtSoDT.Clear();
-            txtMaDG.ReadOnly = false; // Cho phép nhập mã mới
+
+            txtMaDG.ReadOnly = false;
+
             dtpNgaySinh.Value = DateTime.Now;
             dtpNgayLapThe.Value = DateTime.Now;
             dtpNgayHetHan.Value = DateTime.Now.AddMonths(6);
+
             txtMaDG.Focus();
         }
 
@@ -75,6 +85,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             dtpNgayHetHan.Value = dtpNgayLapThe.Value.AddMonths(6);
         }
+
         private void dgvDocGia_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -88,41 +99,59 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 txtSoDT.Text = row.Cells["SoDT"].Value.ToString();
                 cboLoaiDG.Text = row.Cells["LoaiDG"].Value.ToString();
 
-                // Ép kiểu ngày tháng an toàn
-                if (DateTime.TryParse(row.Cells["NgaySinh"].Value.ToString(), out DateTime ns)) dtpNgaySinh.Value = ns;
-                if (DateTime.TryParse(row.Cells["NgayLapThe"].Value.ToString(), out DateTime nlt)) dtpNgayLapThe.Value = nlt;
-                if (DateTime.TryParse(row.Cells["NgayHetHan"].Value.ToString(), out DateTime nhh)) dtpNgayHetHan.Value = nhh;
+                if (DateTime.TryParse(row.Cells["NgaySinh"].Value.ToString(), out DateTime ns))
+                    dtpNgaySinh.Value = ns;
 
-                txtMaDG.ReadOnly = true; // Khóa mã độc giả khi đang ở chế độ chỉnh sửa
+                if (DateTime.TryParse(row.Cells["NgayLapThe"].Value.ToString(), out DateTime nlt))
+                    dtpNgayLapThe.Value = nlt;
+
+                if (DateTime.TryParse(row.Cells["NgayHetHan"].Value.ToString(), out DateTime nhh))
+                    dtpNgayHetHan.Value = nhh;
+
+                txtMaDG.ReadOnly = true;
             }
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra dữ liệu rỗng
-            if (string.IsNullOrWhiteSpace(txtMaDG.Text) || string.IsNullOrWhiteSpace(txtHoTen.Text))
+            if (string.IsNullOrWhiteSpace(txtMaDG.Text) ||
+                string.IsNullOrWhiteSpace(txtHoTen.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ Mã và Tên độc giả!");
+                MessageBox.Show(
+                    "Vui lòng nhập đầy đủ Mã và Tên độc giả!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            // 2. NGĂN CHẶN: Không cho phép thêm Admin/Thủ thư vào module Độc giả
             string loaiDG = cboLoaiDG.Text.Trim();
+
             if (loaiDG == "Admin" || loaiDG == "Thủ thư")
             {
-                MessageBox.Show("Module này chỉ dành cho Sinh viên, Giảng viên, Khách. Vui lòng thêm Admin/Thủ thư tại module Quản lý Nhân viên!");
+                MessageBox.Show(
+                    "Module này chỉ dành cho Sinh viên, Giảng viên, Khách. Vui lòng thêm Admin/Thủ thư tại module Quản lý Nhân viên!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            // 3. Kiểm tra trùng Mã
             string checkSql = "SELECT MaDG FROM DOCGIA WHERE MaDG = '" + txtMaDG.Text.Trim() + "'";
+
             if (db.getTable(checkSql).Rows.Count > 0)
             {
-                MessageBox.Show("Mã độc giả đã tồn tại!");
+                MessageBox.Show(
+                    "Mã độc giả đã tồn tại!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            // 4. Thực hiện lệnh Insert
             try
             {
                 string sql = string.Format(
@@ -141,18 +170,34 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (db.update(sql) > 0)
                 {
-                    MessageBox.Show("Thêm độc giả thành công!");
-                    LoadData(); // Load lại bảng
-                    LamMoi();   // Reset các ô nhập
+                    MessageBox.Show(
+                        "Thêm độc giả thành công!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    LoadData();
+                    LamMoi();
                 }
                 else
                 {
-                    MessageBox.Show("Thêm thất bại!");
+                    MessageBox.Show(
+                        "Thêm thất bại!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi kết nối: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
@@ -161,58 +206,112 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             try
             {
                 string maDG = txtMaDG.Text.Trim();
+
                 if (string.IsNullOrEmpty(maDG))
                 {
-                    MessageBox.Show("Vui lòng chọn một độc giả từ danh sách để sửa!");
+                    MessageBox.Show(
+                        "Vui lòng chọn một độc giả từ danh sách để sửa!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                     return;
                 }
 
                 string sqlUpdate = string.Format(
                     "UPDATE DOCGIA SET HoTen=N'{1}', NgaySinh='{2}', DiaChi=N'{3}', Email='{4}', " +
                     "NgayLapThe='{5}', NgayHetHan='{6}', LoaiDG=N'{7}', SoDT='{8}' WHERE MaDG='{0}'",
-                    maDG, txtHoTen.Text.Trim(), dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
-                    txtDiaChi.Text.Trim(), txtEmail.Text.Trim(), dtpNgayLapThe.Value.ToString("yyyy-MM-dd"),
-                    dtpNgayHetHan.Value.ToString("yyyy-MM-dd"), cboLoaiDG.Text, txtSoDT.Text.Trim()
+                    maDG,
+                    txtHoTen.Text.Trim(),
+                    dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
+                    txtDiaChi.Text.Trim(),
+                    txtEmail.Text.Trim(),
+                    dtpNgayLapThe.Value.ToString("yyyy-MM-dd"),
+                    dtpNgayHetHan.Value.ToString("yyyy-MM-dd"),
+                    cboLoaiDG.Text,
+                    txtSoDT.Text.Trim()
                 );
 
                 if (db.update(sqlUpdate) > 0)
                 {
-                    MessageBox.Show("Cập nhật thông tin thành công!");
+                    MessageBox.Show(
+                        "Cập nhật thông tin thành công!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
                     LoadData();
                     LamMoi();
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Lỗi khi sửa: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Lỗi khi sửa: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
             string maDG = txtMaDG.Text.Trim();
+
             if (string.IsNullOrEmpty(maDG))
             {
-                MessageBox.Show("Vui lòng chọn hoặc nhập Mã độc giả cần xóa!");
+                MessageBox.Show(
+                    "Vui lòng chọn hoặc nhập Mã độc giả cần xóa!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa độc giả " + maDG + "?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show(
+                "Bạn có chắc chắn muốn xóa độc giả " + maDG + "?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            ) == DialogResult.Yes)
             {
                 string sqlDelete = "DELETE FROM DOCGIA WHERE MaDG = '" + maDG + "'";
+
                 try
                 {
                     if (db.update(sqlDelete) > 0)
                     {
-                        MessageBox.Show("Đã xóa độc giả thành công!");
+                        MessageBox.Show(
+                            "Đã xóa độc giả thành công!",
+                            "Cảnh báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+
                         LoadData();
                         LamMoi();
                     }
                     else
                     {
-                        MessageBox.Show("Không tìm thấy mã độc giả để xóa!");
+                        MessageBox.Show(
+                            "Không tìm thấy mã độc giả để xóa!",
+                            "Cảnh báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa (có thể độc giả này đang có dữ liệu liên quan ở bảng khác): " + ex.Message);
+                    MessageBox.Show(
+                        "Không thể xóa: " + ex.Message,
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
         }
@@ -221,26 +320,27 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             try
             {
-                // 1. Lấy giá trị từ ComboBox Loại Độc Giả
                 string loaiSelected = cboLoaiDG.Text.Trim();
 
-                // 2. Kiểm tra nếu chưa chọn gì thì báo lỗi hoặc load lại tất cả
                 if (string.IsNullOrEmpty(loaiSelected))
                 {
-                    MessageBox.Show("Vui lòng chọn Loại Độc Giả cần lọc!");
-                    LoadData(); // Load lại toàn bộ nếu để trống
+                    MessageBox.Show(
+                        "Vui lòng chọn Loại Độc Giả cần lọc!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    LoadData();
                     return;
                 }
 
-                // 3. Tạo câu lệnh SQL có điều kiện WHERE
-                // Lưu ý: N'{0}' dùng để lọc tiếng Việt có dấu
                 string sqlFilter = string.Format(
                     "SELECT MaDG, HoTen, NgaySinh, DiaChi, Email, NgayLapThe, NgayHetHan, LoaiDG, SoDT " +
                     "FROM DOCGIA WHERE LoaiDG = N'{0}'",
                     loaiSelected
                 );
 
-                // 4. Thực thi lấy dữ liệu
                 DataTable dt = db.getTable(sqlFilter);
 
                 if (dt != null && dt.Rows.Count > 0)
@@ -249,29 +349,44 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy dữ liệu cho loại: " + loaiSelected);
-                    dgvDocGia.DataSource = null; // Xóa bảng nếu không có kết quả
+                    MessageBox.Show(
+                        "Không tìm thấy dữ liệu cho loại: " + loaiSelected,
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    dgvDocGia.DataSource = null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lọc dữ liệu: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi khi lọc dữ liệu: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
+
         public string TaoMaDocGiaMoi()
         {
-            // Lấy mã độc giả lớn nhất hiện có
             string sql = "SELECT TOP 1 MaDG FROM DOCGIA ORDER BY MaDG DESC";
+
             DataTable dt = db.getTable(sql);
 
             if (dt != null && dt.Rows.Count > 0)
             {
-                string maCu = dt.Rows[0]["MaDG"].ToString(); // Ví dụ: "DG26"
-                string so = maCu.Substring(2); // Lấy phần số: "26"
+                string maCu = dt.Rows[0]["MaDG"].ToString();
+                string so = maCu.Substring(2);
+
                 int soMoi = int.Parse(so) + 1;
-                return "DG" + soMoi.ToString(); // Trả về "DG27"
+
+                return "DG" + soMoi.ToString();
             }
-            return "DG01"; // Nếu chưa có ai
+
+            return "DG01";
         }
     }
 }

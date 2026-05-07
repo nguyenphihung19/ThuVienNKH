@@ -17,6 +17,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         public ucCaiDatQuyDinh()
         {
             InitializeComponent();
+
             // Tui thêm hàm này để tự động nới giới hạn NumericUpDown lên cao, tránh lỗi 100
             SetMaxLimits();
             LoadData();
@@ -40,7 +41,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 {
                     nm.Maximum = 1000000; // Cho phép nhập đến 1 triệu
                 }
-                if (c.HasChildren) SearchAndSetMax(c);
+
+                if (c.HasChildren)
+                    SearchAndSetMax(c);
             }
         }
 
@@ -70,20 +73,48 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     // 2. Gán giá trị vào các ô số trên giao diện
                     switch (maQD)
                     {
-                        case "QD01": numSoNamCuaSach.Value = giaTri; break;
-                        case "QD02": numTuoiToiThieu.Value = giaTri; break;
-                        case "QD03": numTuoiToiDa.Value = giaTri; break;
-                        case "QD04": numThoiHanThe.Value = giaTri; break;
-                        case "QD05": numSoSachToiDa.Value = giaTri; break;
-                        case "QD06": numNgayMuonToiDa.Value = giaTri; break;
-                        case "QD07": numTienPhatQuaHan.Value = giaTri; break;
-                        case "QD08": numTienPhatMatSach.Value = giaTri; break;
+                        case "QD01":
+                            numSoNamCuaSach.Value = giaTri;
+                            break;
+
+                        case "QD02":
+                            numTuoiToiThieu.Value = giaTri;
+                            break;
+
+                        case "QD03":
+                            numTuoiToiDa.Value = giaTri;
+                            break;
+
+                        case "QD04":
+                            numThoiHanThe.Value = giaTri;
+                            break;
+
+                        case "QD05":
+                            numSoSachToiDa.Value = giaTri;
+                            break;
+
+                        case "QD06":
+                            numNgayMuonToiDa.Value = giaTri;
+                            break;
+
+                        case "QD07":
+                            numTienPhatQuaHan.Value = giaTri;
+                            break;
+
+                        case "QD08":
+                            numTienPhatMatSach.Value = giaTri;
+                            break;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi khi tải dữ liệu: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
@@ -101,14 +132,24 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 UpdateQD("QD07", (int)numTienPhatQuaHan.Value);
                 UpdateQD("QD08", (int)numTienPhatMatSach.Value);
 
-                MessageBox.Show("Cập nhật tất cả quy định thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Cập nhật tất cả quy định thành công!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
 
                 // Load lại để cái RichTextBox cập nhật số mới luôn
                 LoadData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi khi lưu: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
@@ -121,7 +162,12 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         // Nếu ông muốn làm nút Khôi phục mặc định thì xài đoạn này
         private void btnKhoiPhuc_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn đưa các quy định về mặc định không?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(
+                "Bạn có muốn đưa các quy định về mặc định không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            ) == DialogResult.Yes)
             {
                 numSoNamCuaSach.Value = 8;
                 numTuoiToiThieu.Value = 18;
@@ -140,14 +186,18 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         private void BtbReset_Click(object sender, EventArgs e)
         {
             // 1. Hỏi xác nhận cho chắc ăn trước khi khôi phục
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn khôi phục tất cả quy định về giá trị mặc định ban đầu không?",
-                                                  "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc chắn muốn khôi phục tất cả quy định về giá trị mặc định ban đầu không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                    // 2. Gán các con số mặc định (ông có thể sửa lại số theo ý mình)
+                    // 2. Gán các con số mặc định
                     numSoNamCuaSach.Value = 8;
                     numTuoiToiThieu.Value = 18;
                     numTuoiToiDa.Value = 40;
@@ -167,14 +217,24 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     UpdateQD("QD07", (int)numTienPhatQuaHan.Value);
                     UpdateQD("QD08", (int)numTienPhatMatSach.Value);
 
-                    // 4. Load lại dữ liệu để cập nhật cái bảng chữ (RichTextBox) phía dưới
+                    // 4. Load lại dữ liệu
                     LoadData();
 
-                    MessageBox.Show("Đã khôi phục quy định mặc định thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        "Đã khôi phục quy định mặc định thành công!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi khôi phục: " + ex.Message);
+                    MessageBox.Show(
+                        "Lỗi khi khôi phục: " + ex.Message,
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
         }
