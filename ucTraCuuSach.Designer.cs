@@ -41,6 +41,7 @@
             this.TenDauSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenLoaiSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TinhTrang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -55,36 +56,40 @@
             "Kinh doanh",
             "Y Học",
             "Kinh tế học"});
-            this.cboTheLoaiSach.Location = new System.Drawing.Point(147, 39);
+            this.cboTheLoaiSach.Location = new System.Drawing.Point(165, 49);
+            this.cboTheLoaiSach.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboTheLoaiSach.Name = "cboTheLoaiSach";
-            this.cboTheLoaiSach.Size = new System.Drawing.Size(181, 24);
+            this.cboTheLoaiSach.Size = new System.Drawing.Size(203, 28);
             this.cboTheLoaiSach.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 43);
+            this.label1.Location = new System.Drawing.Point(45, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 16);
+            this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Thể loại sách";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnFind);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(957, 75);
+            this.panel1.Size = new System.Drawing.Size(1077, 135);
             this.panel1.TabIndex = 5;
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(779, 22);
+            this.btnFind.Location = new System.Drawing.Point(876, 76);
+            this.btnFind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(103, 23);
+            this.btnFind.Size = new System.Drawing.Size(116, 29);
             this.btnFind.TabIndex = 11;
             this.btnFind.Text = "Tìm";
             this.btnFind.UseVisualStyleBackColor = true;
@@ -92,9 +97,10 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(43, 22);
+            this.txtSearch.Location = new System.Drawing.Point(48, 76);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(687, 22);
+            this.txtSearch.Size = new System.Drawing.Size(772, 26);
             this.txtSearch.TabIndex = 12;
             // 
             // panel2
@@ -104,16 +110,18 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.cboTheLoaiSach);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 75);
+            this.panel2.Location = new System.Drawing.Point(0, 135);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(957, 79);
+            this.panel2.Size = new System.Drawing.Size(1077, 99);
             this.panel2.TabIndex = 6;
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(782, 33);
+            this.btnReset.Location = new System.Drawing.Point(880, 41);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(100, 34);
+            this.btnReset.Size = new System.Drawing.Size(112, 42);
             this.btnReset.TabIndex = 10;
             this.btnReset.Text = "Đặt Lại";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -123,9 +131,10 @@
             // 
             this.panel3.Controls.Add(this.gridviewTraCuu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 154);
+            this.panel3.Location = new System.Drawing.Point(0, 234);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(957, 454);
+            this.panel3.Size = new System.Drawing.Size(1077, 526);
             this.panel3.TabIndex = 6;
             // 
             // gridviewTraCuu
@@ -138,10 +147,11 @@
             this.TinhTrang});
             this.gridviewTraCuu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridviewTraCuu.Location = new System.Drawing.Point(0, 0);
+            this.gridviewTraCuu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridviewTraCuu.Name = "gridviewTraCuu";
             this.gridviewTraCuu.RowHeadersWidth = 51;
             this.gridviewTraCuu.RowTemplate.Height = 24;
-            this.gridviewTraCuu.Size = new System.Drawing.Size(957, 454);
+            this.gridviewTraCuu.Size = new System.Drawing.Size(1077, 526);
             this.gridviewTraCuu.TabIndex = 0;
             // 
             // MaDauSach
@@ -176,15 +186,26 @@
             this.TinhTrang.Name = "TinhTrang";
             this.TinhTrang.Width = 125;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(378, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(286, 52);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Tra cứu sách";
+            // 
             // ucTraCuuSach
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucTraCuuSach";
-            this.Size = new System.Drawing.Size(957, 608);
+            this.Size = new System.Drawing.Size(1077, 760);
             this.Load += new System.EventHandler(this.ucTraCuuSach_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -210,5 +231,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TenDauSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenLoaiSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn TinhTrang;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -63,9 +63,59 @@ namespace Bài_TH_Quản_Lý_Thư_Viện.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1144760 {
+            get {
+                object obj = ResourceManager.GetObject("1144760", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _7542190 {
+            get {
+                object obj = ResourceManager.GetObject("7542190", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap books_3145874 {
             get {
                 object obj = ResourceManager.GetObject("books_3145874", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hinh_anh_canh_dong_lua_xanh {
+            get {
+                object obj = ResourceManager.GetObject("hinh-anh-canh-dong-lua-xanh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hinh_anh_canh_dong_lua_xanh1 {
+            get {
+                object obj = ResourceManager.GetObject("hinh-anh-canh-dong-lua-xanh1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Interior_Design_Wutopia_Lab_idx190601_wl02_06_19 {
+            get {
+                object obj = ResourceManager.GetObject("Interior-Design-Wutopia-Lab-idx190601_wl02-06.19", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

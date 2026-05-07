@@ -332,5 +332,20 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Interior-Design-Wutopia-Lab-idx190601_wl02-06.19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1144760.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7542190.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hinh-anh-canh-dong-lua-xanh.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hinh-anh-canh-dong-lua-xanh1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
