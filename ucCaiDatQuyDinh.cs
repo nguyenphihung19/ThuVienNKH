@@ -44,6 +44,17 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
         }
 
+        //private void UpdateQD(string ma, int giaTri)
+        //{
+        //    string sql = $"UPDATE QUYDINH SET GiaTri = {giaTri} WHERE MaQD = '{ma}'";
+
+        //    int kq = db.update(sql);
+
+        //    if (kq <= 0)
+        //    {
+        //        MessageBox.Show("Không cập nhật được mã: " + ma);
+        //    }
+        //}
         public void LoadData()
         {
             try
@@ -89,6 +100,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void btnLuuThayDoi_Click(object sender, EventArgs e)
         {
+           
+
+
             try
             {
                 // Cập nhật ĐẦY ĐỦ tất cả các ô quy định xuống SQL
@@ -177,6 +191,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     MessageBox.Show("Lỗi khi khôi phục: " + ex.Message);
                 }
             }
+        }
+
+        private void RtbQuyDinh_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
