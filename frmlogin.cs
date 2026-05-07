@@ -13,6 +13,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     public partial class frmLogin : Form
     {
         DBConnect db = new DBConnect();
+
         public frmLogin()
         {
             InitializeComponent();
@@ -25,14 +26,19 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 string user = txtUser.Text.Trim();
                 string pass = txtPass.Text.Trim();
 
-
+                // Kiểm tra rỗng
                 if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
                 {
-                    MessageBox.Show("Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+                    MessageBox.Show(
+                        "Vui lòng nhập đầy đủ tài khoản và mật khẩu!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                     return;
                 }
 
-                // SỬA SQL: Dùng đúng tên cột là MaDG
+                // SQL đăng nhập
                 string sql = $@"SELECT T.QuyenTruyCap, T.TinhTrang,
                                ISNULL(N.HoTen, D.HoTen) AS HoTenResult,
                                N.MaNV,
@@ -40,37 +46,56 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                         FROM TAIKHOAN T 
                         LEFT JOIN NHANVIEN N ON T.MaTaiKhoan = N.MaTaiKhoan
                         LEFT JOIN DOCGIA D ON T.MaTaiKhoan = D.MaTaiKhoan
-                        WHERE T.TenDangNhap = '{user}' AND T.MatKhau = '{pass}'";
+                        WHERE T.TenDangNhap = '{user}' 
+                        AND T.MatKhau = '{pass}'";
 
                 DataTable dt = db.getTable(sql);
 
                 if (dt.Rows.Count > 0)
                 {
-                    int tinhTrangValue = dt.Rows[0]["TinhTrang"] != DBNull.Value ? Convert.ToInt32(dt.Rows[0]["TinhTrang"]): 1;
-                    // Cập nhật Session
+                    int tinhTrangValue = dt.Rows[0]["TinhTrang"] != DBNull.Value
+                        ? Convert.ToInt32(dt.Rows[0]["TinhTrang"])
+                        : 1;
+
+                    // Session
                     Session.TenDangNhap = user;
                     Session.HoTen = dt.Rows[0]["HoTenResult"].ToString();
                     Session.Quyen = dt.Rows[0]["QuyenTruyCap"].ToString();
                     Session.TinhTrang = (tinhTrangValue == 0);
 
-                    // Gán mã tương ứng
-                    Session.MaNV = dt.Rows[0]["MaNV"] != DBNull.Value ? dt.Rows[0]["MaNV"].ToString() : "";
+                    Session.MaNV = dt.Rows[0]["MaNV"] != DBNull.Value
+                        ? dt.Rows[0]["MaNV"].ToString()
+                        : "";
 
-                    // SỬA TÊN CỘT Ở ĐÂY: Dùng MaDG thay vì MaDocGia
-                    Session.MaDocGia = dt.Rows[0]["MaDG"] != DBNull.Value ? dt.Rows[0]["MaDG"].ToString() : "";
+                    Session.MaDocGia = dt.Rows[0]["MaDG"] != DBNull.Value
+                        ? dt.Rows[0]["MaDG"].ToString()
+                        : "";
 
+                    // Kiểm tra khóa tài khoản
                     if (Session.TinhTrang)
                     {
-                        MessageBox.Show("Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên.");
+                        MessageBox.Show(
+                            "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên.",
+                            "Cảnh báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
                         return;
                     }
 
-                    MessageBox.Show($"Đăng nhập thành công! Chào {Session.HoTen}");
+                    // Đăng nhập thành công
+                    MessageBox.Show(
+                        $"Đăng nhập thành công! Chào {Session.HoTen}",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
 
                     // Điều hướng form
                     if (Session.Quyen == "Quản Trị" || Session.Quyen == "Thủ Thư")
                     {
                         FrmMainAdmin fAdmin = new FrmMainAdmin(Session.HoTen, Session.Quyen);
+
                         this.Hide();
                         fAdmin.ShowDialog();
                         this.Show();
@@ -78,6 +103,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                     else
                     {
                         frmMainReader fReader = new frmMainReader(Session.HoTen, Session.Quyen);
+
                         this.Hide();
                         fReader.ShowDialog();
                         this.Show();
@@ -85,25 +111,43 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 }
                 else
                 {
-                    MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!");
+                    MessageBox.Show(
+                        "Tài khoản hoặc mật khẩu không chính xác!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi hệ thống: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi hệ thống: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
-
         // Các hàm sự kiện khác giữ nguyên
         private void cboRole_SelectedIndexChanged(object sender, EventArgs e) { }
+
         private void pictureBox2_Click(object sender, EventArgs e) { }
+
         private void txtUser_TextChanged(object sender, EventArgs e) { }
+
         private void panel1_Paint(object sender, PaintEventArgs e) { }
 
         private void BtnThoat_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có muốn thoát chương trình không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show(
+                "Bạn có muốn thoát chương trình không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
             if (dr == DialogResult.Yes)
             {
                 this.Close();

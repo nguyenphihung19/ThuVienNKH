@@ -13,6 +13,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     public partial class ucDoiMatKhau : UserControl
     {
         DBConnect db = new DBConnect();
+
         public ucDoiMatKhau()
         {
             InitializeComponent();
@@ -35,7 +36,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("Thông tin chính xác! Vui lòng nhập mật khẩu mới.");
+                    MessageBox.Show(
+                        "Thông tin chính xác! Vui lòng nhập mật khẩu mới.",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
                     txtMatKhauMoi.Enabled = true;
                     txtXacNhanMK.Enabled = true;
                     btnDoiMatKhau.Enabled = true;
@@ -46,12 +53,22 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 }
                 else
                 {
-                    MessageBox.Show("Thông tin không khớp với hệ thống!");
+                    MessageBox.Show(
+                        "Thông tin không khớp với hệ thống!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
@@ -59,13 +76,23 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             if (string.IsNullOrEmpty(txtMatKhauMoi.Text))
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu mới!");
+                MessageBox.Show(
+                    "Vui lòng nhập mật khẩu mới!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
             if (txtMatKhauMoi.Text != txtXacNhanMK.Text)
             {
-                MessageBox.Show("Mật khẩu xác nhận không khớp!");
+                MessageBox.Show(
+                    "Mật khẩu xác nhận không khớp!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
@@ -77,19 +104,29 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
                 if (db.update(sqlUpdate) > 0)
                 {
-                    MessageBox.Show("Đổi mật khẩu thành công! Hãy đăng nhập lại.");
-                
+                    MessageBox.Show(
+                        "Đổi mật khẩu thành công! Hãy đăng nhập lại.",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi cập nhật: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi cập nhật: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
         private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

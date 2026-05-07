@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace Bài_TH_Quản_Lý_Thư_Viện
@@ -15,11 +14,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
     public partial class ucQuanLySach : UserControl
     {
         DBConnect db = new DBConnect();
+
         public ucQuanLySach()
         {
             InitializeComponent();
             loadData(); // Gọi hàm này khi UC bắt đầu chạy
         }
+
         void loadData()
         {
             try
@@ -34,9 +35,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi load dữ liệu: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi load dữ liệu: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
-
         }
 
         private void dgvSach_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -53,8 +58,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 textBox4.Text = row.Cells[3].Value?.ToString();
 
                 // 2. Tình Trạng - Cột số 4 trên bảng
-                // Lưu ý: Thêm dấu ? trước .ToString() để tránh lỗi văng app
-                CboTinhTrangSach.Text = row.Cells[5].Value?.ToString();
+                CboTinhTrangSach.Text = row.Cells[4].Value?.ToString();
             }
         }
 
@@ -70,10 +74,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             CboTinhTrangSach.SelectedIndex = -1;
             CboTinhTrangSach.Text = "";
 
-            // Load lại bảng cho chắc chắn dữ liệu mới nhất
+            // Load lại bảng
             loadData();
 
-            // Để con trỏ chuột vào ô Mã sách để nhập tiếp
+            // Focus
             txtMaSach.Focus();
         }
 
@@ -81,42 +85,63 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             if (CboTinhTrangSach.Text == "Đã thanh lý")
             {
-                MessageBox.Show("Vui lòng thực hiện thanh lý tại màn hình Thanh Lý Sách!", "Cảnh báo");
+                MessageBox.Show(
+                    "Vui lòng thực hiện thanh lý tại màn hình Thanh Lý Sách!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
+
             try
             {
-                SqlConnection conn = db.conn; // Lấy kết nối từ class DBConnect của ông
-                if (conn.State == ConnectionState.Closed) conn.Open();
+                SqlConnection conn = db.conn;
 
-                // Câu lệnh SQL phải chuẩn: SET (cột cần đổi) WHERE (khóa chính)
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+
                 string sql = "UPDATE SACH SET TinhTrang = @tinhTrang, TriGia = @gia WHERE MaSach = @ma";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
+
                 cmd.Parameters.AddWithValue("@tinhTrang", CboTinhTrangSach.Text);
                 cmd.Parameters.AddWithValue("@gia", textBox4.Text);
                 cmd.Parameters.AddWithValue("@ma", txtMaSach.Text);
 
                 int kq = cmd.ExecuteNonQuery();
+
                 if (kq > 0)
                 {
-                    MessageBox.Show("Sửa thành công!");
+                    MessageBox.Show(
+                        "Sửa thành công!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
 
-                    // 1. Gọi lại hàm load dữ liệu để bảng bên dưới thay đổi
                     loadData();
-
-
-
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy mã sách để sửa!");
+                    MessageBox.Show(
+                        "Không tìm thấy mã sách để sửa!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
+
                 conn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
@@ -124,36 +149,62 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             if (string.IsNullOrEmpty(txtMaSach.Text))
             {
-                MessageBox.Show("Vui lòng chọn cuốn sách cần xóa trên bảng!", "Thông báo");
+                MessageBox.Show(
+                    "Vui lòng chọn cuốn sách cần xóa trên bảng!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            // Hỏi lại cho chắc trước khi xóa
-            DialogResult dr = MessageBox.Show("Ông có chắc muốn xóa sách có mã " + txtMaSach.Text + " không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            // Hỏi lại trước khi xóa
+            DialogResult dr = MessageBox.Show(
+                "Ông có chắc muốn xóa sách có mã " + txtMaSach.Text + " không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
 
             if (dr == DialogResult.Yes)
             {
                 try
                 {
                     SqlConnection conn = db.conn;
-                    if (conn.State == ConnectionState.Closed) conn.Open();
+
+                    if (conn.State == ConnectionState.Closed)
+                        conn.Open();
 
                     string sql = "DELETE FROM SACH WHERE MaSach = @ma";
+
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@ma", txtMaSach.Text.Trim());
 
                     int kq = cmd.ExecuteNonQuery();
+
                     if (kq > 0)
                     {
-                        MessageBox.Show("Đã xóa xong!", "Thành công");
-                        loadData(); // Load lại bảng ngay lập tức
-                        BtnReset_Click(sender, e); // Xóa trắng các ô nhập liệu luôn cho sạch
+                        MessageBox.Show(
+                            "Đã xóa xong!",
+                            "Cảnh báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+
+                        loadData();
+                        BtnReset_Click(sender, e);
                     }
+
                     conn.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi xóa: " + ex.Message);
+                    MessageBox.Show(
+                        "Lỗi khi xóa: " + ex.Message,
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
         }
@@ -162,47 +213,69 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             if (string.IsNullOrEmpty(txtMaSach.Text))
             {
-                MessageBox.Show("Vui lòng nhập Mã sách!");
+                MessageBox.Show(
+                    "Vui lòng nhập Mã sách!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
             try
             {
                 SqlConnection conn = db.conn;
-                if (conn.State == ConnectionState.Closed) conn.Open();
 
-                // 1. Tạo mã mới dựa trên mã sách để không bị "dính chùm" dữ liệu
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+
+                // 1. Tạo mã mới
                 string ms = txtMaSach.Text.Trim();
-                string md = "D_" + ms; // Mã đầu sách mới
-                string ml = "L_" + ms; // Mã loại mới
+                string md = "D_" + ms;
+                string ml = "L_" + ms;
 
-                // 2. Thêm vào bảng LOAISACH (Tên loại nằm ở textBox4)
+                // 2. Thêm LOAISACH
                 string sqlLoai = "INSERT INTO LOAISACH (MaLoaiSach, TenLoaiSach) VALUES (@maL, @tenL)";
+
                 SqlCommand cmdL = new SqlCommand(sqlLoai, conn);
+
                 cmdL.Parameters.AddWithValue("@maL", ml);
-                cmdL.Parameters.AddWithValue("@tenL", textBox1.Text.Trim()); // textBox4 là Tên loại
+                cmdL.Parameters.AddWithValue("@tenL", textBox1.Text.Trim());
+
                 cmdL.ExecuteNonQuery();
 
-                // 3. Thêm vào bảng DAUSACH (Tên sách nằm ở textBox2)
+                // 3. Thêm DAUSACH
                 string sqlDau = "INSERT INTO DAUSACH (MaDauSach, TenDauSach, MaLoaiSach) VALUES (@maD, @tenD, @maL)";
+
                 SqlCommand cmdD = new SqlCommand(sqlDau, conn);
+
                 cmdD.Parameters.AddWithValue("@maD", md);
-                cmdD.Parameters.AddWithValue("@tenD", textBox2.Text.Trim()); // textBox2 là Tên sách
+                cmdD.Parameters.AddWithValue("@tenD", textBox2.Text.Trim());
                 cmdD.Parameters.AddWithValue("@maL", ml);
+
                 cmdD.ExecuteNonQuery();
 
-                // 4. Thêm vào bảng SACH (Sử dụng textBox1 làm Trị giá)
+                // 4. Thêm SACH
                 string sqlSach = "INSERT INTO SACH (MaSach, MaDauSach, TinhTrang, TriGia) VALUES (@maS, @maD, @tinhTrang, @gia)";
+
                 SqlCommand cmdS = new SqlCommand(sqlSach, conn);
+
                 cmdS.Parameters.AddWithValue("@maS", ms);
                 cmdS.Parameters.AddWithValue("@maD", md);
                 cmdS.Parameters.AddWithValue("@tinhTrang", CboTinhTrangSach.Text);
-                cmdS.Parameters.AddWithValue("@gia", textBox4.Text.Trim()); // Trị giá lấy ở textBox1
+                cmdS.Parameters.AddWithValue("@gia", textBox4.Text.Trim());
 
                 int kq = cmdS.ExecuteNonQuery();
+
                 if (kq > 0)
                 {
-                    MessageBox.Show("Thêm thành công!");
+                    MessageBox.Show(
+                        "Thêm thành công!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
                     loadData();
                 }
 
@@ -210,15 +283,21 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " );
+                MessageBox.Show(
+                    "Lỗi: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
-        // Thêm sự kiện này trong ucQuanLySach.cs
+
+        // Tự load lại dữ liệu khi mở UserControl
         private void ucQuanLySach_VisibleChanged(object sender, EventArgs e)
         {
-            if (this.Visible) // Nếu Control đang hiển thị
+            if (this.Visible)
             {
-                loadData(); // Tự động load lại dữ liệu mới nhất
+                loadData();
             }
         }
 

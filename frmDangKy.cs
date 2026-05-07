@@ -30,59 +30,98 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             // 1. Kiểm tra không được để trống
-            if (string.IsNullOrEmpty(txtHoTen.Text) || string.IsNullOrEmpty(txtTenDangNhap.Text) ||
-                string.IsNullOrEmpty(txtMatKhau.Text) || string.IsNullOrEmpty(txtSDT.Text))
+            if (string.IsNullOrEmpty(txtHoTen.Text) ||
+                string.IsNullOrEmpty(txtTenDangNhap.Text) ||
+                string.IsNullOrEmpty(txtMatKhau.Text) ||
+                string.IsNullOrEmpty(txtSDT.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ tất cả thông tin!");
+                MessageBox.Show(
+                    "Vui lòng nhập đầy đủ tất cả thông tin!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
+            // 2. Kiểm tra xác nhận mật khẩu
             if (txtMatKhau.Text != txtXacNhanMK.Text)
             {
-                MessageBox.Show("Mật khẩu xác nhận không khớp!");
+                MessageBox.Show(
+                    "Mật khẩu xác nhận không khớp!",
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
             try
             {
-                // 2. Kiểm tra trùng tên đăng nhập
+                // 3. Kiểm tra trùng tên đăng nhập
                 string sqlCheck = $"SELECT * FROM TAIKHOAN WHERE TenDangNhap = '{txtTenDangNhap.Text.Trim()}'";
                 DataTable dtCheck = db.getTable(sqlCheck);
+
                 if (dtCheck.Rows.Count > 0)
                 {
-                    MessageBox.Show("Tên đăng nhập này đã có người sử dụng!");
+                    MessageBox.Show(
+                        "Tên đăng nhập này đã có người sử dụng!",
+                        "Cảnh báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                     return;
                 }
 
-                // 3. Thêm vào bảng TAIKHOAN - Mặc định là 'Khách'
-                // Tui thêm cái Email giả dựa theo tên đăng nhập để tránh lỗi UNIQUE KEY bị NULL
+                // 4. Tạo email giả
                 string emailGia = txtTenDangNhap.Text.Trim() + "@gmail.com";
-                string sqlTK = string.Format("INSERT INTO TAIKHOAN (TenDangNhap, MatKhau, QuyenTruyCap, Email) VALUES ('{0}', '{1}', N'Khách', '{2}')",
-                                 txtTenDangNhap.Text.Trim(), txtMatKhau.Text.Trim(), emailGia);
+
+                // 5. Thêm tài khoản
+                string sqlTK = string.Format(
+                    "INSERT INTO TAIKHOAN (TenDangNhap, MatKhau, QuyenTruyCap, Email) " +
+                    "VALUES ('{0}', '{1}', N'Khách', '{2}')",
+                    txtTenDangNhap.Text.Trim(),
+                    txtMatKhau.Text.Trim(),
+                    emailGia
+                );
+
                 db.update(sqlTK);
 
-                // 4. Lấy MaTaiKhoan vừa sinh ra
+                // 6. Lấy mã tài khoản vừa tạo
                 string sqlGetID = "SELECT MAX(MaTaiKhoan) FROM TAIKHOAN";
                 DataTable dtID = db.getTable(sqlGetID);
+
                 string maTKHienTai = dtID.Rows[0][0].ToString();
 
-                // 5. Thêm vào bảng DOCGIA - Đồng bộ toàn bộ là 'Khách'
-                // Khớp chính xác các cột SoDT, LoaiDG, QuyenTruyCap
+                // 7. Thêm độc giả
                 string sqlDG = string.Format(
                     "INSERT INTO DOCGIA (MaDG, HoTen, SoDT, MaTaiKhoan, LoaiDG, QuyenTruyCap) " +
                     "VALUES ('DG{0}', N'{1}', '{2}', {0}, N'Khách', N'Khách')",
-                    maTKHienTai, txtHoTen.Text.Trim(), txtSDT.Text.Trim());
+                    maTKHienTai,
+                    txtHoTen.Text.Trim(),
+                    txtSDT.Text.Trim()
+                );
 
                 if (db.update(sqlDG) > 0)
                 {
-                    MessageBox.Show("Chúc mừng Kamon! Đăng ký tài khoản Khách thành công.");
+                    MessageBox.Show(
+                        "Chúc mừng Kamon! Đăng ký tài khoản Khách thành công.",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                // Hiện lỗi chi tiết để Kamon dễ debug
-                MessageBox.Show("Lỗi hệ thống: " + ex.Message);
+                MessageBox.Show(
+                    "Lỗi hệ thống: " + ex.Message,
+                    "Cảnh báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
