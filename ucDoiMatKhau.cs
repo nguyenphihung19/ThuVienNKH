@@ -91,5 +91,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

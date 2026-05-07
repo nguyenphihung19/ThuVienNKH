@@ -45,17 +45,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSach)).BeginInit();
             this.cboTinhTrang.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvSach
@@ -68,7 +66,7 @@
             this.dgvSach.Name = "dgvSach";
             this.dgvSach.RowHeadersWidth = 51;
             this.dgvSach.RowTemplate.Height = 24;
-            this.dgvSach.Size = new System.Drawing.Size(1065, 650);
+            this.dgvSach.Size = new System.Drawing.Size(1065, 517);
             this.dgvSach.TabIndex = 2;
             this.dgvSach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSach_CellContentClick);
             // 
@@ -243,6 +241,17 @@
             this.panel1.Size = new System.Drawing.Size(1065, 206);
             this.panel1.TabIndex = 3;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(434, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(199, 32);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Quản lý sách ";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.CboTinhTrangSach);
@@ -269,13 +278,12 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.dateTimePicker1);
-            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.dgvSach);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 206);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1065, 650);
+            this.panel2.Size = new System.Drawing.Size(1065, 517);
             this.panel2.TabIndex = 4;
             // 
             // dateTimePicker1
@@ -285,28 +293,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(8, 26);
             this.dateTimePicker1.TabIndex = 4;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Interior_Design_Wutopia_Lab_idx190601_wl02_06_19;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1065, 650);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(434, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(199, 32);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Quản lý sách ";
-            // 
             // ucQuanLySach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -315,7 +301,7 @@
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucQuanLySach";
-            this.Size = new System.Drawing.Size(1065, 856);
+            this.Size = new System.Drawing.Size(1065, 723);
             this.Load += new System.EventHandler(this.ucQuanLySach_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSach)).EndInit();
             this.cboTinhTrang.ResumeLayout(false);
@@ -324,7 +310,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -350,7 +335,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label6;
     }
 }

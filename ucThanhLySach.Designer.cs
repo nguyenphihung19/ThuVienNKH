@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvThanhLy = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radKhong = new System.Windows.Forms.RadioButton();
             this.radCo = new System.Windows.Forms.RadioButton();
@@ -51,19 +54,39 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dgvThanhLy = new System.Windows.Forms.DataGridView();
-            this.label9 = new System.Windows.Forms.Label();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThanhLy)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvThanhLy)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dgvThanhLy);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 413);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1316, 382);
+            this.panel2.TabIndex = 1;
+            // 
+            // dgvThanhLy
+            // 
+            this.dgvThanhLy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvThanhLy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvThanhLy.Location = new System.Drawing.Point(0, 0);
+            this.dgvThanhLy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvThanhLy.Name = "dgvThanhLy";
+            this.dgvThanhLy.RowHeadersWidth = 51;
+            this.dgvThanhLy.RowTemplate.Height = 24;
+            this.dgvThanhLy.Size = new System.Drawing.Size(1316, 382);
+            this.dgvThanhLy.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.panel1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Screenshot_2026_05_07_191558;
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox1);
@@ -74,9 +97,20 @@
             this.panel1.Size = new System.Drawing.Size(1316, 413);
             this.panel1.TabIndex = 0;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(431, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(306, 52);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Thanh lý sách";
+            // 
             // groupBox3
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.MediumPurple;
+            this.groupBox3.BackColor = System.Drawing.Color.LightCyan;
             this.groupBox3.Controls.Add(this.radKhong);
             this.groupBox3.Controls.Add(this.radCo);
             this.groupBox3.Controls.Add(this.label4);
@@ -92,12 +126,12 @@
             this.groupBox3.Controls.Add(this.txtMaSach);
             this.groupBox3.Controls.Add(this.btnThem);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(18, 186);
+            this.groupBox3.ForeColor = System.Drawing.Color.Black;
+            this.groupBox3.Location = new System.Drawing.Point(18, 172);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(1241, 205);
+            this.groupBox3.Size = new System.Drawing.Size(1241, 219);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Chọn sách thanh lý";
@@ -249,7 +283,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.MediumPurple;
+            this.groupBox1.BackColor = System.Drawing.Color.LightCyan;
             this.groupBox1.Controls.Add(this.txtMaNV);
             this.groupBox1.Controls.Add(this.dtpNgayTL);
             this.groupBox1.Controls.Add(this.txtMaPhieu);
@@ -257,7 +291,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(18, 69);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
@@ -321,39 +355,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Phiếu Thanh Lý";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dgvThanhLy);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 413);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1316, 382);
-            this.panel2.TabIndex = 1;
-            // 
-            // dgvThanhLy
-            // 
-            this.dgvThanhLy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvThanhLy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvThanhLy.Location = new System.Drawing.Point(0, 0);
-            this.dgvThanhLy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgvThanhLy.Name = "dgvThanhLy";
-            this.dgvThanhLy.RowHeadersWidth = 51;
-            this.dgvThanhLy.RowTemplate.Height = 24;
-            this.dgvThanhLy.Size = new System.Drawing.Size(1316, 382);
-            this.dgvThanhLy.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(431, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(306, 52);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Thanh lý sách";
-            // 
             // ucThanhLySach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -363,14 +364,14 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucThanhLySach";
             this.Size = new System.Drawing.Size(1316, 795);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThanhLy)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvThanhLy)).EndInit();
             this.ResumeLayout(false);
 
         }

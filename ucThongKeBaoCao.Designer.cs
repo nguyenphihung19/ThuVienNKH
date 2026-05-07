@@ -28,15 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.lblDoanhThu = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lblDangMuon = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.lblQuaHan = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.lblTongSach = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -55,117 +46,27 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lblDoanhThu = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblDangMuon = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lblQuaHan = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblTongSach = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridviewThongKe)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.LightCyan;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.panel7);
-            this.panel1.Controls.Add(this.panel6);
-            this.panel1.Controls.Add(this.panel8);
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1112, 231);
-            this.panel1.TabIndex = 1;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel7.Controls.Add(this.lblDoanhThu);
-            this.panel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel7.Location = new System.Drawing.Point(844, 76);
-            this.panel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(225, 125);
-            this.panel7.TabIndex = 3;
-            // 
-            // lblDoanhThu
-            // 
-            this.lblDoanhThu.AutoSize = true;
-            this.lblDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDoanhThu.Location = new System.Drawing.Point(16, 49);
-            this.lblDoanhThu.Name = "lblDoanhThu";
-            this.lblDoanhThu.Size = new System.Drawing.Size(137, 22);
-            this.lblDoanhThu.TabIndex = 2;
-            this.lblDoanhThu.Text = "TongDoanhThu";
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.Lime;
-            this.panel6.Controls.Add(this.lblDangMuon);
-            this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel6.Location = new System.Drawing.Point(284, 76);
-            this.panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(225, 125);
-            this.panel6.TabIndex = 1;
-            // 
-            // lblDangMuon
-            // 
-            this.lblDangMuon.AutoSize = true;
-            this.lblDangMuon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDangMuon.Location = new System.Drawing.Point(24, 49);
-            this.lblDangMuon.Name = "lblDangMuon";
-            this.lblDangMuon.Size = new System.Drawing.Size(96, 22);
-            this.lblDangMuon.TabIndex = 1;
-            this.lblDangMuon.Text = "TongMuon";
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.Red;
-            this.panel8.Controls.Add(this.lblQuaHan);
-            this.panel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel8.Location = new System.Drawing.Point(560, 76);
-            this.panel8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(225, 125);
-            this.panel8.TabIndex = 2;
-            // 
-            // lblQuaHan
-            // 
-            this.lblQuaHan.AutoSize = true;
-            this.lblQuaHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuaHan.Location = new System.Drawing.Point(43, 49);
-            this.lblQuaHan.Name = "lblQuaHan";
-            this.lblQuaHan.Size = new System.Drawing.Size(119, 22);
-            this.lblQuaHan.TabIndex = 2;
-            this.lblQuaHan.Text = "TongQuaHan";
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.panel5.Controls.Add(this.lblTongSach);
-            this.panel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel5.Location = new System.Drawing.Point(21, 76);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(225, 125);
-            this.panel5.TabIndex = 0;
-            // 
-            // lblTongSach
-            // 
-            this.lblTongSach.AutoSize = true;
-            this.lblTongSach.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTongSach.Location = new System.Drawing.Point(33, 49);
-            this.lblTongSach.Name = "lblTongSach";
-            this.lblTongSach.Size = new System.Drawing.Size(93, 22);
-            this.lblTongSach.TabIndex = 0;
-            this.lblTongSach.Text = "TongSach";
             // 
             // panel2
             // 
@@ -195,14 +96,15 @@
             // 
             this.panel4.Controls.Add(this.gridviewThongKe);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 85);
+            this.panel4.Location = new System.Drawing.Point(3, 23);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1106, 466);
+            this.panel4.Size = new System.Drawing.Size(1106, 528);
             this.panel4.TabIndex = 1;
             // 
             // gridviewThongKe
             // 
+            this.gridviewThongKe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gridviewThongKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridviewThongKe.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaSach,
@@ -212,8 +114,7 @@
             this.HanTra,
             this.TinhTrang,
             this.SoTien});
-            this.gridviewThongKe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridviewThongKe.Location = new System.Drawing.Point(0, 0);
+            this.gridviewThongKe.Location = new System.Drawing.Point(0, 31);
             this.gridviewThongKe.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridviewThongKe.Name = "gridviewThongKe";
             this.gridviewThongKe.RowHeadersWidth = 51;
@@ -279,6 +180,7 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.BackColor = System.Drawing.Color.LightBlue;
             this.panel3.Controls.Add(this.btnReset);
             this.panel3.Controls.Add(this.txtSearch);
@@ -286,7 +188,6 @@
             this.panel3.Controls.Add(this.btnExport);
             this.panel3.Controls.Add(this.btnXoa);
             this.panel3.Controls.Add(this.btnSua);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 23);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
@@ -362,15 +263,121 @@
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightCyan;
+            this.panel1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Screenshot_2026_05_07_192450;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.panel7);
+            this.panel1.Controls.Add(this.panel6);
+            this.panel1.Controls.Add(this.panel8);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1112, 231);
+            this.panel1.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(349, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(446, 52);
             this.label1.TabIndex = 4;
             this.label1.Text = "Thống kê và báo cáo";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel7.Controls.Add(this.lblDoanhThu);
+            this.panel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel7.Location = new System.Drawing.Point(844, 76);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(225, 125);
+            this.panel7.TabIndex = 3;
+            // 
+            // lblDoanhThu
+            // 
+            this.lblDoanhThu.AutoSize = true;
+            this.lblDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoanhThu.Location = new System.Drawing.Point(16, 49);
+            this.lblDoanhThu.Name = "lblDoanhThu";
+            this.lblDoanhThu.Size = new System.Drawing.Size(137, 22);
+            this.lblDoanhThu.TabIndex = 2;
+            this.lblDoanhThu.Text = "TongDoanhThu";
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel6.BackColor = System.Drawing.Color.Lime;
+            this.panel6.Controls.Add(this.lblDangMuon);
+            this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel6.Location = new System.Drawing.Point(284, 76);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(225, 125);
+            this.panel6.TabIndex = 1;
+            // 
+            // lblDangMuon
+            // 
+            this.lblDangMuon.AutoSize = true;
+            this.lblDangMuon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDangMuon.Location = new System.Drawing.Point(24, 49);
+            this.lblDangMuon.Name = "lblDangMuon";
+            this.lblDangMuon.Size = new System.Drawing.Size(96, 22);
+            this.lblDangMuon.TabIndex = 1;
+            this.lblDangMuon.Text = "TongMuon";
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel8.BackColor = System.Drawing.Color.Red;
+            this.panel8.Controls.Add(this.lblQuaHan);
+            this.panel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel8.Location = new System.Drawing.Point(560, 76);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(225, 125);
+            this.panel8.TabIndex = 2;
+            // 
+            // lblQuaHan
+            // 
+            this.lblQuaHan.AutoSize = true;
+            this.lblQuaHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuaHan.Location = new System.Drawing.Point(43, 49);
+            this.lblQuaHan.Name = "lblQuaHan";
+            this.lblQuaHan.Size = new System.Drawing.Size(119, 22);
+            this.lblQuaHan.TabIndex = 2;
+            this.lblQuaHan.Text = "TongQuaHan";
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel5.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.panel5.Controls.Add(this.lblTongSach);
+            this.panel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel5.Location = new System.Drawing.Point(21, 76);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(225, 125);
+            this.panel5.TabIndex = 0;
+            // 
+            // lblTongSach
+            // 
+            this.lblTongSach.AutoSize = true;
+            this.lblTongSach.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongSach.Location = new System.Drawing.Point(33, 49);
+            this.lblTongSach.Name = "lblTongSach";
+            this.lblTongSach.Size = new System.Drawing.Size(93, 22);
+            this.lblTongSach.TabIndex = 0;
+            this.lblTongSach.Text = "TongSach";
             // 
             // ucThongKeBaoCao
             // 
@@ -382,6 +389,12 @@
             this.Name = "ucThongKeBaoCao";
             this.Size = new System.Drawing.Size(1112, 786);
             this.Load += new System.EventHandler(this.ucThongKeBaoCao_Load);
+            this.panel2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridviewThongKe)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -392,12 +405,6 @@
             this.panel8.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridviewThongKe)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }

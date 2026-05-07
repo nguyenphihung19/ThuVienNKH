@@ -455,5 +455,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
                 excel.SaveAs(excelFile);
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

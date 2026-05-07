@@ -28,129 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtPass = new System.Windows.Forms.TextBox();
-            this.txtUser = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.BtnThoat = new System.Windows.Forms.Button();
-            this.BtnDangKy = new System.Windows.Forms.Button();
-            this.BtnQuenMatKhau = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.BtnThoat = new System.Windows.Forms.Button();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.BtnQuenMatKhau = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BtnDangKy = new System.Windows.Forms.Button();
+            this.txtPass = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtPass
-            // 
-            this.txtPass.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass.Location = new System.Drawing.Point(62, 240);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(239, 34);
-            this.txtPass.TabIndex = 1;
-            // 
-            // txtUser
-            // 
-            this.txtUser.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(62, 170);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(239, 34);
-            this.txtUser.TabIndex = 2;
-            this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(54)))), ((int)(((byte)(93)))));
-            this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(76, 299);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(204, 29);
-            this.btnLogin.TabIndex = 3;
-            this.btnLogin.Text = "Đăng Nhập";
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(60, 152);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Tài Khoản";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.label2.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(60, 223);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 16);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Mật Khẩu";
-            // 
-            // BtnThoat
-            // 
-            this.BtnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.BtnThoat.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.BtnThoat.FlatAppearance.BorderSize = 0;
-            this.BtnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnThoat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(54)))), ((int)(((byte)(93)))));
-            this.BtnThoat.Location = new System.Drawing.Point(320, 21);
-            this.BtnThoat.Name = "BtnThoat";
-            this.BtnThoat.Size = new System.Drawing.Size(68, 30);
-            this.BtnThoat.TabIndex = 8;
-            this.BtnThoat.Text = "Thoát";
-            this.BtnThoat.UseVisualStyleBackColor = false;
-            this.BtnThoat.Click += new System.EventHandler(this.BtnThoat_Click);
-            // 
-            // BtnDangKy
-            // 
-            this.BtnDangKy.BackColor = System.Drawing.Color.Azure;
-            this.BtnDangKy.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.BtnDangKy.FlatAppearance.BorderSize = 0;
-            this.BtnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDangKy.ForeColor = System.Drawing.Color.Navy;
-            this.BtnDangKy.Location = new System.Drawing.Point(109, 356);
-            this.BtnDangKy.Name = "BtnDangKy";
-            this.BtnDangKy.Size = new System.Drawing.Size(139, 29);
-            this.BtnDangKy.TabIndex = 9;
-            this.BtnDangKy.Text = "Đăng Ký";
-            this.BtnDangKy.UseVisualStyleBackColor = false;
-            this.BtnDangKy.Click += new System.EventHandler(this.BtnDangKy_Click);
-            // 
-            // BtnQuenMatKhau
-            // 
-            this.BtnQuenMatKhau.BackColor = System.Drawing.Color.Azure;
-            this.BtnQuenMatKhau.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.BtnQuenMatKhau.FlatAppearance.BorderSize = 0;
-            this.BtnQuenMatKhau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnQuenMatKhau.ForeColor = System.Drawing.Color.Navy;
-            this.BtnQuenMatKhau.Location = new System.Drawing.Point(109, 334);
-            this.BtnQuenMatKhau.Name = "BtnQuenMatKhau";
-            this.BtnQuenMatKhau.Size = new System.Drawing.Size(139, 29);
-            this.BtnQuenMatKhau.TabIndex = 10;
-            this.BtnQuenMatKhau.Text = "Quên Mật Khẩu";
-            this.BtnQuenMatKhau.UseVisualStyleBackColor = false;
-            this.BtnQuenMatKhau.Click += new System.EventHandler(this.BtnQuenMatKhau_Click);
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.panel1.BackColor = System.Drawing.Color.LightGray;
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -159,38 +58,6 @@
             this.panel1.Size = new System.Drawing.Size(1074, 593);
             this.panel1.TabIndex = 11;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.BtnThoat);
-            this.groupBox1.Controls.Add(this.txtUser);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtPass);
-            this.groupBox1.Controls.Add(this.btnLogin);
-            this.groupBox1.Controls.Add(this.BtnQuenMatKhau);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.BtnDangKy);
-            this.groupBox1.Location = new System.Drawing.Point(633, 70);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(394, 459);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = " ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(79, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(213, 37);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "LIBRARY NKH";
             // 
             // panel2
             // 
@@ -214,6 +81,142 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.groupBox1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Screenshot_2026_05_07_185512;
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.BtnThoat);
+            this.groupBox1.Controls.Add(this.txtPass);
+            this.groupBox1.Controls.Add(this.txtUser);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.btnLogin);
+            this.groupBox1.Controls.Add(this.BtnQuenMatKhau);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.BtnDangKy);
+            this.groupBox1.Location = new System.Drawing.Point(562, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(512, 593);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = " ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(85, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(251, 44);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "LIBRARY NKH";
+            // 
+            // BtnThoat
+            // 
+            this.BtnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BtnThoat.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.BtnThoat.FlatAppearance.BorderSize = 0;
+            this.BtnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnThoat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(54)))), ((int)(((byte)(93)))));
+            this.BtnThoat.Location = new System.Drawing.Point(401, 12);
+            this.BtnThoat.Name = "BtnThoat";
+            this.BtnThoat.Size = new System.Drawing.Size(83, 41);
+            this.BtnThoat.TabIndex = 8;
+            this.BtnThoat.Text = "Thoát";
+            this.BtnThoat.UseVisualStyleBackColor = false;
+            this.BtnThoat.Click += new System.EventHandler(this.BtnThoat_Click);
+            // 
+            // txtUser
+            // 
+            this.txtUser.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUser.Location = new System.Drawing.Point(93, 197);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(312, 40);
+            this.txtUser.TabIndex = 2;
+            this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.label2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(100, 254);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(134, 32);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Mật Khẩu";
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.BackColor = System.Drawing.Color.White;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.ForeColor = System.Drawing.Color.Black;
+            this.btnLogin.Location = new System.Drawing.Point(144, 352);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(204, 51);
+            this.btnLogin.TabIndex = 3;
+            this.btnLogin.Text = "Đăng Nhập";
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // BtnQuenMatKhau
+            // 
+            this.BtnQuenMatKhau.BackColor = System.Drawing.Color.Azure;
+            this.BtnQuenMatKhau.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.BtnQuenMatKhau.FlatAppearance.BorderSize = 0;
+            this.BtnQuenMatKhau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnQuenMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnQuenMatKhau.ForeColor = System.Drawing.Color.Green;
+            this.BtnQuenMatKhau.Location = new System.Drawing.Point(20, 423);
+            this.BtnQuenMatKhau.Name = "BtnQuenMatKhau";
+            this.BtnQuenMatKhau.Size = new System.Drawing.Size(188, 42);
+            this.BtnQuenMatKhau.TabIndex = 10;
+            this.BtnQuenMatKhau.Text = "Quên Mật Khẩu";
+            this.BtnQuenMatKhau.UseVisualStyleBackColor = false;
+            this.BtnQuenMatKhau.Click += new System.EventHandler(this.BtnQuenMatKhau_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.label1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(100, 162);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 32);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Tài Khoản";
+            // 
+            // BtnDangKy
+            // 
+            this.BtnDangKy.BackColor = System.Drawing.Color.Azure;
+            this.BtnDangKy.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.BtnDangKy.FlatAppearance.BorderSize = 0;
+            this.BtnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDangKy.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDangKy.ForeColor = System.Drawing.Color.Green;
+            this.BtnDangKy.Location = new System.Drawing.Point(291, 423);
+            this.BtnDangKy.Name = "BtnDangKy";
+            this.BtnDangKy.Size = new System.Drawing.Size(193, 42);
+            this.BtnDangKy.TabIndex = 9;
+            this.BtnDangKy.Text = "Đăng Ký";
+            this.BtnDangKy.UseVisualStyleBackColor = false;
+            this.BtnDangKy.Click += new System.EventHandler(this.BtnDangKy_Click);
+            // 
+            // txtPass
+            // 
+            this.txtPass.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Location = new System.Drawing.Point(93, 289);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(312, 40);
+            this.txtPass.TabIndex = 2;
+            this.txtPass.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+            // 
             // frmLogin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -224,16 +227,15 @@
             this.Name = "frmLogin";
             this.Text = "frmLogin";
             this.panel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label1;
@@ -246,6 +248,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtPass;
     }
 }
 

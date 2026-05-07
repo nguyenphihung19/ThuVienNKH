@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblNoiQuy = new System.Windows.Forms.Panel();
+            this.RtbQuyDinh = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtbReset = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -52,8 +54,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.numSoNamCuaSach = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblNoiQuy = new System.Windows.Forms.Panel();
-            this.RtbQuyDinh = new System.Windows.Forms.RichTextBox();
+            this.lblNoiQuy.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNgayMuonToiDa)).BeginInit();
@@ -67,12 +68,37 @@
             ((System.ComponentModel.ISupportInitialize)(this.numTienPhatQuaHan)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSoNamCuaSach)).BeginInit();
-            this.lblNoiQuy.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // lblNoiQuy
+            // 
+            this.lblNoiQuy.Controls.Add(this.RtbQuyDinh);
+            this.lblNoiQuy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNoiQuy.Location = new System.Drawing.Point(0, 390);
+            this.lblNoiQuy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblNoiQuy.Name = "lblNoiQuy";
+            this.lblNoiQuy.Size = new System.Drawing.Size(1169, 312);
+            this.lblNoiQuy.TabIndex = 1;
+            // 
+            // RtbQuyDinh
+            // 
+            this.RtbQuyDinh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.RtbQuyDinh.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RtbQuyDinh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RtbQuyDinh.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RtbQuyDinh.Location = new System.Drawing.Point(0, 0);
+            this.RtbQuyDinh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.RtbQuyDinh.Name = "RtbQuyDinh";
+            this.RtbQuyDinh.ReadOnly = true;
+            this.RtbQuyDinh.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.RtbQuyDinh.Size = new System.Drawing.Size(1169, 312);
+            this.RtbQuyDinh.TabIndex = 0;
+            this.RtbQuyDinh.Text = "";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Screenshot_2026_05_07_190517;
             this.panel1.Controls.Add(this.BtbReset);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.btnLuuThayDoi);
@@ -416,36 +442,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(345, 12);
+            this.label1.Location = new System.Drawing.Point(438, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(470, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Thiết Lập Quy Định Hệ Thống";
-            // 
-            // lblNoiQuy
-            // 
-            this.lblNoiQuy.Controls.Add(this.RtbQuyDinh);
-            this.lblNoiQuy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNoiQuy.Location = new System.Drawing.Point(0, 390);
-            this.lblNoiQuy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lblNoiQuy.Name = "lblNoiQuy";
-            this.lblNoiQuy.Size = new System.Drawing.Size(1169, 312);
-            this.lblNoiQuy.TabIndex = 1;
-            // 
-            // RtbQuyDinh
-            // 
-            this.RtbQuyDinh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.RtbQuyDinh.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RtbQuyDinh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RtbQuyDinh.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RtbQuyDinh.Location = new System.Drawing.Point(0, 0);
-            this.RtbQuyDinh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.RtbQuyDinh.Name = "RtbQuyDinh";
-            this.RtbQuyDinh.ReadOnly = true;
-            this.RtbQuyDinh.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.RtbQuyDinh.Size = new System.Drawing.Size(1169, 312);
-            this.RtbQuyDinh.TabIndex = 0;
-            this.RtbQuyDinh.Text = "";
             // 
             // ucCaiDatQuyDinh
             // 
@@ -457,6 +458,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucCaiDatQuyDinh";
             this.Size = new System.Drawing.Size(1169, 702);
+            this.lblNoiQuy.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -475,7 +477,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSoNamCuaSach)).EndInit();
-            this.lblNoiQuy.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

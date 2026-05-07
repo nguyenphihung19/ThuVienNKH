@@ -694,6 +694,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             cboQuyenTruyCap.Enabled = true;
             cboQuyenTruyCap.BackColor = System.Drawing.SystemColors.Window;
         }
+
+        private void DgvTaiKhoan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
   
