@@ -165,5 +165,15 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             panel4.PerformLayout();
             uc.BringToFront();
         }
+
+        private void BtnPI_Click(object sender, EventArgs e)
+        {
+            panel4.Controls.Clear();
+            UCPowerBI uc = new UCPowerBI ();
+            uc.Dock = DockStyle.Fill;
+            panel4.Controls.Add(uc);
+            panel4.PerformLayout();
+            uc.BringToFront();
+        }
     }
 }

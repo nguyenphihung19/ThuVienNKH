@@ -38,6 +38,7 @@
             this.BtnQLSV = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpLibrarian = new System.Windows.Forms.GroupBox();
+            this.BtnThongKe = new System.Windows.Forms.Button();
             this.grpAdmin = new System.Windows.Forms.GroupBox();
             this.lblHoTen = new System.Windows.Forms.Label();
             this.lblQuyen = new System.Windows.Forms.Label();
@@ -46,7 +47,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnThongKe = new System.Windows.Forms.Button();
+            this.BtnPI = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.grpLibrarian.SuspendLayout();
             this.grpAdmin.SuspendLayout();
@@ -132,7 +133,7 @@
             this.BtnDangXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDangXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDangXuat.ForeColor = System.Drawing.Color.Red;
-            this.BtnDangXuat.Location = new System.Drawing.Point(18, 550);
+            this.BtnDangXuat.Location = new System.Drawing.Point(18, 614);
             this.BtnDangXuat.Name = "BtnDangXuat";
             this.BtnDangXuat.Size = new System.Drawing.Size(171, 31);
             this.BtnDangXuat.TabIndex = 13;
@@ -190,21 +191,36 @@
             this.grpLibrarian.Controls.Add(this.BtnQLSV);
             this.grpLibrarian.Controls.Add(this.BtnMuonTraSach);
             this.grpLibrarian.Controls.Add(this.BtnTLS);
-            this.grpLibrarian.Location = new System.Drawing.Point(11, 311);
+            this.grpLibrarian.Location = new System.Drawing.Point(11, 375);
             this.grpLibrarian.Name = "grpLibrarian";
             this.grpLibrarian.Size = new System.Drawing.Size(184, 233);
             this.grpLibrarian.TabIndex = 12;
             this.grpLibrarian.TabStop = false;
             this.grpLibrarian.Text = "Thu Thư";
             // 
+            // BtnThongKe
+            // 
+            this.BtnThongKe.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BtnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnThongKe.ForeColor = System.Drawing.Color.White;
+            this.BtnThongKe.Location = new System.Drawing.Point(7, 163);
+            this.BtnThongKe.Name = "BtnThongKe";
+            this.BtnThongKe.Size = new System.Drawing.Size(171, 29);
+            this.BtnThongKe.TabIndex = 13;
+            this.BtnThongKe.Text = "Thống kê-Báo cáo";
+            this.BtnThongKe.UseVisualStyleBackColor = false;
+            this.BtnThongKe.Click += new System.EventHandler(this.BtnThongKe_Click);
+            // 
             // grpAdmin
             // 
+            this.grpAdmin.Controls.Add(this.BtnPI);
             this.grpAdmin.Controls.Add(this.BtnCDQD);
             this.grpAdmin.Controls.Add(this.BtnQLNV);
             this.grpAdmin.Controls.Add(this.BtnQLTK);
             this.grpAdmin.Location = new System.Drawing.Point(11, 171);
             this.grpAdmin.Name = "grpAdmin";
-            this.grpAdmin.Size = new System.Drawing.Size(184, 134);
+            this.grpAdmin.Size = new System.Drawing.Size(184, 182);
             this.grpAdmin.TabIndex = 11;
             this.grpAdmin.TabStop = false;
             this.grpAdmin.Text = "Quản Trị";
@@ -281,19 +297,19 @@
             this.panel1.Size = new System.Drawing.Size(835, 61);
             this.panel1.TabIndex = 1;
             // 
-            // BtnThongKe
+            // BtnPI
             // 
-            this.BtnThongKe.BackColor = System.Drawing.Color.RoyalBlue;
-            this.BtnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnThongKe.ForeColor = System.Drawing.Color.White;
-            this.BtnThongKe.Location = new System.Drawing.Point(7, 163);
-            this.BtnThongKe.Name = "BtnThongKe";
-            this.BtnThongKe.Size = new System.Drawing.Size(171, 29);
-            this.BtnThongKe.TabIndex = 13;
-            this.BtnThongKe.Text = "Thống kê-Báo cáo";
-            this.BtnThongKe.UseVisualStyleBackColor = false;
-            this.BtnThongKe.Click += new System.EventHandler(this.BtnThongKe_Click);
+            this.BtnPI.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BtnPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPI.ForeColor = System.Drawing.Color.White;
+            this.BtnPI.Location = new System.Drawing.Point(3, 126);
+            this.BtnPI.Name = "BtnPI";
+            this.BtnPI.Size = new System.Drawing.Size(171, 28);
+            this.BtnPI.TabIndex = 11;
+            this.BtnPI.Text = "Mô Phỏng PI";
+            this.BtnPI.UseVisualStyleBackColor = false;
+            this.BtnPI.Click += new System.EventHandler(this.BtnPI_Click);
             // 
             // FrmMainAdmin
             // 
@@ -336,5 +352,6 @@
         private System.Windows.Forms.GroupBox grpAdmin;
         private System.Windows.Forms.GroupBox grpLibrarian;
         private System.Windows.Forms.Button BtnThongKe;
+        private System.Windows.Forms.Button BtnPI;
     }
 }

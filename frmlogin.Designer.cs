@@ -40,8 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnDangKy = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbtest = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -113,6 +113,7 @@
             this.txtPass.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPass.Location = new System.Drawing.Point(93, 289);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(312, 34);
             this.txtPass.TabIndex = 2;
             this.txtPass.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
@@ -207,6 +208,16 @@
             this.panel2.Size = new System.Drawing.Size(556, 593);
             this.panel2.TabIndex = 12;
             // 
+            // lbtest
+            // 
+            this.lbtest.AutoSize = true;
+            this.lbtest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.lbtest.Location = new System.Drawing.Point(12, 12);
+            this.lbtest.Name = "lbtest";
+            this.lbtest.Size = new System.Drawing.Size(172, 16);
+            this.lbtest.TabIndex = 1;
+            this.lbtest.Text = "Tài Khoản Test: admin - 123";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::Bài_TH_Quản_Lý_Thư_Viện.Properties.Resources.Screenshot_2026_04_20_173034;
@@ -218,16 +229,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // lbtest
-            // 
-            this.lbtest.AutoSize = true;
-            this.lbtest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.lbtest.Location = new System.Drawing.Point(12, 12);
-            this.lbtest.Name = "lbtest";
-            this.lbtest.Size = new System.Drawing.Size(172, 16);
-            this.lbtest.TabIndex = 1;
-            this.lbtest.Text = "Tài Khoản Test: admin - 123";
             // 
             // frmLogin
             // 

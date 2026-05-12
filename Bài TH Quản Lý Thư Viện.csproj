@@ -154,6 +154,12 @@
     <Compile Include="ucMuonTra.Designer.cs">
       <DependentUpon>ucMuonTra.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPowerBI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPowerBI.Designer.cs">
+      <DependentUpon>UCPowerBI.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucQuanLyNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucMuonTra.resx">
       <DependentUpon>ucMuonTra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPowerBI.resx">
+      <DependentUpon>UCPowerBI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucQuanLyNhanVien.resx">
       <DependentUpon>ucQuanLyNhanVien.cs</DependentUpon>
