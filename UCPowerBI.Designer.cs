@@ -77,6 +77,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard3 = new System.Windows.Forms.Label();
             this.lblCard3Content = new System.Windows.Forms.Label();
             this.btnGreen = new System.Windows.Forms.Button();
+            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.pnlHeader.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.pnlBody.SuspendLayout();
@@ -91,6 +92,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.card2Header.SuspendLayout();
             this.card3.SuspendLayout();
             this.card3Header.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -245,6 +247,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             // pnlContent
             // 
             this.pnlContent.BackColor = System.Drawing.Color.White;
+            this.pnlContent.Controls.Add(this.webView21);
             this.pnlContent.Controls.Add(this.lblPowerBI);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(15, 55);
@@ -444,6 +447,18 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.btnGreen.Text = "Tích hợp Dashboard";
             this.btnGreen.UseVisualStyleBackColor = false;
             // 
+            // webView21
+            // 
+            this.webView21.AllowExternalDrop = true;
+            this.webView21.CreationProperties = null;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.Location = new System.Drawing.Point(0, -16);
+            this.webView21.Name = "webView21";
+            this.webView21.Size = new System.Drawing.Size(385, 477);
+            this.webView21.TabIndex = 1;
+            this.webView21.ZoomFactor = 1D;
+            this.webView21.Click += new System.EventHandler(this.webView21_Click);
+            // 
             // UCPowerBI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -454,6 +469,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.Controls.Add(this.pnlHeader);
             this.Name = "UCPowerBI";
             this.Size = new System.Drawing.Size(1300, 750);
+            this.Load += new System.EventHandler(this.UCPowerBI_Load_1);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlFooter.ResumeLayout(false);
@@ -477,6 +493,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.card3.PerformLayout();
             this.card3Header.ResumeLayout(false);
             this.card3Header.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -497,5 +514,6 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         private Label lblCard3;
         private Label lblCard3Content;
         private Button btnGreen;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
     }
 }
