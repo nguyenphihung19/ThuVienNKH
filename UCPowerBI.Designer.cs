@@ -17,8 +17,6 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblSubTitle;
-
-        private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnOpen;
 
@@ -47,10 +45,23 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea29 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend29 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title29 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea30 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend30 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title30 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea31 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend31 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title31 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea32 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend32 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title32 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblSubTitle = new System.Windows.Forms.Label();
-            this.btnDashboard = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.pnlFooter = new System.Windows.Forms.Panel();
@@ -60,6 +71,24 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlBrowser = new System.Windows.Forms.Panel();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTongSach = new System.Windows.Forms.Panel();
+            this.lblTongSach = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelDocGia = new System.Windows.Forms.Panel();
+            this.lblTongDocGia = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panelMuon = new System.Windows.Forms.Panel();
+            this.lblTongMuon = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panelTre = new System.Windows.Forms.Panel();
+            this.lblSachTre = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.chartTopSach = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dgvTopSach = new System.Windows.Forms.DataGridView();
+            this.chartTrangThai = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartLoaiSach = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartMuonTheoThang = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblPowerBI = new System.Windows.Forms.Label();
             this.pnlBrowserTop = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
@@ -77,13 +106,22 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard3 = new System.Windows.Forms.Label();
             this.lblCard3Content = new System.Windows.Forms.Label();
             this.btnGreen = new System.Windows.Forms.Button();
-            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.pnlHeader.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.pnlBody.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlBrowser.SuspendLayout();
             this.pnlContent.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panelTongSach.SuspendLayout();
+            this.panelDocGia.SuspendLayout();
+            this.panelMuon.SuspendLayout();
+            this.panelTre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTopSach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTopSach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTrangThai)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartLoaiSach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartMuonTheoThang)).BeginInit();
             this.pnlLeft.SuspendLayout();
             this.flowLeft.SuspendLayout();
             this.card1.SuspendLayout();
@@ -92,7 +130,6 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.card2Header.SuspendLayout();
             this.card3.SuspendLayout();
             this.card3Header.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -100,14 +137,14 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(59)))), ((int)(((byte)(107)))));
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Controls.Add(this.lblSubTitle);
-            this.pnlHeader.Controls.Add(this.btnDashboard);
             this.pnlHeader.Controls.Add(this.btnRefresh);
             this.pnlHeader.Controls.Add(this.btnOpen);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1300, 90);
+            this.pnlHeader.Size = new System.Drawing.Size(1947, 90);
             this.pnlHeader.TabIndex = 2;
+            this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             // 
             // lblTitle
             // 
@@ -127,24 +164,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblSubTitle.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblSubTitle.Location = new System.Drawing.Point(35, 55);
             this.lblSubTitle.Name = "lblSubTitle";
-            this.lblSubTitle.Size = new System.Drawing.Size(314, 23);
+            this.lblSubTitle.Size = new System.Drawing.Size(274, 23);
             this.lblSubTitle.TabIndex = 1;
-            this.lblSubTitle.Text = "Hệ thống Quản Lý Thư Viện • Chương 3";
-            // 
-            // btnDashboard
-            // 
-            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(79)))), ((int)(((byte)(127)))));
-            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnDashboard.Location = new System.Drawing.Point(760, 25);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(190, 40);
-            this.btnDashboard.TabIndex = 2;
-            this.btnDashboard.Text = "Dashboard Tổng Quan";
-            this.btnDashboard.UseVisualStyleBackColor = false;
+            this.lblSubTitle.Text = "Hệ thống Quản Lý Thư Viện • NKH";
+            this.lblSubTitle.Click += new System.EventHandler(this.lblSubTitle_Click);
             // 
             // btnRefresh
             // 
@@ -160,6 +183,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnOpen
             // 
@@ -175,6 +199,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.btnOpen.TabIndex = 4;
             this.btnOpen.Text = "Open Power BI";
             this.btnOpen.UseVisualStyleBackColor = false;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // pnlFooter
             // 
@@ -182,9 +207,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlFooter.Controls.Add(this.lblFooterLeft);
             this.pnlFooter.Controls.Add(this.lblFooterRight);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 700);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 1082);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1300, 50);
+            this.pnlFooter.Size = new System.Drawing.Size(1947, 50);
             this.pnlFooter.TabIndex = 1;
             // 
             // lblFooterLeft
@@ -207,7 +232,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblFooterRight.Name = "lblFooterRight";
             this.lblFooterRight.Size = new System.Drawing.Size(462, 23);
             this.lblFooterRight.TabIndex = 1;
-            this.lblFooterRight.Text = "Power BI Service Connected | Last Updated: 09/05/2026";
+            this.lblFooterRight.Text = "Power BI Service Connected | Last Updated: 13/05/2026";
             // 
             // pnlBody
             // 
@@ -218,7 +243,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlBody.Location = new System.Drawing.Point(0, 90);
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlBody.Size = new System.Drawing.Size(1300, 610);
+            this.pnlBody.Size = new System.Drawing.Size(1947, 992);
             this.pnlBody.TabIndex = 0;
             // 
             // pnlMain
@@ -229,7 +254,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlMain.Location = new System.Drawing.Point(315, 15);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlMain.Size = new System.Drawing.Size(970, 580);
+            this.pnlMain.Size = new System.Drawing.Size(1617, 962);
             this.pnlMain.TabIndex = 0;
             // 
             // pnlBrowser
@@ -241,19 +266,273 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlBrowser.Location = new System.Drawing.Point(15, 15);
             this.pnlBrowser.Name = "pnlBrowser";
             this.pnlBrowser.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlBrowser.Size = new System.Drawing.Size(940, 550);
+            this.pnlBrowser.Size = new System.Drawing.Size(1587, 932);
             this.pnlBrowser.TabIndex = 0;
             // 
             // pnlContent
             // 
             this.pnlContent.BackColor = System.Drawing.Color.White;
-            this.pnlContent.Controls.Add(this.webView21);
+            this.pnlContent.Controls.Add(this.panel1);
             this.pnlContent.Controls.Add(this.lblPowerBI);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(15, 55);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(910, 480);
+            this.pnlContent.Size = new System.Drawing.Size(1557, 862);
             this.pnlContent.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.panel1.Controls.Add(this.panelTongSach);
+            this.panel1.Controls.Add(this.panelDocGia);
+            this.panel1.Controls.Add(this.panelMuon);
+            this.panel1.Controls.Add(this.panelTre);
+            this.panel1.Controls.Add(this.chartTopSach);
+            this.panel1.Controls.Add(this.dgvTopSach);
+            this.panel1.Controls.Add(this.chartTrangThai);
+            this.panel1.Controls.Add(this.chartLoaiSach);
+            this.panel1.Controls.Add(this.chartMuonTheoThang);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(1557, 862);
+            this.panel1.TabIndex = 1;
+            // 
+            // panelTongSach
+            // 
+            this.panelTongSach.BackColor = System.Drawing.Color.MediumPurple;
+            this.panelTongSach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTongSach.Controls.Add(this.lblTongSach);
+            this.panelTongSach.Controls.Add(this.label1);
+            this.panelTongSach.Location = new System.Drawing.Point(20, 20);
+            this.panelTongSach.Name = "panelTongSach";
+            this.panelTongSach.Size = new System.Drawing.Size(350, 120);
+            this.panelTongSach.TabIndex = 0;
+            // 
+            // lblTongSach
+            // 
+            this.lblTongSach.AutoSize = true;
+            this.lblTongSach.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold);
+            this.lblTongSach.ForeColor = System.Drawing.Color.White;
+            this.lblTongSach.Location = new System.Drawing.Point(25, 20);
+            this.lblTongSach.Name = "lblTongSach";
+            this.lblTongSach.Size = new System.Drawing.Size(54, 62);
+            this.lblTongSach.TabIndex = 0;
+            this.lblTongSach.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(28, 75);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 30);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Tổng Sách";
+            // 
+            // panelDocGia
+            // 
+            this.panelDocGia.BackColor = System.Drawing.Color.MediumPurple;
+            this.panelDocGia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDocGia.Controls.Add(this.lblTongDocGia);
+            this.panelDocGia.Controls.Add(this.label2);
+            this.panelDocGia.Location = new System.Drawing.Point(400, 20);
+            this.panelDocGia.Name = "panelDocGia";
+            this.panelDocGia.Size = new System.Drawing.Size(350, 120);
+            this.panelDocGia.TabIndex = 1;
+            // 
+            // lblTongDocGia
+            // 
+            this.lblTongDocGia.AutoSize = true;
+            this.lblTongDocGia.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold);
+            this.lblTongDocGia.ForeColor = System.Drawing.Color.White;
+            this.lblTongDocGia.Location = new System.Drawing.Point(25, 20);
+            this.lblTongDocGia.Name = "lblTongDocGia";
+            this.lblTongDocGia.Size = new System.Drawing.Size(54, 62);
+            this.lblTongDocGia.TabIndex = 0;
+            this.lblTongDocGia.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(28, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(144, 30);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Tổng Độc Giả";
+            // 
+            // panelMuon
+            // 
+            this.panelMuon.BackColor = System.Drawing.Color.MediumPurple;
+            this.panelMuon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMuon.Controls.Add(this.lblTongMuon);
+            this.panelMuon.Controls.Add(this.label3);
+            this.panelMuon.Location = new System.Drawing.Point(780, 20);
+            this.panelMuon.Name = "panelMuon";
+            this.panelMuon.Size = new System.Drawing.Size(350, 120);
+            this.panelMuon.TabIndex = 2;
+            // 
+            // lblTongMuon
+            // 
+            this.lblTongMuon.AutoSize = true;
+            this.lblTongMuon.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold);
+            this.lblTongMuon.ForeColor = System.Drawing.Color.White;
+            this.lblTongMuon.Location = new System.Drawing.Point(25, 20);
+            this.lblTongMuon.Name = "lblTongMuon";
+            this.lblTongMuon.Size = new System.Drawing.Size(54, 62);
+            this.lblTongMuon.TabIndex = 0;
+            this.lblTongMuon.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(28, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 30);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Phiếu Mượn";
+            // 
+            // panelTre
+            // 
+            this.panelTre.BackColor = System.Drawing.Color.MediumPurple;
+            this.panelTre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTre.Controls.Add(this.lblSachTre);
+            this.panelTre.Controls.Add(this.label4);
+            this.panelTre.Location = new System.Drawing.Point(1160, 20);
+            this.panelTre.Name = "panelTre";
+            this.panelTre.Size = new System.Drawing.Size(350, 120);
+            this.panelTre.TabIndex = 3;
+            // 
+            // lblSachTre
+            // 
+            this.lblSachTre.AutoSize = true;
+            this.lblSachTre.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold);
+            this.lblSachTre.ForeColor = System.Drawing.Color.White;
+            this.lblSachTre.Location = new System.Drawing.Point(25, 20);
+            this.lblSachTre.Name = "lblSachTre";
+            this.lblSachTre.Size = new System.Drawing.Size(54, 62);
+            this.lblSachTre.TabIndex = 0;
+            this.lblSachTre.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(28, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(149, 30);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Sách Quá Hạn";
+            // 
+            // chartTopSach
+            // 
+            this.chartTopSach.BorderlineColor = System.Drawing.Color.MediumPurple;
+            this.chartTopSach.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.chartTopSach.BorderlineWidth = 2;
+            chartArea29.Name = "ChartArea1";
+            this.chartTopSach.ChartAreas.Add(chartArea29);
+            legend29.Name = "Legend1";
+            this.chartTopSach.Legends.Add(legend29);
+            this.chartTopSach.Location = new System.Drawing.Point(20, 170);
+            this.chartTopSach.Name = "chartTopSach";
+            this.chartTopSach.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            this.chartTopSach.Size = new System.Drawing.Size(520, 300);
+            this.chartTopSach.TabIndex = 4;
+            title29.Name = "Title1";
+            title29.Text = "Count of MaSach by TrangThaiThanhLy";
+            this.chartTopSach.Titles.Add(title29);
+            // 
+            // dgvTopSach
+            // 
+            this.dgvTopSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTopSach.BackgroundColor = System.Drawing.Color.White;
+            this.dgvTopSach.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.MediumPurple;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTopSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.dgvTopSach.ColumnHeadersHeight = 40;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.MediumPurple;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTopSach.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvTopSach.EnableHeadersVisualStyles = false;
+            this.dgvTopSach.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvTopSach.Location = new System.Drawing.Point(555, 170);
+            this.dgvTopSach.Name = "dgvTopSach";
+            this.dgvTopSach.RowHeadersWidth = 51;
+            this.dgvTopSach.RowTemplate.Height = 35;
+            this.dgvTopSach.Size = new System.Drawing.Size(540, 300);
+            this.dgvTopSach.TabIndex = 5;
+            // 
+            // chartTrangThai
+            // 
+            this.chartTrangThai.BorderlineColor = System.Drawing.Color.MediumPurple;
+            this.chartTrangThai.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.chartTrangThai.BorderlineWidth = 2;
+            chartArea30.Name = "ChartArea1";
+            this.chartTrangThai.ChartAreas.Add(chartArea30);
+            legend30.Name = "Legend1";
+            this.chartTrangThai.Legends.Add(legend30);
+            this.chartTrangThai.Location = new System.Drawing.Point(1120, 170);
+            this.chartTrangThai.Name = "chartTrangThai";
+            this.chartTrangThai.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            this.chartTrangThai.Size = new System.Drawing.Size(390, 300);
+            this.chartTrangThai.TabIndex = 6;
+            title30.Name = "Title1";
+            title30.Text = "Count of MaSach by TinhTrang";
+            this.chartTrangThai.Titles.Add(title30);
+            // 
+            // chartLoaiSach
+            // 
+            this.chartLoaiSach.BorderlineColor = System.Drawing.Color.MediumPurple;
+            this.chartLoaiSach.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.chartLoaiSach.BorderlineWidth = 2;
+            chartArea31.Name = "ChartArea1";
+            this.chartLoaiSach.ChartAreas.Add(chartArea31);
+            legend31.Name = "Legend1";
+            this.chartLoaiSach.Legends.Add(legend31);
+            this.chartLoaiSach.Location = new System.Drawing.Point(20, 500);
+            this.chartLoaiSach.Name = "chartLoaiSach";
+            this.chartLoaiSach.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            this.chartLoaiSach.Size = new System.Drawing.Size(760, 330);
+            this.chartLoaiSach.TabIndex = 7;
+            title31.Name = "Title1";
+            title31.Text = "Count of MaLoaiSach by SoSachMuon";
+            this.chartLoaiSach.Titles.Add(title31);
+            // 
+            // chartMuonTheoThang
+            // 
+            this.chartMuonTheoThang.BorderlineColor = System.Drawing.Color.MediumPurple;
+            this.chartMuonTheoThang.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.chartMuonTheoThang.BorderlineWidth = 2;
+            chartArea32.Name = "ChartArea1";
+            this.chartMuonTheoThang.ChartAreas.Add(chartArea32);
+            legend32.Name = "Legend1";
+            this.chartMuonTheoThang.Legends.Add(legend32);
+            this.chartMuonTheoThang.Location = new System.Drawing.Point(810, 500);
+            this.chartMuonTheoThang.Name = "chartMuonTheoThang";
+            this.chartMuonTheoThang.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            this.chartMuonTheoThang.Size = new System.Drawing.Size(700, 330);
+            this.chartMuonTheoThang.TabIndex = 8;
+            title32.Name = "Title1";
+            title32.Text = "Count of MaDG by SoSachMuon";
+            this.chartMuonTheoThang.Titles.Add(title32);
             // 
             // lblPowerBI
             // 
@@ -272,7 +551,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlBrowserTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBrowserTop.Location = new System.Drawing.Point(15, 15);
             this.pnlBrowserTop.Name = "pnlBrowserTop";
-            this.pnlBrowserTop.Size = new System.Drawing.Size(910, 40);
+            this.pnlBrowserTop.Size = new System.Drawing.Size(1557, 40);
             this.pnlBrowserTop.TabIndex = 1;
             // 
             // pnlLeft
@@ -282,7 +561,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlLeft.Location = new System.Drawing.Point(15, 15);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.pnlLeft.Size = new System.Drawing.Size(300, 580);
+            this.pnlLeft.Size = new System.Drawing.Size(300, 962);
             this.pnlLeft.TabIndex = 1;
             // 
             // flowLeft
@@ -296,7 +575,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.flowLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLeft.Location = new System.Drawing.Point(0, 0);
             this.flowLeft.Name = "flowLeft";
-            this.flowLeft.Size = new System.Drawing.Size(290, 580);
+            this.flowLeft.Size = new System.Drawing.Size(290, 962);
             this.flowLeft.TabIndex = 0;
             this.flowLeft.WrapContents = false;
             // 
@@ -329,9 +608,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard1.ForeColor = System.Drawing.Color.White;
             this.lblCard1.Location = new System.Drawing.Point(15, 10);
             this.lblCard1.Name = "lblCard1";
-            this.lblCard1.Size = new System.Drawing.Size(142, 25);
+            this.lblCard1.Size = new System.Drawing.Size(183, 25);
             this.lblCard1.TabIndex = 0;
-            this.lblCard1.Text = "Nguồn dữ liệu";
+            this.lblCard1.Text = "Giới thiệu hệ thống";
             // 
             // lblCard1Content
             // 
@@ -339,10 +618,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard1Content.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblCard1Content.Location = new System.Drawing.Point(20, 55);
             this.lblCard1Content.Name = "lblCard1Content";
-            this.lblCard1Content.Size = new System.Drawing.Size(168, 115);
+            this.lblCard1Content.Size = new System.Drawing.Size(179, 115);
             this.lblCard1Content.TabIndex = 1;
-            this.lblCard1Content.Text = "• Visual Studio 2022\r\n• SQL Server\r\n• Power BI Desktop\r\n• .NET Framework\r\n• Windo" +
-    "ws Forms C#";
+            this.lblCard1Content.Text = "• Quản lý thư viện\n• Quản lý sách\n• Quản lý độc giả\n• Quản lý phiếu mượn\n• Quản l" +
+    "ý phiếu trả";
+            this.lblCard1Content.Click += new System.EventHandler(this.lblCard1Content_Click);
             // 
             // card2
             // 
@@ -353,7 +633,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.card2.Location = new System.Drawing.Point(10, 210);
             this.card2.Margin = new System.Windows.Forms.Padding(10);
             this.card2.Name = "card2";
-            this.card2.Size = new System.Drawing.Size(260, 164);
+            this.card2.Size = new System.Drawing.Size(260, 185);
             this.card2.TabIndex = 1;
             // 
             // card2Header
@@ -373,9 +653,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard2.ForeColor = System.Drawing.Color.White;
             this.lblCard2.Location = new System.Drawing.Point(15, 10);
             this.lblCard2.Name = "lblCard2";
-            this.lblCard2.Size = new System.Drawing.Size(110, 25);
+            this.lblCard2.Size = new System.Drawing.Size(161, 25);
             this.lblCard2.TabIndex = 0;
-            this.lblCard2.Text = "Công nghệ";
+            this.lblCard2.Text = "Chức năng chính";
             // 
             // lblCard2Content
             // 
@@ -383,9 +663,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard2Content.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblCard2Content.Location = new System.Drawing.Point(20, 55);
             this.lblCard2Content.Name = "lblCard2Content";
-            this.lblCard2Content.Size = new System.Drawing.Size(160, 92);
+            this.lblCard2Content.Size = new System.Drawing.Size(157, 115);
             this.lblCard2Content.TabIndex = 1;
-            this.lblCard2Content.Text = "• C#\r\n• SQL Server\r\n• Power BI Service\r\n• REST / Embed API";
+            this.lblCard2Content.Text = "• Quản lý sách\n• Lập phiếu mượn\n• Lập phiếu trả\n• Thanh lý sách\n• Quản lý tài kho" +
+    "ản";
             // 
             // card3
             // 
@@ -393,7 +674,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.card3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.card3.Controls.Add(this.card3Header);
             this.card3.Controls.Add(this.lblCard3Content);
-            this.card3.Location = new System.Drawing.Point(10, 394);
+            this.card3.Location = new System.Drawing.Point(10, 415);
             this.card3.Margin = new System.Windows.Forms.Padding(10);
             this.card3.Name = "card3";
             this.card3.Size = new System.Drawing.Size(260, 206);
@@ -416,9 +697,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard3.ForeColor = System.Drawing.Color.White;
             this.lblCard3.Location = new System.Drawing.Point(15, 10);
             this.lblCard3.Name = "lblCard3";
-            this.lblCard3.Size = new System.Drawing.Size(185, 25);
+            this.lblCard3.Size = new System.Drawing.Size(167, 25);
             this.lblCard3.TabIndex = 0;
-            this.lblCard3.Text = "Quy trình triển khai";
+            this.lblCard3.Text = "Báo cáo thống kê";
             // 
             // lblCard3Content
             // 
@@ -426,10 +707,10 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.lblCard3Content.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblCard3Content.Location = new System.Drawing.Point(20, 55);
             this.lblCard3Content.Name = "lblCard3Content";
-            this.lblCard3Content.Size = new System.Drawing.Size(204, 115);
+            this.lblCard3Content.Size = new System.Drawing.Size(184, 115);
             this.lblCard3Content.TabIndex = 1;
-            this.lblCard3Content.Text = "🟢 Tạo dữ liệu SQL\r\n🟢 Kết nối Power BI\r\n🟢 Publish lên Service\r\n🟢 Lấy Embed Lin" +
-    "k\r\n🟢 Nhúng vào WinForms";
+            this.lblCard3Content.Text = "◉ Số lượng sách\n◉ Sách đang mượn\n◉ Độc giả hoạt động\n◉ Thống kê quá hạn\n◉ Dashboa" +
+    "rd Power BI";
             // 
             // btnGreen
             // 
@@ -439,25 +720,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.btnGreen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGreen.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnGreen.ForeColor = System.Drawing.Color.White;
-            this.btnGreen.Location = new System.Drawing.Point(10, 620);
+            this.btnGreen.Location = new System.Drawing.Point(10, 641);
             this.btnGreen.Margin = new System.Windows.Forms.Padding(10);
             this.btnGreen.Name = "btnGreen";
             this.btnGreen.Size = new System.Drawing.Size(260, 50);
             this.btnGreen.TabIndex = 3;
             this.btnGreen.Text = "Tích hợp Dashboard";
             this.btnGreen.UseVisualStyleBackColor = false;
-            // 
-            // webView21
-            // 
-            this.webView21.AllowExternalDrop = true;
-            this.webView21.CreationProperties = null;
-            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView21.Location = new System.Drawing.Point(0, -16);
-            this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(385, 477);
-            this.webView21.TabIndex = 1;
-            this.webView21.ZoomFactor = 1D;
-            this.webView21.Click += new System.EventHandler(this.webView21_Click);
             // 
             // UCPowerBI
             // 
@@ -468,7 +737,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.Controls.Add(this.pnlFooter);
             this.Controls.Add(this.pnlHeader);
             this.Name = "UCPowerBI";
-            this.Size = new System.Drawing.Size(1300, 750);
+            this.Size = new System.Drawing.Size(1947, 1132);
             this.Load += new System.EventHandler(this.UCPowerBI_Load_1);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
@@ -479,6 +748,20 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlBrowser.ResumeLayout(false);
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panelTongSach.ResumeLayout(false);
+            this.panelTongSach.PerformLayout();
+            this.panelDocGia.ResumeLayout(false);
+            this.panelDocGia.PerformLayout();
+            this.panelMuon.ResumeLayout(false);
+            this.panelMuon.PerformLayout();
+            this.panelTre.ResumeLayout(false);
+            this.panelTre.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTopSach)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTopSach)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTrangThai)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartLoaiSach)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartMuonTheoThang)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.flowLeft.ResumeLayout(false);
             this.card1.ResumeLayout(false);
@@ -493,7 +776,6 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.card3.PerformLayout();
             this.card3Header.ResumeLayout(false);
             this.card3Header.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -514,6 +796,23 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         private Label lblCard3;
         private Label lblCard3Content;
         private Button btnGreen;
-        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+        private Panel panel1;
+        private Panel panelTongSach;
+        private Label lblTongSach;
+        private Label label1;
+        private Panel panelDocGia;
+        private Label lblTongDocGia;
+        private Label label2;
+        private Panel panelMuon;
+        private Label lblTongMuon;
+        private Label label3;
+        private Panel panelTre;
+        private Label lblSachTre;
+        private Label label4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTopSach;
+        private DataGridView dgvTopSach;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTrangThai;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartLoaiSach;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartMuonTheoThang;
     }
 }
