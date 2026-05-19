@@ -45,20 +45,20 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea29 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend29 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title29 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea30 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend30 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title30 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea31 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend31 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title31 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea32 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend32 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title32 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblSubTitle = new System.Windows.Forms.Label();
@@ -142,7 +142,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1947, 90);
+            this.pnlHeader.Size = new System.Drawing.Size(1800, 90);
             this.pnlHeader.TabIndex = 2;
             this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             // 
@@ -207,9 +207,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlFooter.Controls.Add(this.lblFooterLeft);
             this.pnlFooter.Controls.Add(this.lblFooterRight);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 1082);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 900);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1947, 50);
+            this.pnlFooter.Size = new System.Drawing.Size(1800, 50);
             this.pnlFooter.TabIndex = 1;
             // 
             // lblFooterLeft
@@ -243,7 +243,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlBody.Location = new System.Drawing.Point(0, 90);
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlBody.Size = new System.Drawing.Size(1947, 992);
+            this.pnlBody.Size = new System.Drawing.Size(1800, 810);
             this.pnlBody.TabIndex = 0;
             // 
             // pnlMain
@@ -254,7 +254,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlMain.Location = new System.Drawing.Point(315, 15);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlMain.Size = new System.Drawing.Size(1617, 962);
+            this.pnlMain.Size = new System.Drawing.Size(1470, 780);
             this.pnlMain.TabIndex = 0;
             // 
             // pnlBrowser
@@ -266,7 +266,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlBrowser.Location = new System.Drawing.Point(15, 15);
             this.pnlBrowser.Name = "pnlBrowser";
             this.pnlBrowser.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlBrowser.Size = new System.Drawing.Size(1587, 932);
+            this.pnlBrowser.Size = new System.Drawing.Size(1440, 750);
             this.pnlBrowser.TabIndex = 0;
             // 
             // pnlContent
@@ -277,7 +277,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(15, 55);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1557, 862);
+            this.pnlContent.Size = new System.Drawing.Size(1410, 680);
             this.pnlContent.TabIndex = 0;
             // 
             // panel1
@@ -292,12 +292,12 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.panel1.Controls.Add(this.chartTrangThai);
             this.panel1.Controls.Add(this.chartLoaiSach);
             this.panel1.Controls.Add(this.chartMuonTheoThang);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(1, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(1557, 862);
+            this.panel1.Size = new System.Drawing.Size(1405, 679);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panelTongSach
             // 
@@ -305,9 +305,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.panelTongSach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTongSach.Controls.Add(this.lblTongSach);
             this.panelTongSach.Controls.Add(this.label1);
-            this.panelTongSach.Location = new System.Drawing.Point(20, 20);
+            this.panelTongSach.Location = new System.Drawing.Point(30, 5);
             this.panelTongSach.Name = "panelTongSach";
-            this.panelTongSach.Size = new System.Drawing.Size(350, 120);
+            this.panelTongSach.Size = new System.Drawing.Size(287, 112);
             this.panelTongSach.TabIndex = 0;
             // 
             // lblTongSach
@@ -338,9 +338,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.panelDocGia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDocGia.Controls.Add(this.lblTongDocGia);
             this.panelDocGia.Controls.Add(this.label2);
-            this.panelDocGia.Location = new System.Drawing.Point(400, 20);
+            this.panelDocGia.Location = new System.Drawing.Point(378, 6);
             this.panelDocGia.Name = "panelDocGia";
-            this.panelDocGia.Size = new System.Drawing.Size(350, 120);
+            this.panelDocGia.Size = new System.Drawing.Size(287, 112);
             this.panelDocGia.TabIndex = 1;
             // 
             // lblTongDocGia
@@ -371,9 +371,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.panelMuon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMuon.Controls.Add(this.lblTongMuon);
             this.panelMuon.Controls.Add(this.label3);
-            this.panelMuon.Location = new System.Drawing.Point(780, 20);
+            this.panelMuon.Location = new System.Drawing.Point(733, 7);
             this.panelMuon.Name = "panelMuon";
-            this.panelMuon.Size = new System.Drawing.Size(350, 120);
+            this.panelMuon.Size = new System.Drawing.Size(287, 112);
             this.panelMuon.TabIndex = 2;
             // 
             // lblTongMuon
@@ -404,9 +404,9 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.panelTre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTre.Controls.Add(this.lblSachTre);
             this.panelTre.Controls.Add(this.label4);
-            this.panelTre.Location = new System.Drawing.Point(1160, 20);
+            this.panelTre.Location = new System.Drawing.Point(1074, 7);
             this.panelTre.Name = "panelTre";
-            this.panelTre.Size = new System.Drawing.Size(350, 120);
+            this.panelTre.Size = new System.Drawing.Size(287, 112);
             this.panelTre.TabIndex = 3;
             // 
             // lblSachTre
@@ -436,48 +436,48 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.chartTopSach.BorderlineColor = System.Drawing.Color.MediumPurple;
             this.chartTopSach.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chartTopSach.BorderlineWidth = 2;
-            chartArea29.Name = "ChartArea1";
-            this.chartTopSach.ChartAreas.Add(chartArea29);
-            legend29.Name = "Legend1";
-            this.chartTopSach.Legends.Add(legend29);
-            this.chartTopSach.Location = new System.Drawing.Point(20, 170);
+            chartArea1.Name = "ChartArea1";
+            this.chartTopSach.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartTopSach.Legends.Add(legend1);
+            this.chartTopSach.Location = new System.Drawing.Point(30, 125);
             this.chartTopSach.Name = "chartTopSach";
             this.chartTopSach.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            this.chartTopSach.Size = new System.Drawing.Size(520, 300);
+            this.chartTopSach.Size = new System.Drawing.Size(457, 249);
             this.chartTopSach.TabIndex = 4;
-            title29.Name = "Title1";
-            title29.Text = "Count of MaSach by TrangThaiThanhLy";
-            this.chartTopSach.Titles.Add(title29);
+            title1.Name = "Title1";
+            title1.Text = "Count of MaSach by TrangThaiThanhLy";
+            this.chartTopSach.Titles.Add(title1);
             // 
             // dgvTopSach
             // 
             this.dgvTopSach.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTopSach.BackgroundColor = System.Drawing.Color.White;
             this.dgvTopSach.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.MediumPurple;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTopSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.MediumPurple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTopSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTopSach.ColumnHeadersHeight = 40;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.MediumPurple;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTopSach.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.MediumPurple;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTopSach.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTopSach.EnableHeadersVisualStyles = false;
             this.dgvTopSach.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvTopSach.Location = new System.Drawing.Point(555, 170);
+            this.dgvTopSach.Location = new System.Drawing.Point(524, 125);
             this.dgvTopSach.Name = "dgvTopSach";
             this.dgvTopSach.RowHeadersWidth = 51;
             this.dgvTopSach.RowTemplate.Height = 35;
-            this.dgvTopSach.Size = new System.Drawing.Size(540, 300);
+            this.dgvTopSach.Size = new System.Drawing.Size(477, 248);
             this.dgvTopSach.TabIndex = 5;
             // 
             // chartTrangThai
@@ -485,54 +485,54 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.chartTrangThai.BorderlineColor = System.Drawing.Color.MediumPurple;
             this.chartTrangThai.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chartTrangThai.BorderlineWidth = 2;
-            chartArea30.Name = "ChartArea1";
-            this.chartTrangThai.ChartAreas.Add(chartArea30);
-            legend30.Name = "Legend1";
-            this.chartTrangThai.Legends.Add(legend30);
-            this.chartTrangThai.Location = new System.Drawing.Point(1120, 170);
+            chartArea2.Name = "ChartArea1";
+            this.chartTrangThai.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartTrangThai.Legends.Add(legend2);
+            this.chartTrangThai.Location = new System.Drawing.Point(1031, 126);
             this.chartTrangThai.Name = "chartTrangThai";
             this.chartTrangThai.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            this.chartTrangThai.Size = new System.Drawing.Size(390, 300);
+            this.chartTrangThai.Size = new System.Drawing.Size(327, 249);
             this.chartTrangThai.TabIndex = 6;
-            title30.Name = "Title1";
-            title30.Text = "Count of MaSach by TinhTrang";
-            this.chartTrangThai.Titles.Add(title30);
+            title2.Name = "Title1";
+            title2.Text = "Count of MaSach by TinhTrang";
+            this.chartTrangThai.Titles.Add(title2);
             // 
             // chartLoaiSach
             // 
             this.chartLoaiSach.BorderlineColor = System.Drawing.Color.MediumPurple;
             this.chartLoaiSach.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chartLoaiSach.BorderlineWidth = 2;
-            chartArea31.Name = "ChartArea1";
-            this.chartLoaiSach.ChartAreas.Add(chartArea31);
-            legend31.Name = "Legend1";
-            this.chartLoaiSach.Legends.Add(legend31);
-            this.chartLoaiSach.Location = new System.Drawing.Point(20, 500);
+            chartArea3.Name = "ChartArea1";
+            this.chartLoaiSach.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartLoaiSach.Legends.Add(legend3);
+            this.chartLoaiSach.Location = new System.Drawing.Point(26, 380);
             this.chartLoaiSach.Name = "chartLoaiSach";
             this.chartLoaiSach.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            this.chartLoaiSach.Size = new System.Drawing.Size(760, 330);
+            this.chartLoaiSach.Size = new System.Drawing.Size(697, 277);
             this.chartLoaiSach.TabIndex = 7;
-            title31.Name = "Title1";
-            title31.Text = "Count of MaLoaiSach by SoSachMuon";
-            this.chartLoaiSach.Titles.Add(title31);
+            title3.Name = "Title1";
+            title3.Text = "Count of MaLoaiSach by SoSachMuon";
+            this.chartLoaiSach.Titles.Add(title3);
             // 
             // chartMuonTheoThang
             // 
             this.chartMuonTheoThang.BorderlineColor = System.Drawing.Color.MediumPurple;
             this.chartMuonTheoThang.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chartMuonTheoThang.BorderlineWidth = 2;
-            chartArea32.Name = "ChartArea1";
-            this.chartMuonTheoThang.ChartAreas.Add(chartArea32);
-            legend32.Name = "Legend1";
-            this.chartMuonTheoThang.Legends.Add(legend32);
-            this.chartMuonTheoThang.Location = new System.Drawing.Point(810, 500);
+            chartArea4.Name = "ChartArea1";
+            this.chartMuonTheoThang.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartMuonTheoThang.Legends.Add(legend4);
+            this.chartMuonTheoThang.Location = new System.Drawing.Point(767, 380);
             this.chartMuonTheoThang.Name = "chartMuonTheoThang";
             this.chartMuonTheoThang.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            this.chartMuonTheoThang.Size = new System.Drawing.Size(700, 330);
+            this.chartMuonTheoThang.Size = new System.Drawing.Size(591, 277);
             this.chartMuonTheoThang.TabIndex = 8;
-            title32.Name = "Title1";
-            title32.Text = "Count of MaDG by SoSachMuon";
-            this.chartMuonTheoThang.Titles.Add(title32);
+            title4.Name = "Title1";
+            title4.Text = "Count of MaDG by SoSachMuon";
+            this.chartMuonTheoThang.Titles.Add(title4);
             // 
             // lblPowerBI
             // 
@@ -551,7 +551,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlBrowserTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBrowserTop.Location = new System.Drawing.Point(15, 15);
             this.pnlBrowserTop.Name = "pnlBrowserTop";
-            this.pnlBrowserTop.Size = new System.Drawing.Size(1557, 40);
+            this.pnlBrowserTop.Size = new System.Drawing.Size(1410, 40);
             this.pnlBrowserTop.TabIndex = 1;
             // 
             // pnlLeft
@@ -561,7 +561,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.pnlLeft.Location = new System.Drawing.Point(15, 15);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.pnlLeft.Size = new System.Drawing.Size(300, 962);
+            this.pnlLeft.Size = new System.Drawing.Size(300, 780);
             this.pnlLeft.TabIndex = 1;
             // 
             // flowLeft
@@ -575,7 +575,7 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             this.flowLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLeft.Location = new System.Drawing.Point(0, 0);
             this.flowLeft.Name = "flowLeft";
-            this.flowLeft.Size = new System.Drawing.Size(290, 962);
+            this.flowLeft.Size = new System.Drawing.Size(290, 780);
             this.flowLeft.TabIndex = 0;
             this.flowLeft.WrapContents = false;
             // 
@@ -732,12 +732,13 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlFooter);
             this.Controls.Add(this.pnlHeader);
             this.Name = "UCPowerBI";
-            this.Size = new System.Drawing.Size(1947, 1132);
+            this.Size = new System.Drawing.Size(1800, 950);
             this.Load += new System.EventHandler(this.UCPowerBI_Load_1);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();

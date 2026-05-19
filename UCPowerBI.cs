@@ -35,6 +35,12 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         private void UCPowerBI_Load_1(object sender, EventArgs e)
         {
             LoadAllDashboard();
+            //panel1.Controls.Clear();
+            //UCPowerBI uc = new ucQuanLySinhVien();
+            //uc.Dock = DockStyle.Fill;
+            //panel1.Controls.Add(pa);
+            //panel1.PerformLayout();
+            //uc.BringToFront();
         }
 
         void LoadAllDashboard()
@@ -560,6 +566,11 @@ namespace Bài_TH_Quản_Lý_Thư_Viện
         }
 
         private void lblCard1Content_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
